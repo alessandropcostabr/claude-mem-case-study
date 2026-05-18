@@ -3,6 +3,11 @@ date,event,category,description
 2026-03-09,sqlite-sync-start,infra,SQLite sync via cron (15min) between 3 machines began
 2026-04-10,sync-retry-fix,bugfix,SSH retry logic added after 2.5h connectivity gap on Machine-C
 2026-04-15,benchmark-start,milestone,Automated CC benchmarking begins (every 6h)
+2026-04-19,chroma-eliminated,migration,Chroma disabled fleet-wide (CHROMA_ENABLED=false) — Qdrant adopted as primary vector backend
+2026-04-22,qdrant-bugs-fixed,bugfix,"3 critical bugs fixed in fork: SearchManager type mismatch (400+ search errors/day silent), VectorSync Chroma-to-Qdrant filter translation, health-check cold-start timeout 15s→45s"
+2026-04-23,pid-stale-incident,incident,"Worker crash loop on Machine-A: stale PID file caused 1934 systemd restarts. Fix: rm ~/.claude-mem/worker.pid"
+2026-05-05,embed-model-multilingual,feature,"FastEmbed model upgraded from BAAI/bge-small-en-v1.5 (en-only) to paraphrase-multilingual-MiniLM-L12-v2 (384d — 50+ languages incl. pt-BR)"
+2026-05-07,qdrant-reindex,milestone,"Full reindex completed: 15990 observations + 4772 summaries = 21929 points — 0 errors"
 2026-05-11,upstream-contact,milestone,Upstream maintainer (thedotmack) reaches out about server-mode
 2026-05-12,server-beta-deploy,milestone,Server-beta deployed on Machine-B (Postgres + BullMQ + systemd)
 2026-05-12,sqlite-to-pg-migration,migration,22116 observations migrated from SQLite to Postgres

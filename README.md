@@ -28,10 +28,13 @@ graph TB
         SB["server-beta :37877"]
         PG[("Postgres\nclaude_mem\n22.7k obs")]
         RD[("Redis db1\nBullMQ")]
+        QD[("Qdrant :6333\n21.9k vectors")]
+        FE["FastEmbed :11436\nmultilingual"]
         W2[claude-mem worker]
         SB --> PG
         SB --> RD
         W2 -->|fire-and-forget| SB
+        QD --- FE
     end
 
     subgraph Machine-C ["Machine-C — TELEGRAM"]
@@ -43,12 +46,14 @@ graph TB
 
     W1 -.->|"sync-fleet-config.sh (15min)"| W2
     W1 -.->|"sync-fleet-config.sh"| W3
+    W1 -->|"semantic search"| QD
+    W3 -->|"semantic search"| QD
 ```
 
 | Machine | Role | Key Services |
 |---------|------|-------------|
 | Machine-A | DEV | Claude Code sessions, sync hub |
-| Machine-B | PROD | server-beta, Postgres, Redis, LATE PM2 |
+| Machine-B | PROD | server-beta, Postgres, Redis, Qdrant, FastEmbed |
 | Machine-C | TELEGRAM | Telegram bot, OpenClaw, 74 cron jobs, CC canary |
 
 ## The Data
@@ -167,6 +172,34 @@ timeline
         Postgres as source of truth : SQLite sync deprecated
 ```
 
+## Vector Search Evolution
+
+The retrieval backend migrated from Chroma to Qdrant in April 2026. All workers across the 3-machine fleet point to a single shared Qdrant instance on Machine-B, enabling cross-machine semantic search without replication.
+
+### Timeline
+
+| Date | Event |
+|------|-------|
+| Apr 19 | Chroma disabled fleet-wide (`CHROMA_ENABLED=false`) |
+| Apr 22 | Qdrant active — 3 critical bugs fixed in the fork |
+| Apr 23 | Worker crash loop on Machine-A: stale PID file (1,934 restarts) |
+| May 5 | Embedding model upgraded from English-only to multilingual |
+| May 7 | Full reindex: **21,929 points**, 0 errors |
+
+### Three bugs found during migration
+
+The migration exposed silent failures that had been accumulating unnoticed:
+
+1. **Type mismatch in SearchManager** — still typed as `ChromaSync`, calling `.queryChroma()` which didn't exist on the Qdrant backend. Result: **400+ search errors per day**, all silent (no log, no alert, empty results returned instead).
+
+2. **Filter translation missing in VectorSync** — Chroma-style filters (`$and`, `$or`, `$eq`) were passed directly to Qdrant, which rejected them. Fix: `translateWhereFilter()` converting to Qdrant's `must`/`should` format.
+
+3. **Health-check timeout too short** — E2E check used a 15s timeout; FastEmbed cold-start takes ~25s. Fix: 45s timeout + hardcoded version string replaced with `package.json` read.
+
+### Embedding model upgrade (May 5)
+
+The initial model (`BAAI/bge-small-en-v1.5`) was English-only. After switching to `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` (384 dimensions, 50+ languages including pt-BR), semantic search quality improved for non-English observations. The model runs as a persistent `systemd` service (`embed-server.service`) on Machine-B.
+
 ## Lessons Learned
 
 ### 1. Silent failures are the worst failures
@@ -184,6 +217,10 @@ Running CC updates on one machine first revealed performance divergences that no
 ### 4. Distributed sync is hard — but content-addressable dedup makes it tractable
 
 The `content_hash` field made 3-way SQLite sync reliable: any observation can be safely merged from any machine without conflict resolution. No vector clocks needed — just hash-based dedup.
+
+### 5. Type safety failures cause silent search degradation
+
+The Chroma→Qdrant migration introduced a type mismatch that produced 400+ silent search errors per day for several days. The system appeared healthy — workers running, observations saving, health checks passing — but every semantic query was returning empty results. The lesson: integration boundaries between components need explicit contract tests, not just unit tests on each side.
 
 ## Repository Structure
 
@@ -253,7 +290,7 @@ Our benchmark data independently corroborates a publicly documented performance 
 - **Grafana dashboard** — connect directly to Postgres for live operational monitoring
 - **Phase 5 cutover** — fully deprecate SQLite sync (target: May 28)
 - **Upstream contribution** — ModeManager init fix PR pending (interaction limits on upstream repo)
-- **Qdrant re-indexing** — vector search with Postgres IDs (replacing SQLite-era Qdrant index)
+- **Qdrant → Postgres ID alignment** — reindex with server-beta Postgres IDs (SQLite-era Qdrant index was rebuilt May 7; Postgres-native IDs pending)
 - **Automated data refresh** — cron job to regenerate CSVs and push to this repo weekly
 
 ## License
