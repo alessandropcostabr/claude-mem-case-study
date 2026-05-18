@@ -147,7 +147,7 @@ The April spike (+230% over March) coincides with the activation of multi-model 
 
 ![Figure 3: Distribution of observations by type](figures/fig3-observation-types.png)
 
-**Figure 3.** Distribution of the 22,711 typed observations. The long tail (`refactor`, `decision`) carries higher average token cost per observation but contributes a small absolute share.
+**Figure 3.** Distribution of the 22,711 typed observations. Seven observations from the total of 22,718 have null type values and are excluded from this breakdown; aggregate counts elsewhere in the paper use the full n = 22,718. The long tail (`refactor`, `decision`) carries higher average token cost per observation but contributes a small absolute share.
 
 ### 4.3 Generation by model
 
