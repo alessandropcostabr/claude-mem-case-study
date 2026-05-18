@@ -216,6 +216,38 @@ diagrams/                Mermaid architecture diagrams
 2. Copy `.env.example` to `.env` with your Postgres credentials
 3. Run `./data/export-observations.sh` and `./data/export-benchmarks.sh`
 
+## Related Work
+
+Our benchmark data independently corroborates a publicly documented performance incident in Claude Code during March–April 2026:
+
+| Our Data | Public Event | Correlation |
+|----------|-------------|-------------|
+| CC 2.1.119: Opus +129% latency | [Anthropic postmortem](https://www.anthropic.com/engineering/april-23-postmortem): reasoning effort changed high→medium (Mar 4) | Matches regression timing |
+| CC 2.1.123: Opus -52% (recovery) | Fix deployed in v2.1.116 (Apr 20) | Matches recovery timing |
+| Haiku +27% (never recovered) | [Issue #22383](https://github.com/anthropics/claude-code/issues/22383): caching bug caused repeated context clearing | Possibly related |
+
+### Key references:
+
+- **[Anthropic Engineering Postmortem (Apr 23)](https://www.anthropic.com/engineering/april-23-postmortem)** — Three root causes identified: reasoning effort change, caching bug, system prompt verbosity reduction. All fixed by v2.1.116.
+- **[Scortier: "Claude Code Drama: 6,852 Sessions Prove Performance Collapse"](https://scortier.substack.com/p/claude-code-drama-6852-sessions-prove)** — Independent study measuring the same regression from user session data.
+- **[VentureBeat: Mystery Solved](https://venturebeat.com/technology/mystery-solved-anthropic-reveals-changes-to-claudes-harnesses-and-operating-instructions-likely-caused-degradation)** — Press coverage of the incident and Anthropic's response.
+
+### What our data adds:
+
+1. **Per-version granularity** — most reports were anecdotal ("it feels slower"); we have median latency per CC version with n≥8 runs each
+2. **Opus vs Haiku divergence** — not reported elsewhere. Opus recovered and improved 44%; Haiku never fully recovered (+27% sustained)
+3. **Continuous canary measurement** — 987 benchmark runs over 32 days, automated every 6 hours, across 21 CC versions
+
+### Other claude-mem deployments for comparison:
+
+| Metric | Our deployment | Reported by others |
+|--------|---------------|-------------------|
+| Observations | 22,718 | 6,814 (largest reported) |
+| Machines | 3 (distributed) | 1 (typical) |
+| Duration | 70 days | ~30 days (typical) |
+| Storage | Postgres (server-beta) | SQLite (standard) |
+| Models generating | 4+ (Opus, Sonnet, Codex, Haiku) | 1-2 (typical) |
+
 ## What's Next
 
 - **Grafana dashboard** — connect directly to Postgres for live operational monitoring
