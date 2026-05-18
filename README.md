@@ -229,7 +229,7 @@ Parallel to the local Postgres benchmark store, metrics were pushed to Google Cl
 | `cc_benchmark_runs_total` | Cumulative benchmark executions |
 | `cc_session_count_total` | Claude Code sessions across the fleet |
 
-The dashboard configuration and full time-series export are in [`data/gcm-cc-metrics.csv`](data/gcm-cc-metrics.csv) (126k rows, hourly granularity, Apr 26 – May 17).
+The dashboard configuration and full time-series export are in [`data/gcm-cc-metrics.csv`](data/gcm-cc-metrics.csv) (126k rows, hourly granularity, Apr 26 – May 18).
 
 ---
 

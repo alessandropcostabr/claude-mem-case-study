@@ -15,11 +15,6 @@ PG_USER="$BM_PG_USER"
 PG_PASS="$BM_PG_PASS"
 PG_DB="${BM_PG_DB:-claude_telemetry}"
 
-_insert_pg() {
-  PGPASSWORD="$PG_PASS" psql -h "$PG_HOST" -U "$PG_USER" -d "$PG_DB" \
-    --no-password -c "$1" >/dev/null 2>&1
-}
-
 JSON_ONLY=0
 PROMPT_ID="${1:-infra-check}"
 [ "$2" = "--json" ] && JSON_ONLY=1
@@ -88,8 +83,17 @@ PAYLOAD="{\"hostname\":\"$HOSTNAME_VAL\",\"cc_version\":\"$CC_VERSION\",\"prompt
 if [ "$JSON_ONLY" = "1" ]; then
   echo "$PAYLOAD"
 else
-  SQL="INSERT INTO benchmarks (hostname, cc_version, prompt_id, input_tokens, output_tokens, cache_creation_tokens, cache_read_tokens, latency_ms, llm_model) VALUES ('$HOSTNAME_VAL','$CC_VERSION','$PROMPT_ID',${INPUT:-0},${OUTPUT:-0},${CACHE_CREATE:-0},${CACHE_READ:-0},$LATENCY,'$BENCH_MODEL_VAL')"
-  _insert_pg "$SQL"
+  PGPASSWORD="$PG_PASS" psql -h "$PG_HOST" -U "$PG_USER" -d "$PG_DB" --no-password \
+    -v hostname="$HOSTNAME_VAL" \
+    -v cc_version="$CC_VERSION" \
+    -v prompt_id="$PROMPT_ID" \
+    -v input_tokens="${INPUT:-0}" \
+    -v output_tokens="${OUTPUT:-0}" \
+    -v cache_creation_tokens="${CACHE_CREATE:-0}" \
+    -v cache_read_tokens="${CACHE_READ:-0}" \
+    -v latency_ms="$LATENCY" \
+    -v llm_model="$BENCH_MODEL_VAL" \
+    -c "INSERT INTO benchmarks (hostname, cc_version, prompt_id, input_tokens, output_tokens, cache_creation_tokens, cache_read_tokens, latency_ms, llm_model) VALUES (:'hostname', :'cc_version', :'prompt_id', :input_tokens, :output_tokens, :cache_creation_tokens, :cache_read_tokens, :latency_ms, :'llm_model')" >/dev/null 2>&1
 fi
 
 exit 0
