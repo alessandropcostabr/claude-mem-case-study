@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "If you use this case study or its data in academic work, please cite it as below."
+title: "claude-mem in Production: A 70-Day Case Study of Distributed LLM Memory Infrastructure"
+authors:
+  - given-names: Alessandro
+    alias: alessandropcostabr
+    website: "https://github.com/alessandropcostabr"
+abstract: >-
+  A 70-day production study of claude-mem, a persistent memory plugin for
+  Claude Code, running across a 3-machine fleet. The study documents 22,718
+  structured observations, 987 automated benchmarks across 21 Claude Code
+  versions, and a complete vector backend migration from Chroma to Qdrant.
+  Continuous canary measurements independently corroborate the Anthropic
+  March-April 2026 Claude Code performance regression and reveal a previously
+  unreported divergence between Opus 4.6 and Haiku 4.5 on the same vendor
+  harness. Four classes of silent failure are cataloged with reproduction
+  details, and the total infrastructure cost is reported at approximately
+  $225-$295. All aggregated data, scripts, and diagrams are released under
+  CC-BY-4.0 for independent reproduction.
+keywords:
+  - LLM
+  - claude-code
+  - claude-mem
+  - vector retrieval
+  - canary benchmarking
+  - silent failures
+  - production observability
+  - developer tools
+  - prompt caching
+license: CC-BY-4.0
+date-released: 2026-05-18
+repository-code: "https://github.com/alessandropcostabr/claude-mem-case-study"
+type: dataset
+version: "1.0.0"

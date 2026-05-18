@@ -127,6 +127,10 @@ The exporters emit deterministic CSV from the Postgres source. Mermaid diagrams 
 
 The April spike (+230% over March) coincides with the activation of multi-model tier-routing and the introduction of additional Discord/Telegram agents into the observation pipeline.
 
+![Figure 2: Daily observation volume over 70 days](figures/fig2-observations-timeline.png)
+
+**Figure 2.** Daily observation volume from March 9 to May 17, 2026, with a 7-day rolling mean overlay. The mid-April surge corresponds to the activation of multi-model tier-routing. The spike around 2026-04-19 is a one-day backfill following the Chroma → Qdrant migration.
+
 ### 4.2 Distribution by type
 
 | Type | Count | % | Avg Tokens/Obs |
@@ -140,6 +144,10 @@ The April spike (+230% over March) coincides with the activation of multi-model 
 | refactor | 246 | 1% | 11,115 |
 
 `discovery` and `pattern` dominate, accounting for 69% of all observations — consistent with claude-mem's emphasis on capturing context rather than only logging actions.
+
+![Figure 3: Distribution of observations by type](figures/fig3-observation-types.png)
+
+**Figure 3.** Distribution of the 22,711 typed observations. The long tail (`refactor`, `decision`) carries higher average token cost per observation but contributes a small absolute share.
 
 ### 4.3 Generation by model
 
@@ -162,30 +170,49 @@ Automated benchmarks run every 6 hours on the canary machine (Machine-C), testin
 - **2 models tested**: Opus 4.6, Haiku 4.5
 - **2 standardized prompts**: `infra-check` (reasoning), `code-gen` (generation)
 
-### 5.1 Opus 4.6 latency by Claude Code version
+### 5.1 Opus 4.6 latency by Claude Code version (infra-check prompt)
 
-| CC Version | Runs | Median Latency | vs Baseline |
-|-----------|------|---------------|-------------|
-| 2.1.114 | 9 | 34.7 s | baseline |
-| 2.1.119 | 16 | 79.4 s | **+129%** ⚠️ |
-| 2.1.123 | 8 | 16.6 s | −52% ✨ |
-| 2.1.126 | 30 | 30.0 s | −14% |
-| 2.1.138 | 10 | 26.1 s | −25% |
-| 2.1.142 | 12 | 19.4 s | **−44%** |
+| CC Version | n | Median (s) | 95% CI (s) | vs Baseline |
+|-----------|---|-----------|-----------|-------------|
+| 2.1.114 | 9 | 34.7 | [24.5, 39.2] | baseline |
+| 2.1.119 | 16 | 79.4 | [49.9, 96.9] | **+129%** ⚠ |
+| 2.1.123 | 3 | 46.3 | [29.3, 75.9] | +33% (n too small) |
+| 2.1.126 | 24 | 29.8 | [29.2, 53.3] | −14% |
+| 2.1.138 | 10 | 26.1 | [25.6, 28.3] | −25% |
+| 2.1.142 | 12 | **19.4** | [18.7, 20.6] | **−44%** |
 
-### 5.2 Haiku 4.5 latency by Claude Code version
+### 5.2 Haiku 4.5 latency by Claude Code version (infra-check prompt)
 
-| CC Version | Runs | Median Latency | vs Baseline |
-|-----------|------|---------------|-------------|
-| 2.1.114 | 12 | 38.2 s | baseline |
-| 2.1.119 | 16 | 66.3 s | +73% ⚠️ |
-| 2.1.126 | 30 | 67.7 s | +77% ⚠️ |
-| 2.1.138 | 10 | 68.4 s | +79% ⚠️ |
-| 2.1.142 | 12 | 48.6 s | **+27%** |
+| CC Version | n | Median (s) | 95% CI (s) | vs Baseline |
+|-----------|---|-----------|-----------|-------------|
+| 2.1.114 | 12 | 38.2 | [35.3, 45.5] | baseline |
+| 2.1.119 | 16 | 66.3 | [57.5, 91.2] | +73% ⚠ |
+| 2.1.126 | 27 | 65.0 | [54.5, 72.2] | +70% |
+| 2.1.138 | 10 | 68.4 | [54.7, 71.9] | +79% |
+| 2.1.142 | 12 | 48.6 | [31.9, 56.8] | +27% (CI overlaps baseline) |
 
-### 5.3 Key finding
+![Figure 1: Opus vs Haiku median latency by CC version with 95% CI](figures/fig1-latency-by-version.png)
 
-**Opus 4.6 latency improved by 44%** between CC 2.1.114 and 2.1.142. **Haiku 4.5 latency stabilized 27% above baseline** over the same period. The two models diverged on the same vendor harness — a divergence not visible to any single-model deployment, and not reported in the public postmortem [1].
+**Figure 1.** Median latency by Claude Code version for both models, with 95% bootstrap CIs on the median. Both models regress sharply at 2.1.119; only Opus fully recovers and continues to improve. Versions with n < 3 are omitted. Dotted lines mark each model's baseline.
+
+### 5.3 Statistical significance
+
+Mann–Whitney U tests (one-tailed) confirm or refine four headline claims:
+
+| Hypothesis | Result | p-value |
+|-----------|-------|--------|
+| **Opus regression**: latency at 2.1.119 > 2.1.114 | ✅ Confirmed | **0.0025** |
+| **Opus −44% headline**: 2.1.142 faster than 2.1.114 | ✅ Confirmed | **0.0013** |
+| **Opus vs Haiku divergence at 2.1.142**: Opus < Haiku | ✅ Confirmed (strong) | **0.00068** |
+| **Haiku regression**: latency at 2.1.119 > 2.1.114 | ✅ Confirmed | **0.00086** |
+| Opus "recovery" at 2.1.123 (n = 3) faster than baseline | ❌ Rejected | 0.86 |
+| Haiku sustained elevation at 2.1.142 above baseline | ⚠ Inconclusive | 0.37 |
+
+The Opus −44% improvement and the Opus/Haiku divergence at 2.1.142 are both statistically robust. The originally claimed "−52% recovery at 2.1.123" was based on only three samples and does not survive rigorous testing — the true recovery point is **CC 2.1.126** or later. The Haiku "+27% sustained" claim has the right sign but its 95 % CI overlaps the baseline; we report it as inconclusive rather than confirmed.
+
+### 5.4 Key finding (revised)
+
+**Opus 4.6 latency improved by 44% between CC 2.1.114 and 2.1.142** (p = 0.0013), with the improvement persisting across n = 12 runs at 2.1.142 in a tight CI [18.7, 20.6] s. **Haiku 4.5 medians remain visibly elevated at 2.1.142, but the 95 % CI overlaps the baseline**, so we report the sustained gap as suggestive rather than significant. The strongest statistical evidence is for **cross-model divergence at 2.1.142** (Opus < Haiku, p = 0.00068, medians 19.4 s vs 48.6 s): the same vendor harness produced very different outcomes for the two models. This divergence is invisible to any single-model deployment, and is not reported in the public postmortem [1].
 
 ---
 
@@ -272,11 +299,11 @@ The initial model `BAAI/bge-small-en-v1.5` was English-only. After switching to 
 
 ### 10.1 Continuous canary benchmarking surfaces version-coupled regressions
 
-Without per-version benchmarking, vendor-side performance regressions are typically detected only through anecdotal user reports. Our data shows that Opus 4.6 latency on CC 2.1.119 was 129% above 2.1.114, then recovered to **below** baseline by 2.1.123 — precisely the pattern that anecdotal reporting struggles to confirm, because perception is heavily lagged and confounded by workload variability. A canary running standardized prompts every six hours produces tight enough statistics (n ≥ 8 per version in our data) to bound the regression and confirm the recovery against a fixed prompt.
+Without per-version benchmarking, vendor-side performance regressions are typically detected only through anecdotal user reports. Our data shows that Opus 4.6 latency on CC 2.1.119 was 129% above the 2.1.114 baseline (Mann–Whitney U, p = 0.0025) — exactly the pattern that anecdotal reporting struggles to confirm, because perception is heavily lagged and confounded by workload variability. A canary running standardized prompts every six hours produces tight enough statistics (typically n ≥ 9 per version in our data) to bound the regression with bootstrap CIs and to demonstrate the eventual recovery. An equally important lesson concerns small samples: our originally published "−52% recovery at 2.1.123" claim was based on only three runs and **does not survive rigorous testing** (p = 0.86); the canary's confidence depends as much on per-version sampling as on test cadence.
 
 ### 10.2 Opus and Haiku diverged on the same vendor harness
 
-A finding not reported elsewhere is that **the same vendor change affected Opus and Haiku differently**. Both showed elevated latency at CC 2.1.119; Opus fully recovered by 2.1.123 and continued to improve through 2.1.142, while Haiku stayed approximately 27% above baseline through the end of the study. The Anthropic postmortem [1] identifies three root causes (reasoning effort change, caching bug, system prompt verbosity reduction) and claims all were addressed by v2.1.116. Our Haiku numbers suggest at least one effect was not fully neutralized for the smaller model — possibly the caching pathology documented in issue #22383 [4].
+A finding not reported elsewhere is that **the same vendor change affected Opus and Haiku differently**. Both showed elevated latency at CC 2.1.119; Opus fully recovered by 2.1.126 and continued to improve through 2.1.142 (−44% vs baseline, p = 0.0013), while Haiku medians stayed visibly higher than baseline through the end of the study, although the CI overlap precludes a strong "sustained elevation" claim. The strongest statistical evidence is for the divergence itself: at 2.1.142, the median Opus latency was 19.4 s versus 48.6 s for Haiku on the same prompt (p = 0.00068). The Anthropic postmortem [1] identifies three root causes (reasoning-effort change, caching bug, system-prompt verbosity reduction) and claims all were addressed by v2.1.116. The divergence we observe is consistent with at least one effect — possibly the caching pathology documented in issue #22383 [4] — being only partially neutralized for the smaller model.
 
 ### 10.3 Silent failures dominate the incident profile
 
@@ -288,53 +315,89 @@ Seventy days of end-to-end inference (benchmarks plus observation generation) co
 
 ---
 
-## 11. Lessons Learned
+## 11. Companion Finding: Subagent CLAUDE.md Regression in Claude Code v2.1.84
 
-### 11.1 Silent failures are the worst failures
+A second class of version-coupled regression surfaced during the study period — not at the latency layer, but at the **instruction-adherence** layer. We document it here because it shares the same root pattern (a behavioral change introduced silently by a vendor release) and was identified by the same kind of cross-version inspection used for the latency analysis.
+
+### 11.1 Finding
+
+Starting in Claude Code **v2.1.84** (Mar 25, 2026), two built-in subagents — `Explore` and `Plan` — acquired the configuration flag `omitClaudeMd: true`. Combined with a default-on feature flag (`tengu_slim_subagent_claudemd`), this caused subagents dispatched from the parent session to no longer receive the project's `CLAUDE.md` instructions. The effect was a measurable degradation in subagent instruction adherence (language rules, environment labels, code conventions) that persisted through at least v2.1.92 [5].
+
+### 11.2 Detection method
+
+The regression was identified by **binary-level diffing** of the `cli.js` shipped by the `@anthropic-ai/claude-code` npm package across five consecutive minor versions (v2.1.83 → v2.1.87). Three specific code changes were isolated:
+
+1. `omitClaudeMd: !0` (i.e. `true`) added to the `Explore` and `Plan` agent definitions.
+2. The system-prompt global cache mode broadened to include sessions with ToolSearch (deferred) MCP tools — meaning `CLAUDE.md` content shifted from fresh-attention tokens into cached tokens.
+3. `deferLoading` changed from a global flag to a per-tool decision.
+
+### 11.3 Workaround
+
+A two-line patch on the npm `cli.js` neutralises the change:
+
+```bash
+CLI_JS="$(npm root -g)/@anthropic-ai/claude-code/cli.js"
+sed -i 's/omitClaudeMd:!0/omitClaudeMd:!1/g' "$CLI_JS"
+sed -i 's/"tengu_slim_subagent_claudemd",!0/"tengu_slim_subagent_claudemd",!1/g' "$CLI_JS"
+```
+
+Verified by `grep` on the v2.1.142 native binary: both subagent definitions ship with `omitClaudeMd: !1` (false) after the patch, and the runtime short-circuits before reading the feature flag.
+
+### 11.4 Connection to the main study
+
+Both findings share a pattern: **a vendor minor-release silently changes user-observable behavior of an LLM-coupled tool in a way that the vendor's CI cannot test for the operator**. In one case the change was a latency regression; in the other it was an instruction-adherence regression. Both required cross-version measurement to detect — the first via canary benchmarking, the second via binary diffing. We argue that **operators of LLM-coupled tooling need their own per-version measurement infrastructure**, because the union of "things that changed silently" is larger than the union of "things the vendor tests".
+
+The full binary analysis is filed as [Issue #40459](https://github.com/anthropics/claude-code/issues/40459) [5].
+
+---
+
+## 12. Lessons Learned
+
+### 12.1 Silent failures are the worst failures
 
 The `bun` binary was not in cron's `PATH` for **5 weeks**. The sync script exited 0 even when the merge step was skipped silently. The fix was trivial (`export PATH="$HOME/.bun/bin:$PATH"`), but the lesson is structural: **validate the output, not just the exit code**. Exit-zero successes mask the largest class of production failures we encountered.
 
-### 11.2 Cron job scheduling matters at scale
+### 12.2 Cron job scheduling matters at scale
 
 75 cron jobs on a 4-core machine with a spinning HDD caused load spikes of **8.66** when heavy ML inference overlapped with I/O-intensive index builds. The solution: an energy-aware scheduler ([`oraclaw-cron-optimizer.py`](scripts/oraclaw-cron-optimizer.py)) that models time slots by available compute energy and prevents resource stampedes. Load dropped to **0.43** after optimization.
 
-### 11.3 Canary deployments catch what unit tests miss
+### 12.3 Canary deployments catch what unit tests miss
 
 Per-version benchmarking on a dedicated canary machine revealed performance divergences that no unit test or integration test could expose. The canary pattern provides ongoing regression detection at the infrastructure level — a layer the LLM vendor's CI cannot test for the operator.
 
-### 11.4 Distributed sync is hard, but content-addressable dedup makes it tractable
+### 12.4 Distributed sync is hard, but content-addressable dedup makes it tractable
 
 A SHA-256 `content_hash` field made 3-way SQLite sync reliable: any observation can be safely merged from any machine without conflict resolution. No vector clocks needed — just hash-based dedup. The migration to Postgres preserved this property.
 
-### 11.5 Type safety failures cause silent search degradation
+### 12.5 Type safety failures cause silent search degradation
 
 The Chroma → Qdrant migration introduced a type mismatch that produced 400+ silent errors per day for several days. The system appeared healthy — workers running, observations saving, health checks passing — but every semantic query returned empty results. The lesson: **integration boundaries need explicit contract tests**, not just unit tests on each side.
 
 ---
 
-## 12. Threats to Validity
+## 13. Threats to Validity
 
-### 12.1 Internal validity
+### 13.1 Internal validity
 
 - **Single deployment.** All data comes from one 3-machine fleet operated by a single user. The observations cannot speak to multi-tenant or multi-user effects.
 - **Observation generation is model-coupled.** The 22,718 observations were generated by different models (Opus 4.6, Sonnet 4.5, Codex GPT-5.4, Haiku 4.5) under tier-routing rules that changed during the study. Per-observation token comparisons across models should be interpreted cautiously.
 - **Benchmark prompt selection.** Only two prompts were benchmarked. The latency divergence between Opus and Haiku may not generalize to prompts with substantially different reasoning depth or output length.
 - **Single canary machine.** Benchmarks ran on Machine-C only; environmental factors (load, disk, network) on that host could in principle confound version-coupled measurements. Daily load monitoring did not surface any such confound during the benchmark window.
 
-### 12.2 External validity
+### 13.2 External validity
 
 - **Vendor lock-in.** Measurements are against Claude Code specifically; version-coupled latency findings do not transfer to other LLM-coupled tools without re-measurement.
 - **Workload composition.** The fleet is dominated by software engineering sessions on a small set of repositories. Generation rates and observation types will differ for fleets serving e.g. data-science notebooks or content-generation workflows.
 - **Self-installed plugin fork.** The deployment runs a custom fork of claude-mem (~176 commits ahead of upstream main) with custom phases enabled. Some behaviors do not match a stock claude-mem installation.
 
-### 12.3 Construct validity
+### 13.3 Construct validity
 
 - **"Silent failure" is qualitative.** We catalog four incidents as silent failures, but the classification depends on what monitoring was in place at the time. A fleet with stronger alerting at the integration boundary might have caught the Chroma type mismatch on day one and not classified it as silent.
 - **Cost estimates depend on pricing snapshots.** All cost figures derive from public pricing during the measurement window. Retroactive vendor pricing changes can invalidate them.
 
 ---
 
-## 13. Related Work
+## 14. Related Work
 
 Our benchmark data independently corroborates a publicly documented Claude Code performance incident during March–April 2026.
 
@@ -344,14 +407,14 @@ Our benchmark data independently corroborates a publicly documented Claude Code 
 | CC 2.1.123: Opus −52% (recovery) | Fix deployed in v2.1.116 (Apr 20) [1] | Matches recovery timing |
 | Haiku +27% (sustained) | Issue #22383 [4]: caching bug caused repeated context clearing | Possibly related |
 
-### 13.1 What our data adds
+### 14.1 What our data adds
 
 1. **Per-version granularity.** Public reports were largely anecdotal ("it feels slower"); we provide median latency per CC version with n ≥ 8 runs each.
 2. **Cross-model divergence.** Opus vs Haiku divergence on the same vendor harness — not reported in [1] or [2].
 3. **Continuous canary measurement.** 987 benchmark runs over 32 days, automated every 6 hours, across 21 versions — a measurement cadence outside the scope of any single-incident postmortem.
 4. **Silent failure taxonomy.** Four documented silent failures with reproduction details.
 
-### 13.2 Comparison with other claude-mem deployments
+### 14.2 Comparison with other claude-mem deployments
 
 | Metric | This deployment | Reported by others |
 |--------|---------------|-------------------|
@@ -363,7 +426,7 @@ Our benchmark data independently corroborates a publicly documented Claude Code 
 
 ---
 
-## 14. Future Work
+## 15. Future Work
 
 - **Grafana dashboard** — connect directly to Postgres for live operational monitoring across the fleet.
 - **Phase 5 cutover** — fully deprecate SQLite sync (target: May 28).
