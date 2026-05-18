@@ -1,0 +1,405 @@
+{
+  "displayName": "Claude Code - Benchmarks & Sessions",
+  "etag": "2bd51c1e18550f97e2f4b2ec6f0bdd8a",
+  "mosaicLayout": {
+    "columns": 48,
+    "tiles": [
+      {
+        "height": 16,
+        "widget": {
+          "title": "Output Tokens por Versão",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version",
+                        "metric.label.prompt_id"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_output_tokens\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "tokens",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Cache Creation por Versão",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version",
+                        "metric.label.prompt_id"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_cache_creation_tokens\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "tokens",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "xPos": 24
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Cache Read por Versão",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version",
+                        "metric.label.prompt_id"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_cache_read_tokens\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "tokens",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "yPos": 16
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Latência por Versão (ms)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version",
+                        "metric.label.prompt_id"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_latency_ms\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "ms",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "xPos": 24,
+        "yPos": 16
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Evolução no Tempo (todas métricas)",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "legendTemplate": "output_tokens ${metric.label.cc_version}",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_output_tokens\""
+                  }
+                }
+              },
+              {
+                "legendTemplate": "cache_read ${metric.label.cc_version}",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_cache_read_tokens\""
+                  }
+                }
+              },
+              {
+                "legendTemplate": "latency_ms ${metric.label.cc_version}",
+                "plotType": "LINE",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_latency_ms\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "valor",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 48,
+        "yPos": 48
+      },
+      {
+        "height": 12,
+        "widget": {
+          "title": "Sessões por Máquina",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.hostname",
+                        "metric.label.cc_version"
+                      ],
+                      "perSeriesAligner": "ALIGN_MAX"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_session_count_total\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "sessões",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "yPos": 64
+      },
+      {
+        "height": 12,
+        "widget": {
+          "title": "Runs Total por Versão",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.cc_version",
+                        "metric.label.hostname"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_runs_total\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "runs",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "xPos": 24,
+        "yPos": 64
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Latencia por Modelo LLM",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.llm_model"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_latency_ms\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "ms",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 48,
+        "yPos": 32
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Output Tokens: Haiku vs Opus",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.llm_model",
+                        "metric.label.hostname"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_output_tokens\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "tokens",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "yPos": 76
+      },
+      {
+        "height": 16,
+        "widget": {
+          "title": "Cache Creation: Haiku vs Opus",
+          "xyChart": {
+            "chartOptions": {
+              "mode": "COLOR"
+            },
+            "dataSets": [
+              {
+                "plotType": "STACKED_BAR",
+                "targetAxis": "Y1",
+                "timeSeriesQuery": {
+                  "timeSeriesFilter": {
+                    "aggregation": {
+                      "alignmentPeriod": "3600s",
+                      "groupByFields": [
+                        "metric.label.llm_model",
+                        "metric.label.hostname"
+                      ],
+                      "perSeriesAligner": "ALIGN_MEAN"
+                    },
+                    "filter": "metric.type=\"custom.googleapis.com/cc_benchmark_cache_creation_tokens\""
+                  }
+                }
+              }
+            ],
+            "yAxis": {
+              "label": "tokens",
+              "scale": "LINEAR"
+            }
+          }
+        },
+        "width": 24,
+        "xPos": 24,
+        "yPos": 76
+      }
+    ]
+  },
+  "name": "projects/25021875904/dashboards/2e9a5d2f-0f4d-41a7-89bd-95154aaf7a6e"
+}

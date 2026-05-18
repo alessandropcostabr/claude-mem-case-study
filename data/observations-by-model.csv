@@ -1,0 +1,11 @@
+model,count,avg_tokens,total_tokens
+unknown,7906,2628,20779457
+claude-opus-4-6,6728,8882,59757050
+claude-sonnet-4-5,6270,7072,44342242
+openai-codex/gpt-5.4,1752,0,0
+haiku,42,3630,152447
+claude-sonnet-4-6,11,3615,39767
+gpt-5.4,4,0,0
+gpt-5.2,2,0,0
+gpt-5,2,0,0
+gpt-5.4-codex,1,0,0
