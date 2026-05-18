@@ -1,0 +1,7 @@
+.env*
+*.bak
+*.db
+.DS_Store
+Thumbs.db
+/tmp/
+*.tmp
