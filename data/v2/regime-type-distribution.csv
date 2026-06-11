@@ -1,0 +1,11 @@
+kind,self_author,pipeline_1to1llm
+discovery,16,594
+change,21,131
+decision,6,80
+security_alert,0,62
+bugfix,9,58
+feature,4,39
+security_note,0,38
+refactor,0,8
+pattern,3,0
+architecture,1,0
