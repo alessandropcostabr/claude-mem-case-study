@@ -3,7 +3,8 @@
 **claude-mem case study — v2 working note**
 **Date:** 2026-06-11
 **Source:** server-beta Postgres (`.253`), project `2e157557` (global single-project)
-**Status:** working analysis (v1 README is frozen; this extends the v2 dataset)
+**Status:** working analysis (v1 README is frozen; this extends the v2 dataset).
+Checkpoint Rider (C′) implemented + deployed + armed on `.100` as of 2026-06-11 (§6.1).
 
 ---
 
@@ -22,7 +23,8 @@ layers**:
   per-event pipeline **structurally cannot** — but is retrospective (not real-time).
 
 The only axis on which the pipeline strictly dominates self-author is **timing** (real-time
-vs Stop). That is exactly — and only — what the **Checkpoint Rider** design closes (see §6).
+vs Stop). That is exactly — and only — what **Checkpoint Rider** (C′) closes — now implemented
+and live on `.100`, producing a clean same-host C vs C′ comparison (see §6 / §6.1).
 
 ---
 
@@ -138,12 +140,33 @@ architecture, why-context, self-correction). Its single deficit versus the pipel
 exactly that gap: it emits self-authored observations via a rider on `UserPromptSubmit` (per
 substantive-N, per turn), so the session-level signal lands in Postgres during the tail of
 turn N and is injectable at prompt N+1 — **real-time**. The external pipeline is retained as a
-delayed coverage fallback (BullMQ `delay` + pre-LLM coverage check), so nothing regresses on
-the unhappy paths (rider ignored, session killed, long agentic turn). Prerequisite (Strategy B,
-self-author + inject merged in source) already shipped: `fleet-build/...-custom-selfauthor @
-4f072a0e`, active on `.100`.
+delayed coverage fallback — deferred for now, since the B+C′ dual-write is exactly the A/B we
+want.
 
 Net: the two layers in this study become **one real-time stream with two altitudes**.
+
+### 6.1 Deployment status (2026-06-11): C′ is no longer just a design
+
+The Checkpoint Rider was **implemented (TDD, 19 unit tests) and deployed** on `.100` —
+branch `feat/checkpoint-rider` on the golden base `5938f80c` (`b16aa4c1` + PR #17 routing).
+It is **armed** there (`CLAUDE_MEM_SELF_AUTHOR_REALTIME=true`), off everywhere else. A rider is
+appended on `UserPromptSubmit` once substantive activity ≥ threshold and a per-prompt cooldown
+clears; the session writes its observations at the turn tail via `save_observation`, tagged
+`metadata.regime='C-prime'`.
+
+**A bonus the deployment surfaced — a clean same-host A/B.** Because `.100` runs the Stop
+self-author **and** the rider simultaneously, it produces *both* regimes side by side:
+`metadata.regime='C'` (Stop tail) and `metadata.regime='C-prime'` (real-time rider), on the
+**same host, same workload**. That eliminates the host-confound that the original cross-host
+plan (C on `.254`, C′ on `.100`) carried — the C-vs-C′ timing comparison can now be made
+*within* `.100`. (Untagged `generation_key IS NULL` self-author on `.254`/`.253`, which still
+run the golden bundle, remains available as additional Regime-C volume.)
+
+**Discriminator, updated for the 3-regime phase:** `generation_key` non-null ⇒ B (pipeline);
+`metadata.regime='C-prime'` ⇒ C′ (rider, `.100`); `metadata.regime='C'` ⇒ C (Stop, `.100`,
+tagged); `generation_key IS NULL` with no regime tag ⇒ C (Stop, `.254`/`.253`, untagged). The
+metadata tag is authoritative; it does not depend on `generation_key` format (which stays NULL
+because setting it would require a `/v1/memories` server change, deferred).
 
 ---
 
@@ -156,6 +179,10 @@ Net: the two layers in this study become **one real-time stream with two altitud
 - Self-authored per day: `0` for most of history; **06-09 = 22, 06-10 = 90, 06-11 = 31** — the
   first sustained burst after the fleet-wide threshold-8 enablement.
 - Pipeline per day in the same window remains 1–4k/day — the real-time backbone is unchanged.
+- **From 2026-06-11, regime=`C-prime` (real-time rider) observations begin accruing on `.100`**
+  as live sessions cross the threshold; query `select metadata->>'regime', count(*) from
+  observations where created_at >= '2026-06-11' group by 1`. The next data cut should report the
+  same-host C vs C-prime comparison (§6.1) once enough C-prime volume has accumulated.
 
 Implication for the v2 narrative: Regime C is positioned as a **complementary real-time layer
 (via Checkpoint Rider), not a replacement** for the Regime A/B pipeline. Any claim of C
