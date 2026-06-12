@@ -145,41 +145,59 @@ want.
 
 Net: the two layers in this study become **one real-time stream with two altitudes**.
 
-### 6.1 Deployment status (2026-06-11): C′ is no longer just a design
+### 6.1 Deployment (2026-06-11→12): implemented, then moved to where it fits
 
-The Checkpoint Rider was **implemented (TDD, 19 unit tests) and deployed** on `.100` —
-branch `feat/checkpoint-rider` on the golden base `5938f80c` (`b16aa4c1` + PR #17 routing).
-It is **armed** there (`CLAUDE_MEM_SELF_AUTHOR_REALTIME=true`), off everywhere else. A rider is
-appended on `UserPromptSubmit` once substantive activity ≥ threshold and a per-prompt cooldown
-clears; the session writes its observations at the turn tail via `save_observation`, tagged
+The Checkpoint Rider was **implemented (TDD) and deployed** — branch `feat/checkpoint-rider` on
+the golden base `5938f80c` (`b16aa4c1` + PR #17 routing). A rider is appended on
+`UserPromptSubmit` once substantive activity ≥ threshold and a per-prompt cooldown clears; the
+session writes its observations at the turn tail via `save_observation`, tagged
 `metadata.regime='C-prime'`.
 
-**A bonus the deployment surfaced — a clean same-host A/B.** Because `.100` runs the Stop
-self-author **and** the rider simultaneously, it produces *both* regimes side by side:
-`metadata.regime='C'` (Stop tail) and `metadata.regime='C-prime'` (real-time rider), on the
-**same host, same workload**. That eliminates the host-confound that the original cross-host
-plan (C on `.254`, C′ on `.100`) carried — the C-vs-C′ timing comparison can now be made
-*within* `.100`. (Untagged `generation_key IS NULL` self-author on `.254`/`.253`, which still
-run the golden bundle, remains available as additional Regime-C volume.)
+**First deploy on `.100` exposed a workload mismatch.** Over ~24h, C′ fired **once** (1 obs) vs
+**99** Stop-self-author (C) obs — a ~1% hit-rate that lowering the threshold (8→4) and cooldown
+(2→1) did **not** move. The cause is structural, not a tuning knob: the rider fires on
+`UserPromptSubmit`, but `.100` runs **autonomous** agentic workloads (long turns, few prompts).
+The rider needs the *intersection* of substantive tools **and** interactive prompt cadence —
+which `.100` rarely produces. The one C-prime that did fire came from a genuinely interactive
+audit session.
 
-**Discriminator, updated for the 3-regime phase:** `generation_key` non-null ⇒ B (pipeline);
-`metadata.regime='C-prime'` ⇒ C′ (rider, `.100`); `metadata.regime='C'` ⇒ C (Stop, `.100`,
-tagged); `generation_key IS NULL` with no regime tag ⇒ C (Stop, `.254`/`.253`, untagged). The
-metadata tag is authoritative; it does not depend on `generation_key` format (which stays NULL
-because setting it would require a `/v1/memories` server change, deferred).
+**So on 2026-06-12 the regimes were moved to the workload each fits:**
+
+| Host | `REALTIME` | Regime | Why |
+|---|---|---|---|
+| `.254` (interactive dev) | `true` | **C′** | many tools + prompts → the rider fires naturally |
+| `.100`, `.253` (autonomous) | `false` | **C** (Stop) | no interactive cadence; Stop captures at session end |
+
+This trades the (briefly hoped-for) same-host A/B for a **workload-matched** deployment: C′ where
+interactive cadence exists, C where it doesn't. The C-vs-C′ comparison is therefore **confounded
+by host/workload** — by design, because the two regimes suit different workloads. It is a
+"deploy each where it fits" result, not a controlled A/B; claims must be framed accordingly.
+
+**Stop made transparent under C′.** When `REALTIME=true` (i.e. `.254`), the Stop self-author no
+longer blocks (no "Stop hook error") — the rider already self-authors mid-session, and the
+session tail is still captured by pipeline B. Consequence: `.254` produces **only** C-prime (no
+Stop-tagged C); `.100`/`.253` produce **only** C (blocking Stop, no rider).
+
+**Discriminator (3-regime phase):** `generation_key` non-null ⇒ B; `metadata.regime='C-prime'` ⇒
+C′ (rider, `.254`); `metadata.regime='C'` ⇒ C (Stop, tagged — only on hosts with the custom
+bundle); `generation_key IS NULL`, no regime tag ⇒ legacy/untagged C. The metadata tag is
+authoritative (the `generation_key` stays NULL; setting it would need a `/v1/memories` server
+change, deferred). C-prime obs also carry `metadata.content_session_id` (parsed from the
+checkpoint key) for per-session attribution, since `server_session_id` is NULL on this path.
 
 ---
 
 ## 7. Volumetry snapshot (context)
 
-`data/v2/regime-daily-volumetry.csv` (2026-03-09 … 2026-06-11, 89 days)
+`data/v2/regime-daily-volumetry.csv` (2026-03-09 … 2026-06-12, 90 days)
 
-- All-time self-authored: **507** / **72,684** total observations (**0.70%**) — Regime C is
+- All-time self-authored: **681** / **75,558** total observations (**0.90%**) — Regime C is
   young; it only began firing at volume on 2026-06-10.
-- Self-authored per day: `0` for most of history; **06-09 = 22, 06-10 = 90, 06-11 = 31** — the
-  first sustained burst after the fleet-wide threshold-8 enablement.
+- Self-authored per day: `0` for most of history; **06-09 = 22, 06-10 = 90, 06-11 = 178, 06-12 =
+  27 (partial)** — the sustained burst after the fleet-wide threshold-8 enablement.
 - Pipeline per day in the same window remains 1–4k/day — the real-time backbone is unchanged.
-- **From 2026-06-11, regime=`C-prime` (real-time rider) observations begin accruing on `.100`**
+- **C-prime so far: 1 obs (`.100`, 2026-06-11, interactive audit). With the 06-12 swap to `.254`,
+  C-prime now accrues from interactive dev sessions** — query `select metadata->>'regime', count(*) from
   as live sessions cross the threshold; query `select metadata->>'regime', count(*) from
   observations where created_at >= '2026-06-11' group by 1`. The next data cut should report the
   same-host C vs C-prime comparison (§6.1) once enough C-prime volume has accumulated.
