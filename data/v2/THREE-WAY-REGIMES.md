@@ -101,3 +101,38 @@ synthesis*. In the real sample, C′ caught a premise correction that B missed.
 **Rigor caveat:** these are proxies + one sample, not a rated quality score. The rigorous
 instrument is a **blind LLM-judge** scoring N observations per regime on these dimensions —
 a sibling of the behavioral eval. Until then: directional.
+
+---
+
+## Blind LLM-judge — 2026-06-12
+
+Upgrades the quality proxies to a **rated score**. Harness: `~/.claude-telemetry/evals/judge.mjs`
+(reads a pre-sampled set, judges each note 1-5 on four dimensions **without seeing its regime**,
+token-capped, writes to `claude_telemetry.eval_judge`). Sample: 30 *organic* observations (10 per
+regime, meta-research notes excluded); 23 scored before the token cap stopped the round ($0.76).
+
+**Judge = Haiku 4.5, which also generates regime B → mild self-preference toward B. So any C/C′
+advantage here is conservative (it survived a pro-B judge).**
+
+### Result (blind, avg 1-5)
+| regime | n | groundedness | specificity | **calibration** | **usefulness** | **OVERALL** |
+|---|---:|---:|---:|---:|---:|---:|
+| **C′** (rider, 0×) | 9 | 4.67 | 4.89 | 4.33 | **5.00** | **4.72** |
+| **C** (Stop, 0×) | 7 | 4.43 | 4.71 | 4.57 | 4.71 | **4.61** |
+| **B** (1× LLM) | 7 | 4.14 | 4.29 | **3.57** | **3.71** | **3.93** |
+
+### Reading
+- **Self-author (C ≈ C′, ~4.6–4.7) outscores the pipeline (B, 3.93)** — and the gap is widest exactly
+  where the proxies predicted: **calibration** (B 3.57 vs 4.3–4.6) and **usefulness** (B 3.71 vs
+  4.7–5.0). B is grounded/specific enough but reads as flatter, more confident, and less directly
+  useful as a future-session note.
+- **The result is robust:** the judge is the model that *produces* B, so bias runs *toward* B — yet
+  B scored lowest. The C/C′ advantage cleared that headwind.
+- **C vs C′ is a tie within noise** (4.61 vs 4.72, n=7/9) — consistent with "same engine, different
+  timing": timing changes *what* they capture (structure, §kind-mix) more than *how well*.
+
+### Caveats
+- **n = 7–9 per regime** (token cap cut the round at 23/30) — directional, not significant yet.
+- **Single judge.** A neutral judge (Gemini) or a multi-model panel would remove the self-preference
+  caveat and the single-rater variance. Next hardening step.
+- The judge scores *signals from the text*, not factual accuracy (it lacks the codebase).
