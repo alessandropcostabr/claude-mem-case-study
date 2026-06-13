@@ -133,6 +133,45 @@ advantage here is conservative (it survived a pro-B judge).**
 
 ### Caveats
 - **n = 7–9 per regime** (token cap cut the round at 23/30) — directional, not significant yet.
-- **Single judge.** A neutral judge (Gemini) or a multi-model panel would remove the self-preference
-  caveat and the single-rater variance. Next hardening step.
+- **Single judge.** A neutral judge or a multi-model panel would remove the self-preference
+  caveat and the single-rater variance. Done below.
 - The judge scores *signals from the text*, not factual accuracy (it lacks the codebase).
+
+## Neutral judge — NVIDIA Nemotron-3-Ultra-550B — 2026-06-12
+
+Adds the **second, neutral rater** the caveat above called for. Harness:
+`~/.claude-telemetry/evals/judge-or.mjs` (same rubric, same 30-obs sample, same blinding) routed
+through OpenRouter to **`nvidia/nemotron-3-ultra-550b-a55b:free`** — a model that produces **none**
+of the three regimes, so there is **no self-preference in any direction**. All 30 scored (free tier,
+$0 cost).
+
+> Op note: Nemotron-3-Ultra is a *reasoning* model. The first run scored 30/30 FAIL — `max_tokens=200`
+> was consumed entirely by hidden reasoning (`finish_reason:length`, empty content). Fix: `/no_think`
+> prefix **+ `max_tokens=2500`** → `finish_reason:stop` and clean JSON. (The dead `.253` claude-mem
+> OpenRouter key returned 401 "User not found"; the live key lives at `.100:~/.env/openrouter.env`.)
+
+### Result (neutral, blind, avg 1-5, n=10 each)
+| regime | n | groundedness | specificity | calibration | usefulness | **OVERALL** |
+|---|---:|---:|---:|---:|---:|---:|
+| **C** (Stop, 0×) | 10 | 5.00 | 5.00 | 5.00 | 5.00 | **5.00** |
+| **C′** (rider, 0×) | 10 | 5.00 | 5.00 | 4.90 | 5.00 | **4.97** |
+| **B** (1× LLM) | 10 | 4.60 | 4.60 | 4.20 | 4.60 | **4.50** |
+
+### Reading — agreement *with a caveat about the instrument*
+- **Same ordering as Haiku: C ≈ C′ > B.** Two judges with opposite bias profiles (Haiku *makes* B;
+  Nemotron makes nothing) put B last and C/C′ tied at the top. The C/C′ > B finding is **robust to
+  judge identity** — it is not a Haiku self-bias artifact.
+- **But Nemotron is a ceiling-saturated rater, not a discriminating one.** Score distribution over all
+  30 notes: **26× perfect `5/5/5/5`**, 1× `1/1/1/1` (a single B note it rejected outright), 2× `c=3`,
+  1× `c=4`. Almost all of B's deficit comes from that one harsh outlier plus a few sub-5 calibrations —
+  *all landing on B*. So Nemotron **agrees on direction but carries almost no variance**; it can
+  confirm the ranking, not measure the gap.
+- **Net:** the *discriminating* instrument is still Haiku (real spread, and biased toward the regime it
+  rated lowest). Nemotron's role is narrow and now fulfilled: **a neutral second opinion that does not
+  overturn the order** — removing the "maybe it's just Haiku liking its non-B siblings" objection.
+
+### Caveats
+- **Saturation = low information.** A 5.0 ceiling means Nemotron can't quantify the C/C′↔B gap; treat
+  it as a sign test (B lowest), not a magnitude estimate.
+- A genuinely *discriminating* neutral judge (a stricter rubric, forced ranking, or a stronger neutral
+  model) remains the cleanest next step.
