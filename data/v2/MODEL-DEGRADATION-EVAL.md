@@ -25,6 +25,11 @@ Did 4.8 regress, and is it tied to the Fable launch? Nobody has published a numb
 The fixed-prompt latency benchmark (every 6h, 3 hosts) tests Opus 4.6 + Haiku 4.5; **Fable 5 added
 06-10** (canary `.100` only), **Opus 4.8 added 06-12** (all 3 hosts).
 
+> **Update 2026-06-13: Fable 5 was discontinued by Anthropic on 06-12** (≈3 days after launch). The
+> `.100` Fable cron line was disabled the same day to avoid error/timeout noise; the ~8 historical
+> Fable runs (06-10→06-12, ~100k ms / ~360 out) stay as a record of its brief existence. Benchmark
+> now tracks Opus 4.6 + Opus 4.8 + Haiku 4.5.
+
 - **Opus 4.6 and Haiku 4.5 are flat across the Fable launch (08–09/jun)** — latency ~40k ms, output
   stable. If the degradation were shared-infra, they'd dip too. They don't → **whatever hit 4.8 is
   model-specific, not a backend-wide collapse.** Consistent with (not proof of) "4.8 deprioritized
