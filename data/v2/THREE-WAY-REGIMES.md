@@ -174,4 +174,36 @@ $0 cost).
 - **Saturation = low information.** A 5.0 ceiling means Nemotron can't quantify the C/C′↔B gap; treat
   it as a sign test (B lowest), not a magnitude estimate.
 - A genuinely *discriminating* neutral judge (a stricter rubric, forced ranking, or a stronger neutral
-  model) remains the cleanest next step.
+  model) remains the cleanest next step. Done below.
+
+## Third judge — Llama-3.3-70B (neutral AND discriminating) — 2026-06-12
+
+The Nemotron caveat asked for a neutral judge that *discriminates*. `meta-llama/llama-3.3-70b-instruct`
+(via OpenRouter, **paid** — the `:free` tier 429-throttled at 25/30, so we used the $0.10/$0.32-per-Mtok
+paid route, ~$0.01 total) is neutral (Meta generates none of the regimes), non-reasoning (no `/no_think`
+gotcha), **0 FAIL on 30/30**, and — unlike Nemotron — it actually spreads its scores.
+
+### Result (neutral, blind, avg 1-5, n=10 each)
+| regime | n | groundedness | specificity | calibration | usefulness | **OVERALL** |
+|---|---:|---:|---:|---:|---:|---:|
+| **C** (Stop, 0×) | 10 | 4.80 | 5.00 | 4.30 | 5.00 | **4.78** |
+| **C′** (rider, 0×) | 10 | 4.60 | 5.00 | 4.50 | 5.00 | **4.78** |
+| **B** (1× LLM) | 10 | 4.20 | 4.80 | 4.10 | 5.00 | **4.53** |
+
+- **Discriminates where it matters: groundedness spans 2→5, and both `g=2` notes are B.** B is last
+  again. (Llama still saturates *usefulness* at 5.0 for everyone — so the live axes are
+  groundedness/calibration, and B trails on both.)
+
+## Panel verdict — three judges, three bias profiles, one ordering
+
+| judge | profile | C | C′ | **B** |
+|---|---|---:|---:|---:|
+| Haiku 4.5 | *generates B* (pro-B bias), discriminating | 4.61 | 4.72 | **3.93** |
+| Nemotron-3-Ultra | neutral, ceiling-**saturated** | 5.00 | 4.97 | **4.50** |
+| Llama-3.3-70B | neutral, **discriminating** | 4.78 | 4.78 | **4.53** |
+
+**All three put B last; C ≈ C′ tied at the top.** The conclusion holds across a judge that is *biased
+toward B*, a *saturated* neutral, and a *discriminating* neutral — and in both discriminating judges
+the harshest **groundedness** scores land on B. **`C/C′ > B` is robust to judge identity; C vs C′ is a
+tie.** The remaining honest caveat is **n=10/regime** (directional, not yet significant) and that
+*usefulness* saturates for two of three judges (the signal lives in groundedness + calibration).

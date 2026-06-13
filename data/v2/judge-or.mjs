@@ -7,7 +7,7 @@ import { readFileSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
 
-const MODEL = 'nvidia/nemotron-3-ultra-550b-a55b:free';
+const MODEL = process.env.OR_MODEL || 'nvidia/nemotron-3-ultra-550b-a55b:free';
 const KEY = (readFileSync(join(homedir(), '.env/openrouter.env'), 'utf8').match(/sk-or-v1-[A-Za-z0-9_-]+/) || [])[0];
 const sample = JSON.parse(readFileSync(join(homedir(), '.claude-telemetry/evals/judge-sample.json'), 'utf8'));
 const bench = readFileSync(join(homedir(), '.claude-telemetry/benchmark.sh'), 'utf8');
@@ -57,7 +57,7 @@ sample.sort((a, b) => (a.id < b.id ? -1 : 1));
 for (const o of sample) {
   const s = await judge(o.content);
   if (!s) { console.log(`  [${o.regime}] ${o.id.slice(0, 8)} — FAIL`); continue; }
-  pgInsert({ obs_id: o.id, regime: o.regime, judge_model: 'nvidia/nemotron-3-ultra-550b',
+  pgInsert({ obs_id: o.id, regime: o.regime, judge_model: (process.env.OR_LABEL || 'nvidia/nemotron-3-ultra-550b'),
     groundedness: s.groundedness | 0, specificity: s.specificity | 0, calibration: s.calibration | 0,
     usefulness: s.usefulness | 0, why: s.why || '', input_tokens: 0, output_tokens: 0, cost: 0 });
   (agg[o.regime] ||= []).push(s);
