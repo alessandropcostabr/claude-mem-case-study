@@ -25,10 +25,19 @@ Did 4.8 regress, and is it tied to the Fable launch? Nobody has published a numb
 The fixed-prompt latency benchmark (every 6h, 3 hosts) tests Opus 4.6 + Haiku 4.5; **Fable 5 added
 06-10** (canary `.100` only), **Opus 4.8 added 06-12** (all 3 hosts).
 
-> **Update 2026-06-13: Fable 5 was discontinued by Anthropic on 06-12** (≈3 days after launch). The
-> `.100` Fable cron line was disabled the same day to avoid error/timeout noise; the ~8 historical
-> Fable runs (06-10→06-12, ~100k ms / ~360 out) stay as a record of its brief existence. Benchmark
-> now tracks Opus 4.6 + Opus 4.8 + Haiku 4.5.
+> **Update 2026-06-13: Fable 5 (and Mythos 5) were force-suspended by a US GOVERNMENT export-control
+> directive on 06-12** (≈3 days after the 06-09 launch) — NOT a capacity/deprecation decision by
+> Anthropic. The directive bars foreign-national access (citing an alleged Fable jailbreak); Anthropic
+> calls it a "misunderstanding" and is seeking restoration. Context: in 03/2026 the US DoD flagged
+> Anthropic a "supply-chain risk" after it refused unrestricted Claude use for mass domestic
+> surveillance / autonomous weapons. Our `.100` Fable cron was disabled the same day; the ~8 historical
+> Fable runs (06-10→06-12, ~100k ms / ~360 out) stay as a record. Benchmark now tracks Opus 4.6 + 4.8 +
+> Haiku 4.5. Sources: anthropic.com/news/fable-mythos-access, time.com, nbcnews.com (2026-06-12/13).
+>
+> **Effect on the degradation hypothesis:** this *weakens* the "Anthropic reallocated compute from 4.8
+> to Fable" story two ways — (1) the 4.8 degradation began 06-08, a day BEFORE Fable launched; (2) the
+> pull was external/regulatory, not a capacity choice. The "does 4.8 recover now that Fable is gone?"
+> benchmark test still stands, but a recovery would no longer cleanly implicate compete-for-compute.
 
 - **Opus 4.6 and Haiku 4.5 are flat across the Fable launch (08–09/jun)** — latency ~40k ms, output
   stable. If the degradation were shared-infra, they'd dip too. They don't → **whatever hit 4.8 is
