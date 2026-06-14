@@ -1,7 +1,8 @@
 # Three-way: B (pipeline 1×LLM) vs C (Stop self-author) vs C′ (Checkpoint Rider)
 
 **claude-mem case study — v2 working note**
-**Date:** 2026-06-12 · **Status:** directional (C′ n still tiny)
+**Date:** 2026-06-12 (Round 1) · 2026-06-13 (Round 2: forced ranking, n=30, significance — see end)
+**Status:** Round 2 finds self-author > pipeline for 4/5 judges (3 significant); 1 dissenter
 
 Extends the B-vs-C analysis (`REGIME-COMPARISON.md` §3–4) with the third regime, C′
 (real-time self-author). All three are now tagged/discriminable in Postgres.
@@ -207,3 +208,58 @@ toward B*, a *saturated* neutral, and a *discriminating* neutral — and in both
 the harshest **groundedness** scores land on B. **`C/C′ > B` is robust to judge identity; C vs C′ is a
 tie.** The remaining honest caveat is **n=10/regime** (directional, not yet significant) and that
 *usefulness* saturates for two of three judges (the signal lives in groundedness + calibration).
+
+---
+
+## ROUND 2 — forced ranking + n=30 + significance — 2026-06-13
+
+The Round-1 caveats (n=10, usefulness ceiling, single absolute scale) are addressed here, and the
+result is **more nuanced — and partly corrects Round 1**.
+
+**Two methodological upgrades:**
+1. **Balanced, fairer sample (n=30/regime, 90 obs):** organic notes only (meta-research excluded), and
+   crucially **B drawn from the SAME time window as C/C′ (Jun 11–13)** so we don't confound *quality*
+   with *era*. (Round 1's B may have been older/shorter.) File: `judge-sample-90.json`.
+2. **Forced ranking instead of absolute 1–5:** each judge sees a shuffled trio (1 B + 1 C + 1 C′, in a
+   deterministically-permuted position) and must produce a **strict** best→mid→worst order. This kills
+   the saturation ceiling that pinned *usefulness* at 5 for everyone in Round 1. Harness:
+   `judge-rank.mjs` (OpenRouter) + `judge-rank-cli.mjs` (local Haiku). Table: `eval_rank`. Raw:
+   `eval-rank-20260613.csv`.
+
+### Result — 5 judges, mean rank (1=best, 3=worst; chance = 2.00)
+| judge | profile | C | C′ | **B** | trios | B-last | sign-test p |
+|---|---|---:|---:|---:|---:|---:|---:|
+| **Haiku 4.5** | *generates B* | 1.59 | **1.52** | **2.89** | 27 | **93%** | **1.9e-10** |
+| **DeepSeek-V3.1** | neutral | 1.83 | **1.60** | 2.57 | 30 | 73% | **8.8e-6** |
+| **gpt-oss-120b** | neutral | 1.77 | 1.77 | 2.47 | 30 | 60% | **2.5e-3** |
+| **qwen-2.5-72b** | neutral | 2.03 | 1.77 | 2.20 | 30 | 47% | 0.09 (~) |
+| **Llama-3.3-70b** | neutral | 1.93 | 2.03 | 2.03 | 30 | 40% | 0.28 (n.s.) |
+
+(sign test: P(B ranked last) vs H0 = 1/3.)
+
+### Reading
+- **B is ranked worst by 4 of 5 judges; 3 significantly** (Haiku, DeepSeek, gpt-oss). **Llama is the
+  lone dissenter** (a genuine tie, 40% ≈ chance), qwen is marginal.
+- **The pro-B caveat flips.** Round 1 warned Haiku might favour B (it *generates* B). The opposite is
+  true: **Haiku is the HARSHEST on B** (B last 25/27, p≈1e-10). So the "self-preference toward B"
+  worry was unfounded — if anything the B-generator is B's toughest critic. That strengthens, not
+  weakens, the anti-B signal.
+- **C vs C′ stays a wash** with a mild C′ tilt (C′ ≤ C for Haiku/DeepSeek/qwen, tie for gpt-oss, C
+  better only for Llama). Consistent across both rounds: *same 0×LLM engine, timing changes WHAT they
+  capture (§kind-mix), not HOW WELL.*
+
+### What Round 2 corrects in Round 1
+Round 1 claimed "C/C′ > B is **robust to judge identity**." **That was too strong.** Under forced
+ranking on a fair sample, the advantage is **real for the majority but NOT universal** — Llama sees a
+tie. Part of Round 1's clean separation came from (a) the absolute-scale ceiling exaggerating B's
+calibration/usefulness deficit, and (b) possible B-sample-era effects. The honest claim now:
+**self-author (C/C′) out-ranks the pipeline (B) for 4 of 5 judges, significantly for 3 — a strong
+majority signal, with one credible dissenter.**
+
+### Caveats (Round 2)
+- **Judges disagree** — that disagreement is now the headline, not a footnote. A larger judge panel
+  (or human raters) would settle Llama-vs-the-rest.
+- **Pooling across judges violates independence** (same 30 trios judged 5×) — report per-judge, not a
+  pooled p. Per-judge, 3/5 are significant.
+- Trios pair B[i]/C[i]/C′[i] by sample order (deterministic from `md5(id)` DB ordering), not by topic —
+  notes within a trio are unrelated; the judge ranks *quality signals*, not the same finding told 3×.
