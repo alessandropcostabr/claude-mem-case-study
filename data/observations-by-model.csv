@@ -1,9 +1,9 @@
 model,count,avg_tokens,total_tokens
-unknown,67944,306,20779457
+unknown,71811,289,20779457
 claude-opus-4-6,6730,8879,59757050
 claude-sonnet-4-5,6270,7072,44342242
-claude-opus-4-8,293,0,0
-claude-opus-4-8[1m],134,0,0
+claude-opus-4-8,420,0,0
+claude-opus-4-8[1m],155,0,0
 openai-codex/gpt-5.4,117,0,0
 claude-sonnet-4-6,97,410,39767
 haiku,42,3630,152447

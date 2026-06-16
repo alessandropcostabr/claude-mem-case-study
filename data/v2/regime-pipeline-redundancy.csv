@@ -1,21 +1,21 @@
 title,occurrences
-Task Status Update via Hook Integration,50
-System Performance Bottlenecks Identified,18
-Task Status Update Completed,17
-System Performance Bottleneck Diagnostic Framework,15
-Linux Performance Bottleneck Diagnostic Framework,13
-Bash Port Availability Check Implementation,12
-Performance Bottleneck Diagnosis Framework,10
-Performance Bottleneck Diagnostic Framework,10
-TaskUpdate Tool Successfully Transitioned Task Status,10
-Task Status Update via TaskUpdate Tool,9
+Task Status Update via Hook Integration,105
+Task Status Update Completed,52
+System Performance Bottlenecks Identified,26
+Task Status Update via TaskUpdate Tool,25
+System Performance Bottleneck Diagnostic Framework,24
+Linux Performance Bottleneck Diagnostic Framework,22
+Credential Exposure in Command Execution,21
+Bash Port Availability Check Implementation,20
+Performance Bottleneck Diagnosis Framework,14
+Performance Bottleneck Diagnostic Framework,13
+WooCommerce Integration Service Architecture,12
+TaskUpdate Tool Successfully Transitioned Task Status,12
+System Performance Bottleneck Diagnosis Framework,11
+Bash Port Availability Check Function,11
+Bash Function for Port Availability Checking,10
 Portuguese character encoding fix in error message,9
-Bash Port Availability Check Function,8
-Comprehensive Test Suite for AnimalLembretes Component,8
+WooCommerce Integration Controller Structure,9
 Sudo Password Stored in Plain Text Environment File,8
-Re-engagement Email Sequence Best Practices Research,7
-Database Credentials Exposed in Command Execution,7
-Hardcoded Database Credentials Exposed in Command,7
-Database credentials exposed in command execution,7
-Version Bump in package-lock.json,7
-Credential Exposure in Command Execution,6
+Performance Bottleneck Diagnostic Framework Identified,8
+Comprehensive Test Suite for AnimalLembretes Component,8
