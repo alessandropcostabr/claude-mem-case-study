@@ -14,6 +14,29 @@ Extends the B-vs-C analysis (`REGIME-COMPARISON.md` §3–4) with the third regi
 | **C** | `metadata.regime = 'C'` | 0 | at Stop (session end) |
 | **C′** | `metadata.regime = 'C-prime'` | 0 | mid-session (UserPromptSubmit rider) |
 
+### Canonical self-author filter (16/jun) — exclude untagged buckets
+
+`generation_key IS NULL` alone is NOT self-author: it also catches non-instrumented
+observations. The **canonical filter** for the regime experiment is:
+
+```sql
+-- self-author (instrumented): generation_key IS NULL AND metadata->>'regime' IN ('C','C-prime')
+-- pipeline: generation_key IS NOT NULL
+```
+
+The 579 `generation_key IS NULL` rows **without** a regime tag decompose into:
+
+| bucket | n | window | note |
+|---|---:|---|---|
+| legacy-sqlite (`metadata ? 'sqlite_id'`) | 351 | 12–14/mai | migrated SQLite→PG, pre-experiment, hand-curated (inflates pat/arch) |
+| manual saves (no `checkpoint_key`) | 181 | ≥10/jun | `save_observation` ad-hoc, outside Stop/rider (interactive sessions) |
+| pre-tag self-author | 47 | 17/mai–10/jun | self-author before regime tagging existed |
+
+These are **excluded** from regime comparisons. Effect of applying the filter to the
+in-window metrics (since 10/jun 22:00): self-author **621 → 504** obs; avg_chars
+**2162 → 2208** (dropped manual saves were shorter). `export-regime-comparison.mjs`
+now enforces this filter; all `data/v2/regime-*.csv` are regenerated under it.
+
 ## Structure (all-time)
 | | n | avg chars | redundancy | meta-correction |
 |---|---:|---:|---:|---:|

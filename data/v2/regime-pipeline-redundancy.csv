@@ -1,6 +1,6 @@
 title,occurrences
-Task Status Update via Hook Integration,105
-Task Status Update Completed,52
+Task Status Update via Hook Integration,106
+Task Status Update Completed,54
 System Performance Bottlenecks Identified,26
 Task Status Update via TaskUpdate Tool,25
 System Performance Bottleneck Diagnostic Framework,24
@@ -11,11 +11,11 @@ Performance Bottleneck Diagnosis Framework,14
 Performance Bottleneck Diagnostic Framework,13
 WooCommerce Integration Service Architecture,12
 TaskUpdate Tool Successfully Transitioned Task Status,12
-System Performance Bottleneck Diagnosis Framework,11
 Bash Port Availability Check Function,11
+System Performance Bottleneck Diagnosis Framework,11
 Bash Function for Port Availability Checking,10
+Database credentials exposed in command execution,9
 Portuguese character encoding fix in error message,9
 WooCommerce Integration Controller Structure,9
 Sudo Password Stored in Plain Text Environment File,8
 Performance Bottleneck Diagnostic Framework Identified,8
-Comprehensive Test Suite for AnimalLembretes Component,8
