@@ -361,3 +361,37 @@ The signal now spans **8 distinct families** (Anthropic, DeepSeek, Meta, Qwen, O
 NVIDIA). **C vs C′ stays a tie** across both rounds — timing changes WHAT they capture (§kind-mix), not
 HOW WELL. Honest residual caveats: still the same 90-obs sample (a larger re-sample = Round 4); per-judge
 reporting only (pooling violates independence — same 30 trios judged 12×); two R3 judges have small n.
+
+---
+
+## ROUND 4 — larger fresh re-sample (n=80/regime) — 2026-06-21
+
+The last R3 caveat ("still the same 90-obs sample") is addressed here. New sample: **240 obs
+(80/regime)**, drawn from the **full fresh window (10–21 Jun)** under the canonical filter, with **B
+from the same window** (era control preserved). File: `judge-sample-r4.json`. Seven NVIDIA judges
+(distinct families), **including Llama-3.3 on purpose** — the R2/R3 dissenter — to test whether its
+tie survives a bigger sample. Stored isolated (`r4:` prefix). Raw: `eval-rank-r4-20260621.csv`.
+
+### Result — 7 judges, B-last rate (n=80 except where noted)
+| judge | trios | B-last | sign-p |
+|---|---:|---:|---:|
+| qwen3.5-397b | 80 | 84% | **1.9e-20** |
+| gemma-4-31b | 80 | 79% | **1.0e-16** |
+| nemotron-3-super-120b | 80 | 74% | **1.7e-13** |
+| llama-4-maverick | 80 | 70% | **2.3e-11** |
+| gpt-oss-120b | 80 | 64% | **2.6e-8** |
+| **meta-llama-3.3-70b** | 80 | **53%** | **~1.4e-4** ✅ |
+| deepseek-v4-pro | 10* | 80% | 0.003 |
+
+(*aborted on free-tier rate-limit.)
+
+### Verdict — the dissent was small-n, and it's now gone
+**7/7 judges rank B worst, ALL significant (p<0.05).** The headline: **Llama-3.3 — the lone dissenter
+in R2/R3 (40%, p=0.276 at n=30) — converted at n=80 to 53% B-last, p≈1.4e-4 (significant)**. Its tie
+was a **small-sample artifact**, not a real divergence; on a fresh, larger sample even the holdout
+agrees B is worst. The remaining caveats also weaken: the sample is now larger (n=80) and from the
+full window, not 3 days. **C vs C′ stays a tie** (mild C tilt this round vs mild C′ tilt before = noise).
+
+**Bottom line across R2+R3+R4 (19 judge-runs, 8 families):** self-author (C/C′) out-ranks the pipeline
+(B) **robustly and now without a credible dissenter**. C and C′ remain indistinguishable in quality —
+they differ in *what* they capture (structure/kind-mix), not *how well*.
