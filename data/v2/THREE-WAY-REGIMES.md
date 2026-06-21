@@ -87,6 +87,11 @@ Directional, not conclusive. Watch the C′ pattern/architecture gap as `.254` a
 (review 2026-06-20). A blind quality rating (LLM-judge / human) is the next instrument — structure
 is a proxy, not quality.
 
+> **REVIEW DONE — 2026-06-21 (see "Structure update" at end):** with C′ now at n=241 (was 35)
+> the pattern/architecture gap holds and is **no longer attributable to small-n** (Poisson
+> p≈0.001). Two corrections also land: C's pattern rate was inflated by small-n (10.7%→3.1%),
+> and C is **multi-host** (not `.100`-only), which weakens the workload-confound.
+
 ---
 
 ## Quality (content, not structure) — 2026-06-12
@@ -286,3 +291,73 @@ majority signal, with one credible dissenter.**
   pooled p. Per-judge, 3/5 are significant.
 - Trios pair B[i]/C[i]/C′[i] by sample order (deterministic from `md5(id)` DB ordering), not by topic —
   notes within a trio are unrelated; the judge ranks *quality signals*, not the same finding told 3×.
+
+---
+
+## STRUCTURE UPDATE — 2026-06-21 (robust n; C′ review closed; corrections)
+
+The 2026-06-20 review (above) is executed here. Volumes grew enough to kill the small-n caveat
+that blocked the C′ structural conclusion.
+
+### New volumes (all-time, vs 16/jun snapshot)
+| | n (16/jun) | **n (21/jun)** | avg chars |
+|---|---:|---:|---:|
+| **B** (1× LLM, per-event) | 77,237 | **96,257** | 1,148 |
+| **C** (Stop, 0×) | 150 | **617** | 2,371 |
+| **C′** (rider, 0×) | 35 | **241** | 2,068 |
+
+### Pattern/architecture — the C′ caveat resolves
+| | pattern+arch | rate |
+|---|---|---:|
+| **C** (Stop) | 23/617 | **3.7%** |
+| **C′** (rider) | 1/241 | **0.4%** |
+
+At n=241, if C′ shared C's rate we'd expect ~9 arc-level notes; we see **1**. One-sided Poisson
+(λ≈9) gives **p≈0.001** — the gap is **real, not small-n chance**. This confirms the
+temporal-vantage axis: only the Stop vantage (whole session in view) abstracts arc; the mid-session
+rider sees a partial arc and essentially never emits `pattern`/`architecture`.
+
+### Two corrections to the earlier sections
+1. **C's pattern rate was inflated by small-n.** §kind-mix reported pattern 10.7% / architecture
+   1.3% at n=150. At n=617 these are **pattern 3.1% / architecture 0.6%** (combined 3.7%). The
+   *direction* (C ≫ C′) holds and is now robust, but C abstracts **less** than the original note
+   implied. Treat the §kind-mix table as the n=150 snapshot.
+2. **C is multi-host, not `.100`-only.** Recent C observations come from **mach10 (.253), HyperII
+   (.100) AND DarkStarII (.254)**. The Caveats §"workload-confound (C from autonomous .100, C′ from
+   interactive .254)" is therefore **weaker than stated** — C is fleet-wide. (Op note: C generation
+   stalled 20–21/jun = weekend activity −91% + `.253` OAuth token expired; not a self-author bug.)
+
+### ROUND 3 — NVIDIA NIM judge panel (DONE 2026-06-21, same frozen 90-obs sample)
+Adds 7 neutral judges from **distinct model families** (via `integrate.api.nvidia.com`, free tier) to
+the Round-2 panel — same trios, just more independent votes — to settle the Llama-3.3 dissent.
+Harness: `judge-rank-nim.mjs`; aggregate: `aggregate-round3.mjs` (per-judge exact binomial sign test).
+
+### FULL PANEL — 12 judges, mean rank (1=best, 3=worst; chance=2.00)
+| judge | round | C | C′ | **B** | B-last | sign-p |
+|---|---|---:|---:|---:|---:|---:|
+| claude-haiku-4-5 | R2 | 1.59 | 1.52 | 2.89 | 25/27 93% | **1.9e-10** |
+| deepseek-chat-v3.1 | R2 | 1.83 | 1.60 | 2.57 | 22/30 73% | **8.8e-6** |
+| **meta-llama-3.3-70b** | R2 | 1.93 | 2.03 | 2.03 | 12/30 40% | 0.276 *(dissenter)* |
+| gpt-oss-120b | R2 | 1.77 | 1.77 | 2.47 | 18/30 60% | **0.002** |
+| qwen-2.5-72b | R2 | 2.03 | 1.77 | 2.20 | 14/30 47% | 0.090 ~ |
+| deepseek-v4-pro | R3 | 1.80 | 1.60 | 2.60 | 7/10 70% | 0.020 * |
+| gemma-4-31b | R3 | 1.70 | 1.57 | 2.73 | 23/30 77% | **1.5e-6** |
+| llama-4-maverick | R3 | 1.67 | 1.70 | 2.63 | 21/30 70% | **4.4e-5** |
+| mistral-large-3-675b | R3 | 1.73 | 1.80 | 2.47 | 9/15 60% | 0.031 * |
+| nemotron-3-super-120b | R3 | 1.67 | 1.67 | 2.67 | 23/30 77% | **1.5e-6** |
+| gpt-oss-120b (nvidia) | R3 | 1.63 | 1.93 | 2.43 | 18/30 60% | **0.002** |
+| qwen3.5-397b | R3 | 1.70 | 1.43 | 2.87 | 27/30 90% | **1.7e-10** |
+
+(deepseek-v4 n=10, mistral-large-3 n=15 — aborted on free-tier rate-limit; same direction, weaker power.)
+
+**Verdict: 12/12 judges rank B worst-than-chance; 10/12 significant (p<0.05).** Both Round-2 caveats close:
+1. **The Llama-3.3 dissent is now isolated.** It is the lone non-significant outlier against 11 other
+   judges — and **Llama-4-maverick, same Meta family, is strongly anti-B (70%, p=4.4e-5)**. The dissent
+   was **generation-specific to Llama-3.3, not a Meta-family trait.**
+2. **The Qwen family flipped with the new generation.** qwen-2.5 was marginal (47%, n.s.); **qwen3.5-397b
+   is the single strongest anti-B judge (90%, p=1.7e-10).**
+
+The signal now spans **8 distinct families** (Anthropic, DeepSeek, Meta, Qwen, OpenAI, Google, Mistral,
+NVIDIA). **C vs C′ stays a tie** across both rounds — timing changes WHAT they capture (§kind-mix), not
+HOW WELL. Honest residual caveats: still the same 90-obs sample (a larger re-sample = Round 4); per-judge
+reporting only (pooling violates independence — same 30 trios judged 12×); two R3 judges have small n.
