@@ -530,10 +530,10 @@ baseline (3.1%)**. Net audit result: the self-author write path loses **nothing*
 compliance-dependent declines (§2 above) and metadata tagging (this §), not durability. The type-enum fix +
 this audit close the "is the data complete?" question: **yes, nothing is lost.**
 
-**Attribution fixes (2026-07-01).** (a) **Backfill:** 164 `.254` self-author obs (100 C + 64 no-regime) that
-were NULL-sid recovered their `content_session_id` by full-title match against local transcripts (unique, 0
-ambiguous; flagged `content_session_id_backfilled=true`, reversible). 1309 remain — they need `.100`/`.253`/`.94`
-transcripts (that is where blocking-Stop C obs are authored). (b) **Forward fix (source, commit `0c98353f`,
+**Attribution fixes (2026-07-01).** (a) **Backfill (2 rounds):** 1104 self-author obs recovered their `content_session_id` by full-title match
+against `.254`+`.253`+`.100` transcripts (combined map, 0 cross-host collision; reversible flag). C (Stop) went
+from 895/895 NULL-sid to **5/896**; C-prime and C-prime-arc are 100% attributed. 372 remain NULL-sid (367
+no-regime spontaneous + 5 C — `.94` Windows unreachable + purged sessions). (b) **Forward fix (source, commit `0c98353f`,
 34/34 tests):** the Stop prompt now carries `checkpoint_key="selfauthor:<sid>:stop"` → Stop obs get
 `content_session_id` and stay regime C. **Deployed fleet-wide (`.254` + `.253` + `.100`, all on build `4b4c242b`)** — hook handlers live in
 `worker-service.cjs`, one common bundle. Marker-by-marker comparison disproved the "`.100` has LATE customs"
