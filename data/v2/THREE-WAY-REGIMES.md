@@ -530,6 +530,15 @@ baseline (3.1%)**. Net audit result: the self-author write path loses **nothing*
 compliance-dependent declines (§2 above) and metadata tagging (this §), not durability. The type-enum fix +
 this audit close the "is the data complete?" question: **yes, nothing is lost.**
 
+**Attribution fixes (2026-07-01).** (a) **Backfill:** 164 `.254` self-author obs (100 C + 64 no-regime) that
+were NULL-sid recovered their `content_session_id` by full-title match against local transcripts (unique, 0
+ambiguous; flagged `content_session_id_backfilled=true`, reversible). 1309 remain — they need `.100`/`.253`/`.94`
+transcripts (that is where blocking-Stop C obs are authored). (b) **Forward fix (source, commit `0c98353f`,
+34/34 tests):** the Stop prompt now carries `checkpoint_key="selfauthor:<sid>:stop"` → Stop obs get
+`content_session_id` and stay regime C. Deploy pending on `.100`/`.253` (blocking-Stop hosts; `.254` Stop is
+transparent so it is dormant there). Spontaneous saves (no hook/no key) remain unattributed — would need the CC
+session id plumbed to the MCP/worker (separate feature).
+
 **ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
 the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
 verbatim (new `OBSERVATION_TYPE_ENUM` constant). Incremental rider left byte-identical (frozen control, dead
