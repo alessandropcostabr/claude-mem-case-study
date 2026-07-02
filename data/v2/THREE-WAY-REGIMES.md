@@ -505,12 +505,21 @@ Three gap categories, only one is real loss:
      self-author version is recoverable from the transcript.
    - **Net permanent self-author loss across the two arc sessions ≈ 1 obs, and it is recoverable.**
 
-**Consequence for the headline:** the arc rate is now **65.4% (17/26, n=7 sessions)** — down from the
-85.7% at n=3 (regression to the mean, expected), **still ~100× the incremental arm (0.6%) and ~20× the Stop
-baseline (3.1%)**. **26 is a floor** (a small number of attempts dropped, ≥1 recoverable), but the earlier
-"validation biases against pattern/architecture" worry is weaker than stated: the observed invalid-`type`
-case (`reference`) self-healed. The type-enum fix mainly **removes a wasted rejection→retry round-trip**
-rather than recovering large amounts of lost signal.
+**Fleet-wide sweep (1181 transcripts, 517 `save_observation` calls) — the type-enum problem NEVER lost
+content.** All **12** invalid calls (bad `type` or empty narrative) **self-healed within ~15-30s** via a retry
+with a valid type. The invalid types the model tried are exactly the **memory-layer taxonomy**
+(`feedback`, `correction`, `project`, `reference`) — i.e. the session confused the *observation* enum with the
+*memory* node types, then corrected. So the enum fix **removes a wasted rejection→retry round-trip + log
+noise**, it does NOT recover lost signal (there was none from this class).
+
+**The only real loss class is separate:** *valid-type* calls dropped by a transient 5xx (not a 400), e.g. the
+`[bugfix]` EADDRINUSE obs in `8d9ff3d2` (14:11:30) — recoverable from the transcript, topic also covered by B.
+Not quantified fleet-wide (would require reconciling all 517 valid calls vs PG).
+
+**Consequence for the headline:** the arc rate is **65.4% (17/26, n=7 sessions)** — down from 85.7% at n=3
+(regression to the mean), **still ~100× the incremental arm (0.6%) and ~20× the Stop baseline (3.1%)**. The
+earlier "validation biases against pattern/architecture / ≥2 lost" worry is **retracted**: no content was lost
+to the enum, and the invalid types were memory-taxonomy confusion, not abstraction-specific.
 
 **ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
 the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
