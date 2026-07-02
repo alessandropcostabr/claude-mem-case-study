@@ -512,14 +512,23 @@ with a valid type. The invalid types the model tried are exactly the **memory-la
 *memory* node types, then corrected. So the enum fix **removes a wasted rejection→retry round-trip + log
 noise**, it does NOT recover lost signal (there was none from this class).
 
-**The only real loss class is separate:** *valid-type* calls dropped by a transient 5xx (not a 400), e.g. the
-`[bugfix]` EADDRINUSE obs in `8d9ff3d2` (14:11:30) — recoverable from the transcript, topic also covered by B.
-Not quantified fleet-wide (would require reconciling all 517 valid calls vs PG).
+**Valid-type transient-drop loss quantified fleet-wide = 0%.** Reconciling all valid-type `save_observation`
+calls (471 distinct, 60 sessions, full-title match) against PG genkey-NULL obs: **471/471 landed, 0 dropped.**
+The anchor that seemed lost — the `[bugfix]` EADDRINUSE obs in `8d9ff3d2` — actually **landed** as a self-author
+obs with `regime = (none)` and `content_session_id = NULL` (that is why a `sid`-scoped query missed it). So the
+prior "≈1 recoverable loss" is also **retracted: net self-author content loss = 0.**
 
-**Consequence for the headline:** the arc rate is **65.4% (17/26, n=7 sessions)** — down from 85.7% at n=3
-(regression to the mean), **still ~100× the incremental arm (0.6%) and ~20× the Stop baseline (3.1%)**. The
-earlier "validation biases against pattern/architecture / ≥2 lost" worry is **retracted**: no content was lost
-to the enum, and the invalid types were memory-taxonomy confusion, not abstraction-specific.
+**The real defect is attribution, not loss.** Of 1813 genkey-NULL self-author obs: C (Stop) is **895/895 with
+NULL `content_session_id`** (Stop never carries a checkpoint_key → never tagged), plus **579 obs with no
+`regime` at all** — spontaneous mid-session saves the model makes *outside* a rider checkpoint (the EADDRINUSE
+one is one of these). They land but count toward **no regime**, blinding per-session/per-regime analysis. This
+is a metadata gap (fixable: tag Stop/spontaneous saves), not data loss.
+
+**Consequence for the headline:** the arc count is **unaffected — all 26 `C-prime-arc` obs carry a sid** — so
+the arc rate **65.4% (17/26, n=7 sessions)** stands, **still ~100× the incremental arm (0.6%) and ~20× the Stop
+baseline (3.1%)**. Net audit result: the self-author write path loses **nothing**; its real weaknesses are
+compliance-dependent declines (§2 above) and metadata tagging (this §), not durability. The type-enum fix +
+this audit close the "is the data complete?" question: **yes, nothing is lost.**
 
 **ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
 the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
