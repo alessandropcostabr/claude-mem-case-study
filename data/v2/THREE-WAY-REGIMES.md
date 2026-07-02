@@ -395,3 +395,125 @@ full window, not 3 days. **C vs C′ stays a tie** (mild C tilt this round vs mi
 **Bottom line across R2+R3+R4 (19 judge-runs, 8 families):** self-author (C/C′) out-ranks the pipeline
 (B) **robustly and now without a credible dissenter**. C and C′ remain indistinguishable in quality —
 they differ in *what* they capture (structure/kind-mix), not *how well*.
+
+---
+
+## RIDER A/B (C-prime incremental vs C-prime-arc) — preliminary result + anti-demand-effect — 2026-06-29
+
+This closes the one axis where C′ lost to C in the three-way: **arc abstraction** (pattern/architecture).
+The §STRUCTURE-UPDATE showed C′ emits ~0 pattern/architecture (0.4–0.6%) vs C's 3–4%, and attributed it
+to **temporal vantage** (mid-session can't see the whole arc). The Rider A/B (deployed `.254` 2026-06-23,
+`riderArm(sid)` djb2-xor 50/50, between-subjects) tests the rival hypothesis: the gap is **prompt scope**,
+not timing. Arm A (`C-prime`) = historical incremental prompt ("since the last checkpoint, max 3"). Arm B
+(`C-prime-arc`) = same real-time rider, prompt reframed to "review the arc-so-far, abstract
+pattern/architecture when already visible." Same mechanism (mid-session, online, injectable at prompt N+1),
+only the instruction changes.
+
+### Result (PG `.253`, as of 2026-06-29; host = DarkStarII/.254)
+| arm | regime | n | sessions | pattern+arch | rate |
+|---|---|---:|---:|---:|---:|
+| incremental (control) | `C-prime` | 313 | 49 | 2 | **0.6%** |
+| **arc (treatment)** | `C-prime-arc` | **7** | **3** | **6** | **85.7%** |
+| Stop baseline | `C` | 864 | — | 27 | 3.1% |
+
+Same-window check (≥24/jun, the fair 50/50 comparison): incremental **1/14 sessions** had pat/arch (1.9%)
+vs arc **3/3 sessions** (every arc session produced pattern/architecture). The arc arm even **exceeds the
+Stop baseline** (85.7% vs 3.1%).
+
+### Conclusion — the C′ abstraction gap was PROMPT-driven, not timing-driven
+Reframing the rider's window recovers arc-level abstraction **in real time**. If the limit were structural
+(mid-session can't see the arc), no prompt could recover it — but it did. **Real-time arc abstraction is
+achievable**; the earlier "only the Stop vantage abstracts arc" was an artifact of the rider's incremental
+prompt, not a law of the real-time regime.
+
+### Anti-demand-effect verification (the arc prompt explicitly says "abstract pattern/architecture" — is it
+just relabeling to please the instruction?). Read full content of all arc obs vs incremental obs on the
+**same work** (2FA PR #1734; Meta Ads canvas). Verdict: **genuine abstraction, not relabeling.** Three
+independent signals:
+1. **Content genuinely generalizes** — e.g. `[architecture]` TOTP encryption framed as "expand-contract
+   4-PR rollout, **reusable for any at-rest crypto / load-bearing column format change**"; `[pattern]`
+   distilling 3 Codex findings into **categorized reusable gotchas** (cross-layer / fail-open / boundary).
+   Transferable principles, not session facts.
+2. **The arm is discriminating, not blind** — 1 of the arc obs was correctly tagged `change` ("completed
+   angles 01-05"), not pattern. A demand effect would tag everything as abstraction; it didn't.
+3. **Same work, two altitudes** — incremental logs the event (`[change]` "release v2.36.0, backfill 2
+   secrets"); arc extracts the principle (`[architecture]` "expand-contract gated on PROD"). Altitude
+   difference is visible in the text, not a tag swap.
+
+### Caveats (still preliminary)
+- **n = 3 sessions** (PR #1734 25/jun, canvas 26/jun, +1 on 29/jun). Honest unit is sessions: 3/3 vs 1/14
+  (Fisher ~p≈0.01). The content verification proves *quality*, not *n*. Needs ~10-15 arc sessions for firm
+  significance.
+- The intrinsic instruction effect (prompt asks for abstraction) **is the tested mechanism**, not a confound.
+
+### Fleet design (confirmed from data, not an anomaly)
+The A/B test runs **`.254` ONLY**; the rest of the fleet is **B (pipeline 1×LLM) + C (Stop, session-end)**.
+B runs everywhere (~96k obs). Verified host×regime (≥11/jun): `.254` = `C-prime` 313 + `C-prime-arc` 7 + `C` 94;
+`.100` (HyperII) = `C` 660 + `C-prime` 1 (legacy, pre-12/jun swap), rider **disabled** (`REALTIME=false`,
+no `riderArm` in bundle); `.253` (mach10) = `C` 109. This is the deliberate 12/jun swap, not staleness.
+
+### DECISION (2026-06-29) — `.254` → 100% arc, to accelerate the rare cell
+The bottleneck is arc-arm sessions (3), not C′ in general (incremental baseline is saturated at 313/49
+sessions). Cheapest lever: flip the `.254` A/B from 50/50 to **100% arc** (force arm B in `riderArm`) — doubles
+arc accrual, **no new host, preserves the `.254`-only design, keeps C and B intact**. Arc keeps recording
+**online** (rider, injectable N+1); C (Stop) keeps running transparently in parallel.
+**EXECUTED 2026-06-29 01:16 BRT:** surgical patch of the live `worker-service.cjs` `riderArm` (`_Y`) → always
+returns `'arc'` (prompt builder `yNe` and tagger `bY` both share `_Y`, so prompt↔tag stay consistent). Golden
+markers preserved (inject=2, BanditEngine=1, C-prime-arc=1, scoreAndRank=2; −23 bytes). Worker restarted,
+active, NRestarts=0, /api/health=200, journal clean. Backup `worker-service.cjs.bak-pre-100arc-20260629-011539`.
+Source edit also kept in `/tmp/cr-impl/src/shared/self-author.ts` (uncommitted) so a future esbuild rebuild
+reproduces it. Revert = restore backup (or `return h%2===0?'incremental':'arc'`). From now every `.254` rider
+fire → `C-prime-arc`.
+
+**`.100` → C′ deferred (secondary).** With autonomous Fable/OpenClaw retired and interactive woo dev now on
+`.100`, the old "autonomous → rider won't fire" veto no longer holds — `.100` is *plausibly* viable now. But
+switching it costs: breaks the `.254`-only design, needs the arc bundle deployed there + sync-clobber care,
+and adds a domain confound (woo/PHP/ops vs LATE/Node). Its only unique payoff is **cross-domain generalization
+evidence** — worth doing only after the signal is firm on `.254`.
+
+### DATA-INTEGRITY AUDIT + ROOT FIX (2026-07-01) — the `n` is a LOWER BOUND; a write-loss leak was found and closed
+Auditing whether the accrued arc obs are *complete*, reconciled three sources (PG obs, local
+`self-author/*.state.json` checkpoint counters, MCP write logs) for the 7 arc sessions:
+
+| | value |
+|---|---:|
+| Checkpoints **fired** (Σ `lastCheckpointSeq`) | **48** |
+| Checkpoints that produced ≥1 obs | 25 |
+| **Obs landed in PG** | **26** (7 sessions) |
+| Empty checkpoints (0 obs) | 23 |
+| Max obs per checkpoint (cap = 3) | **2 — cap never hit** |
+
+Three gap categories, only one is real loss:
+1. **Cap truncation → NONE.** Max 2 obs/checkpoint vs cap 3 → nothing was cut by the limit.
+2. **"Nothing salient" declines → by design.** Most of the 23 empty checkpoints are legit (the pattern was
+   already abstracted at an earlier checkpoint). Cannot distinguish, without reading transcripts, a legit
+   decline from the busy primary agent silently skipping a real pattern — this is the self-author's structural
+   weakness (compliance-dependent), exactly the axis where the per-event pipeline B is deterministic.
+3. **Write rejections → REAL LOSS, confirmed.** The MCP logs show **12 `save_observation` calls rejected with
+   HTTP 400** (10× invalid `type` — the session invented an out-of-enum kind, likely PT "padrão"/"arquitetura"
+   or "insight"; 2× empty narrative). **≥2 fall provably inside arc sessions** (`25/06 18:57` in `ba52feaf`,
+   `01/07 15:55` in `8d9ff3d2`). The rejected payload is **not logged** → the lost content is unrecoverable.
+
+**Consequence for the headline:** the arc rate is now **65.4% (17/26, n=7 sessions)** — down from the
+85.7% at n=3 (regression to the mean, expected), **still ~100× the incremental arm (0.6%) and ~20× the Stop
+baseline (3.1%)**. But **26 is a floor**: ≥2 arc obs were dropped by validation, and the invalid-`type` failure
+mode **biases against pattern/architecture** (the session guesses a non-enum kind precisely when writing a
+non-obvious abstraction), so the true arc rate is if anything **understated**.
+
+**ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
+the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
+verbatim (new `OBSERVATION_TYPE_ENUM` constant). Incremental rider left byte-identical (frozen control, dead
+arm under 100%-arc). Source commit `d10f5f9f` on `feat/checkpoint-rider` (local, no push). Worker rebuilt via
+`scripts/build-hooks.js` — fresh bundle reproduced all 7 golden markers (inject=2, BanditEngine=1,
+scoreAndRank=2, C-prime-arc=1, ARCO=1, server-beta=1, self.author=4) + the enum; deployed to `.254`, worker
+active/NRestarts=0/health ok, journal clean. Backup `worker-service.cjs.bak-pre-enumfix-20260701-211245`.
+Post-fix arc obs should carry only valid `type`s → re-check the 400 count is flat after a few new arc sessions.
+⚠️ Separate pre-existing item: 3 red tests in `checkpoint-rider.test.ts` assume the 50/50 split and fail under
+the 100%-arc hardcode (not caused by this fix); clean up when the A/B override is made configurable.
+
+### Side finding (c-mem health, unrelated) — MCP search returns 0 observations on `.254`
+The `search`/`observation` MCP tool returns **only prompts, 0 observations** — even for old terms ("deploy",
+"checkpoint rider"). Not a stale-index lag (old obs missing too); the observation-search path on this host is
+broken/misrouted (likely reading a local SQLite empty of obs instead of PG `.253`, or `content_search` not
+populated). Direct PG ILIKE finds everything. Affects manual recall and possibly injection quality. **Pending
+diagnosis.**
