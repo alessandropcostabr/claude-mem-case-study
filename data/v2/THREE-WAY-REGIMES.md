@@ -535,9 +535,12 @@ were NULL-sid recovered their `content_session_id` by full-title match against l
 ambiguous; flagged `content_session_id_backfilled=true`, reversible). 1309 remain — they need `.100`/`.253`/`.94`
 transcripts (that is where blocking-Stop C obs are authored). (b) **Forward fix (source, commit `0c98353f`,
 34/34 tests):** the Stop prompt now carries `checkpoint_key="selfauthor:<sid>:stop"` → Stop obs get
-`content_session_id` and stay regime C. Deploy pending on `.100`/`.253` (blocking-Stop hosts; `.254` Stop is
-transparent so it is dormant there). Spontaneous saves (no hook/no key) remain unattributed — would need the CC
-session id plumbed to the MCP/worker (separate feature).
+`content_session_id` and stay regime C. **Deployed to `.254` + `.253`** (hook handlers live in `worker-service.cjs`; both on the same golden lineage,
+build `4b4c242b`, workers active/health-ok, server-beta intact). Active on `.253` (blocking Stop fires),
+dormant on `.254` (transparent Stop). **`.100` deferred** — the biggest C producer (660) but runs an older
+distinct build (`92b98763`, LATE customs, sync-excluded); needs a host rebuild of its own branch with the two
+commits cherry-picked, not a bundle copy. Spontaneous saves (no hook/no key) remain unattributed — would need
+the CC session id plumbed to the MCP/worker (separate feature).
 
 **ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
 the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
