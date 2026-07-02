@@ -489,16 +489,28 @@ Three gap categories, only one is real loss:
    already abstracted at an earlier checkpoint). Cannot distinguish, without reading transcripts, a legit
    decline from the busy primary agent silently skipping a real pattern — this is the self-author's structural
    weakness (compliance-dependent), exactly the axis where the per-event pipeline B is deterministic.
-3. **Write rejections → REAL LOSS, confirmed.** The MCP logs show **12 `save_observation` calls rejected with
-   HTTP 400** (10× invalid `type` — the session invented an out-of-enum kind, likely PT "padrão"/"arquitetura"
-   or "insight"; 2× empty narrative). **≥2 fall provably inside arc sessions** (`25/06 18:57` in `ba52feaf`,
-   `01/07 15:55` in `8d9ff3d2`). The rejected payload is **not logged** → the lost content is unrecoverable.
+3. **Write rejections → mostly SELF-HEALED; content is RECOVERABLE.** The MCP logs show **12 `save_observation`
+   calls rejected with HTTP 400** (10× invalid `type` — out-of-enum kind, e.g. `reference`; 2× empty narrative).
+   Reconciling the two arc sessions' CC transcripts (`.jsonl` `tool_use` blocks) against PG **corrects the
+   first-pass claim** ("≥2 lost, unrecoverable"):
+   - The MCP log lacks the payload, **but the CC session transcript keeps every `save_observation` input** →
+     the attempted content is **fully recoverable** (title/type/narrative/facts).
+   - `ba52feaf` (25/06): 3 calls, **all 3 landed** — the 25/06 18:57 rejection was a *different concurrent
+     session*, not this arc session (the earlier time-window attribution was wrong).
+   - `8d9ff3d2` (01/07): 9 calls, 7 landed. The `type:"reference"` rejection (18:55:25) **self-healed** — the
+     model re-saved the same content as `discovery` 23s later → **it is in PG**. One call — a *valid-type*
+     `[bugfix]` on the EADDRINUSE:9464 root cause (14:11:30) — did **not** land, for a **non-enum reason**
+     (transient 5xx/drop, not validation). Its topic is independently covered by the **B pipeline**
+     (`v2.40.1 PROD: Root fix for worker OTEL port collision`), so it is not a knowledge gap; the detailed
+     self-author version is recoverable from the transcript.
+   - **Net permanent self-author loss across the two arc sessions ≈ 1 obs, and it is recoverable.**
 
 **Consequence for the headline:** the arc rate is now **65.4% (17/26, n=7 sessions)** — down from the
 85.7% at n=3 (regression to the mean, expected), **still ~100× the incremental arm (0.6%) and ~20× the Stop
-baseline (3.1%)**. But **26 is a floor**: ≥2 arc obs were dropped by validation, and the invalid-`type` failure
-mode **biases against pattern/architecture** (the session guesses a non-enum kind precisely when writing a
-non-obvious abstraction), so the true arc rate is if anything **understated**.
+baseline (3.1%)**. **26 is a floor** (a small number of attempts dropped, ≥1 recoverable), but the earlier
+"validation biases against pattern/architecture" worry is weaker than stated: the observed invalid-`type`
+case (`reference`) self-healed. The type-enum fix mainly **removes a wasted rejection→retry round-trip**
+rather than recovering large amounts of lost signal.
 
 **ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
 the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
