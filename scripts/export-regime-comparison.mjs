@@ -20,7 +20,8 @@ const PROJ = process.env.CMEM_PROJECT_ID || "2e157557-603a-4c35-9e4a-71be282f365
 const SINCE = process.env.CMEM_WINDOW_SINCE || "2026-06-10 22:00:00+00"; // first self-author burst
 const OUT = process.argv[2] || "data/v2";
 // Canonical self-author filter (instrumented regimes only).
-const SA = "generation_key is null and metadata->>'regime' in ('C','C-prime')";
+// 2026-07-09: added 'C-prime-arc' — the live arc rider variant (100% on .254 since 06-29).
+const SA = "generation_key is null and metadata->>'regime' in ('C','C-prime','C-prime-arc')";
 
 const c = new pg.Client(url); await c.connect();
 mkdirSync(OUT, { recursive: true });

@@ -1,21 +1,21 @@
 title,occurrences
-Task Status Update via Hook Integration,106
-Task Status Update Completed,54
-System Performance Bottlenecks Identified,26
-Task Status Update via TaskUpdate Tool,25
-System Performance Bottleneck Diagnostic Framework,24
-Linux Performance Bottleneck Diagnostic Framework,22
-Credential Exposure in Command Execution,21
-Bash Port Availability Check Implementation,20
-Performance Bottleneck Diagnosis Framework,14
-Performance Bottleneck Diagnostic Framework,13
-WooCommerce Integration Service Architecture,12
-TaskUpdate Tool Successfully Transitioned Task Status,12
-Bash Port Availability Check Function,11
-System Performance Bottleneck Diagnosis Framework,11
-Bash Function for Port Availability Checking,10
-Database credentials exposed in command execution,9
-Portuguese character encoding fix in error message,9
-WooCommerce Integration Controller Structure,9
-Sudo Password Stored in Plain Text Environment File,8
-Performance Bottleneck Diagnostic Framework Identified,8
+Task Status Update Completed,239
+Task Status Update via Hook Integration,215
+System Performance Bottlenecks Identified,139
+Docker build in progress for honcho-stack-honcho-api,134
+Linux Performance Bottleneck Diagnostic Framework,79
+Task Status Update via TaskUpdate Tool,77
+Docker build in progress for honcho-stack-honcho-api image,66
+System Performance Bottleneck Diagnosis Framework,64
+System Performance Bottleneck Diagnostic Framework,62
+Bash Port Availability Check Implementation,61
+Bash Port Availability Check Function,53
+Performance Bottleneck Diagnosis Framework,43
+Bash Function for Port Availability Checking,39
+Legacy Compatibility Detection Script Execution,38
+System Performance Bottleneck Analysis Framework,37
+Linux Performance Bottleneck Diagnosis Framework,33
+Task Status Update via Hook Tool,33
+Credential Exposure in Command Execution,30
+Performance Bottleneck Diagnostic Framework Identified,29
+System Performance Bottleneck Analysis,26

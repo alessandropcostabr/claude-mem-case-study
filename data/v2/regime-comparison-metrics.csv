@@ -1,6 +1,6 @@
 metric,pipeline_1to1llm,self_author
-observations,13736,504
-avg_chars,1350,2208
-distinct_titles,12716,504
-redundant_titles,1020,0
-meta_correction_obs,190,59
+observations,52125,1661
+avg_chars,1359,2201
+distinct_titles,46539,1661
+redundant_titles,5586,0
+meta_correction_obs,753,144

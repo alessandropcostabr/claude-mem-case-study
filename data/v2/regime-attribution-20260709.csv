@@ -1,0 +1,6 @@
+regime,total,with_sid,backfilled,pat_arch,avg_chars
+B(pipeline),123301,0,0,745,1196
+C,1282,1268,891,63,2225
+(untagged-sa),592,212,212,44,1154
+C-prime,313,313,1,2,2115
+C-prime-arc,66,66,0,48,2135
