@@ -562,3 +562,106 @@ The `search`/`observation` MCP tool returns **only prompts, 0 observations** —
 broken/misrouted (likely reading a local SQLite empty of obs instead of PG `.253`, or `content_search` not
 populated). Direct PG ILIKE finds everything. Affects manual recall and possibly injection quality. **Pending
 diagnosis.**
+
+## ROUND 5 — does the arc's abstraction advantage survive per-obs QUALITY judging? — 2026-07-09
+
+**Motivation.** R4 judged `C′` as the *incremental* rider (pre-arc; arc only went 100% on `.254` at 06-29). So
+no round had ever judged **arc-regime** observations for quality. RIDER A/B (06-29) proved arc wins on
+*kind-mix* (73.8% pattern/architecture @ n=16 sessions vs incremental 0.6% / Stop 3.6%) — a **corpus** property.
+Open question: does that structural advantage show up when a blind judge ranks the notes **individually**?
+
+**Design.** Same forced-ranking harness (`judge-rank-r5.mjs`, copy of the NIM harness with regime labels
+`C-Stop` / `C-prime-inc` / `C-prime-arc`), rubric identical (groundedness / specificity / calibration /
+future-usefulness). Fresh 195-obs sample (`judge-sample-r5-arc.json`), **65/regime, host-controlled to
+DarkStarII/.254**, `content` = the full self-authored note. Namespaced `r5:` in `eval_rank` (R2/R3/R4 untouched).
+
+**Panel (4 complete judges, 260 trios).** gemma-4-31b, nemotron-3-120b, gpt-oss-120b, qwen3.5-397b — 65 trios each.
+deepseek-v4 partial (30, rate-limited); `meta/llama-4-maverick` (0) and `meta/llama-3.3-70b` (8) DROPPED — both
+emit reasoning-only output today (no / intermittent JSON parse, ~10 min/trio); same Llama:free gotcha noted before.
+
+| Regime | mean_rank (1=best) | #best | #worst |
+|---|---|---|---|
+| **C-prime-inc** (incremental) | **1.835** | 109 | 66 |
+| C-Stop | 2.012 | 83 | 84 |
+| **C-prime-arc** (arc) | **2.161** | 68 | 110 |
+
+Per-judge, all four agree on the ordering (arc worst, inc best): gemma 2.24/2.00/1.78, nemotron 2.09/2.00/1.91,
+gpt-oss 2.14/2.05/1.82, qwen 2.35/1.77/1.88. (Adding qwen to the 3-judge cut left the means essentially unchanged:
+1.836→1.835 / 2.015→2.012 / 2.158→2.161.)
+
+**Significance (n=260).**
+- Arc ranked **last** 42.3% (110/260) vs 33% chance → **p=0.0027**.
+- Incremental ranked **best** 41.9% (109/260) → **p=0.0041**.
+- Head-to-head: **Stop beats arc** 154/260 (59.2%) → **p=0.0035**; **incremental beats arc** 147/260 (56.5%) →
+  **p=0.041** (at n=195 this was p=0.115 / n.s.; the larger panel pushes it over the line — all three contrasts
+  now significant).
+
+**Verdict — the arc trades altitude for anchoring; the study closes on a two-faced result.**
+The arc rider produces the LOWEST per-observation quality of the three regimes (significantly below Stop,
+directionally below incremental) — precisely because abstraction swaps concrete anchors (file:line, ids, counts,
+hashes) that the rubric rewards for generalization. Yet on *kind-mix* it dominates (~120× more pattern/architecture
+than incremental). So the closing statement is NOT "arc is better memory" but: **arc and Stop/incremental sit at
+different altitudes** — arc yields far more structural/abstract notes, each individually less grounded; incremental
+yields fewer but tightly-anchored notes. Which is preferable depends on the consumer: real-time injectable
+*structure* (arc) vs verifiable *specifics* (incremental/Stop). The effect is modest in magnitude (mean-rank spread
+1.84→2.02→2.16 on a 1–3 scale) but consistent across every judge. Combined with R4 (C≈C′ on quality when C′ was
+incremental), the picture is coherent: **timing/scope changes WHAT is captured, not uniformly HOW WELL** — and when
+the scope is pushed to arc-abstraction, individual groundedness drops even as structural coverage soars.
+
+Harness + sample: `judge-rank-r5.mjs`, `judge-sample-r5-arc.json`, `run-r5*.sh`. Data: `eval_rank` where
+`judge_model like 'r5:%'` (claude_telemetry `.253`).
+
+## OPERATING MODEL — what the fleet should actually run (synthesis, 2026-07-09)
+
+Derived from R2–R5. This is the production recommendation the study points to, plus the one honest caveat.
+
+**1. Self-author beats the external pipeline — settled.** B (external LLM reading the transcript after the fact)
+loses to C/C′ (the session writing its own notes, with full working context) across R2–R4, 7 judges, all p<0.05.
+The losing trait of B is being an *external observer without the working context* — NOT its frequency. Running
+the pipeline "N times" wouldn't fix it. **Action: retire B as a production regime** (keep only as A/B control).
+
+**2. C and C′ are not quality tiers — they are ALTITUDES.** R4: C ≈ C′ in per-obs quality. R5: the arc rider has
+the LOWEST per-obs grounding (p=0.012) but ~120× the pattern/architecture rate. Timing/scope changes WHAT is
+captured, not uniformly HOW WELL. So you don't pick a winner — you place each at the altitude it serves:
+- **C (Stop, end-of-session arc)** = the grounded BASE. Reviews the whole session arc, keeps concrete anchors
+  (file:line, ids, commit hashes, error strings). This is what prevents 3am repeats. Fires at session end,
+  gated by threshold+cooldown (not per turn). **Default everywhere, zero day-to-day config.**
+- **C′ (arc rider, real-time)** = a THIN abstraction layer. Its only unique value over C is *real-time
+  injectability* (available at turn N+1) and higher structural coverage. Fires per turn (UserPromptSubmit).
+
+**3. Selectivity is NOT a human toggle — it is structural + prompt-driven.** You never flip C′ on/off daily.
+Two automatic mechanisms:
+- **By host role (config once):** the rider only meaningfully fires where UserPromptSubmit is frequent =
+  interactive dev. On autonomous hosts its hit-rate is ~1% → it is naturally dormant. Set per host, never touched
+  again.
+- **By prompt self-gating (the real knob):** the rider's behavior is prompt-defined (proven: its low abstraction
+  under the incremental prompt was a scope effect, not a real-time limitation). The correct design is: the rider
+  ALWAYS runs but is instructed *"save nothing unless a genuinely reusable arc-level pattern/architecture is
+  visible; most turns, save nothing."* The MODEL decides per turn whether anything deserves abstracting. "Selective"
+  becomes automatic; no operator intervention.
+
+**4. R5 gives the tuning direction.** The arc rider we tested abstracts TOO eagerly (73.8% pattern/arch) — it tags
+`pattern` even when grounding is thin, which is exactly why its per-obs quality dropped. The fix is not to disable
+it but to **RAISE ITS BAR**: fire less often, only on clearly recurring patterns, so each arc note is more deserved
+and better anchored. The single production knob worth touching is the rider's *exigency threshold* — occasional
+tuning, not a daily routine.
+
+**Target fleet configuration:** C (Stop) as the automatic grounded base on every host; C′ (arc rider) always
+running on interactive hosts but self-gating via a raised-bar prompt (silent by default), rate-limited by
+threshold+cooldown set once; B retired. The operator never toggles — they calibrate the rider's bar occasionally.
+
+**HONEST CAVEAT (unchanged):** everything above is inferred from PROXIES — LLM-judge per-obs quality and kind-mix
+rate. We never measured downstream UTILITY (did an injected memory actually prevent a bug or speed a task?). The
+definitive test is a utility eval: inject each regime and measure time-to-resolve / repeat-incident rate. Until
+that exists, this operating model is the best reading of the proxies + the target codebase profile (LATE:
+production ops, grounding-dominant), not a proven optimum.
+
+### DEPLOYED fleet-wide (2026-07-09)
+The operating model above is now live on the whole Linux fleet (.254/.253/.100). Source commit `c7a4c7b6` on
+`feat/checkpoint-rider` (local): `buildArcRider` raised bar + anchoring requirement + max 3→2; defaults
+threshold 4→8, cooldown 2→3, max 3→2 (34/34 tests green). Bundle built via `scripts/build-hooks.js` (golden
+markers intact: inject=2, BanditEngine=1, scoreAndRank=2, ARCO=1, enum=1) and deployed to each host's
+`worker-service.cjs` (backups `*.bak-pre-riderbar-20260709-19*`). Settings set `REALTIME=true` +
+`COOLDOWN=3` on all three (`.100`/`.253` flipped from Stop-blocking to transparent). All workers
+active/NRestarts=0/health ok; `.253` server-beta :37877 still 200. Rider now self-gates (silence by default),
+so no operator toggling — only the exigency bar is tunable. `.94` Windows not touched.
