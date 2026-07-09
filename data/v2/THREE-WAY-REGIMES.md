@@ -665,3 +665,48 @@ markers intact: inject=2, BanditEngine=1, scoreAndRank=2, ARCO=1, enum=1) and de
 `COOLDOWN=3` on all three (`.100`/`.253` flipped from Stop-blocking to transparent). All workers
 active/NRestarts=0/health ok; `.253` server-beta :37877 still 200. Rider now self-gates (silence by default),
 so no operator toggling — only the exigency bar is tunable. `.94` Windows not touched.
+
+## MEMORY-UTILITY — the non-proxy number (LATE downstream utility) — 2026-07-09
+
+R2–R5 measured PROXIES (judge quality, kind-mix). This measures the actual DOWNSTREAM effect: does injecting a
+LATE memory change a fresh session's outcome? Controlled sandbox (Option C) — every production session already uses
+c-mem, so the only clean counterfactual is a harness. 6 LATE gotcha tasks × 5 conditions × 3 models × 3 reps =
+270 runs, `claude --print` in an empty cwd (memory = only source), machine-checked (regex), `evals` table
+(`task_id='memutil:*'`). Harness `run-mem-eval.mjs`, spec `MEMORY-UTILITY-EVAL-SPEC.md`.
+
+### Result — pass-rate by condition (n=54 each)
+| Condition | pass | avg out-tok | avg latency |
+|---|---|---|---|
+| **mem-C** (grounded Stop note) | **96%** | 294 | 9.4s |
+| mem-B (pipeline-flat note) | 91% | 334 | 10.3s |
+| mem-Carc (arc-abstract note) | 83% | 347 | 10.9s |
+| control (no memory) | 67% | 411 | 11.8s |
+| distractor (irrelevant memory) | 39% | 473 | 12.8s |
+
+### Four findings
+1. **Memory has real, causal downstream utility.** mem-C 96% vs control 67% → **+29pp, p=0.0001** — and it's also
+   FASTER (9.4s vs 11.8s) and CHEAPER (294 vs 411 out-tokens). The proxy caveat is now backed by a hard number for
+   LATE: grounded memory raises correctness AND cuts effort.
+2. **Regime matters downstream: grounded (C) > abstract-arc (Carc).** 96% vs 83%, **p=0.026**. The R5 finding —
+   the arc trades anchoring for altitude — now shows in ACTUAL task outcomes, not just judge scores. The arc note
+   (83%) barely beats no-memory (67%) and is BELOW the flat pipeline note (91%). Validates the operating model
+   (C grounded base; arc a thin layer) with downstream evidence. (mem-C vs mem-B: p=0.24 — not separable; the
+   penalty is the arc's abstraction, not the pipeline's flatness.)
+3. **Irrelevant memory is ACTIVELY HARMFUL.** distractor 39% vs control 67% → **−28pp, p=0.004**. Injecting an
+   off-topic memory is worse than injecting nothing — it distracts/misleads. Relevance and injection filtering are
+   not optional; noise is worse than silence. (This is the injection-side twin of the raised-bar rider: silence
+   beats a bad note.)
+4. **Utility is heterogeneous — memory rescues arbitrary facts, is redundant on derivable ones.**
+   - `jest-not-ci` (org-specific, non-derivable): control 0% → mem-C 100% (mem-Carc only 33%). Memory is essential;
+     grounding is what makes it usable.
+   - `capture-open-stage`: control 56% → all memory 100%. `redis-scriptload`: control 44% → memory 100%.
+   - `dnsmasq-bak` / `win-settings-bom`: control already 100% (strong models derive these) → memory adds nothing;
+     `gate6-fallback` control 100% but mem-C 78% / mem-Carc 67% — verbose memory mildly HURT a known answer (the
+     distractor effect in miniature).
+
+### Honest limits
+Regex grading (not an LLM judge); curated tasks (selection bias toward facts we know matter); single-fact
+injection (not a full session panel); does not capture the ORGANIC value (the gotcha you didn't know you'd need)
+— that needs the empty-injection natural experiment or a human-rating layer (follow-ups). Still: this is the first
+CAUSAL, non-proxy measurement of LATE memory utility, and it both (a) confirms memory helps and (b) reproduces the
+regime ordering from the judge study in real outcomes.
