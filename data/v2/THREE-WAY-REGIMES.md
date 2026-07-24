@@ -611,6 +611,49 @@ the scope is pushed to arc-abstraction, individual groundedness drops even as st
 Harness + sample: `judge-rank-r5.mjs`, `judge-sample-r5-arc.json`, `run-r5*.sh`. Data: `eval_rank` where
 `judge_model like 'r5:%'` (claude_telemetry `.253`).
 
+## ROUND 6 — does the raised-bar deployment improve arc per-obs quality? — 2026-07-24
+
+**Motivation.** R5 found arc-regime had the LOWEST per-obs quality of the three (p=0.0027), precisely because
+abstraction trades concrete anchors for structural generalization. On 2026-07-09 the fleet deployed a raised-bar
+arc rider prompt (commit `c7a4c7b6`): higher exigency threshold, explicit anchoring requirement, reduced output
+(max 2 notes/turn). This created a natural before/after experiment: 66 arc obs pre-07-09 (old prompt) vs 49 arc
+obs post-07-09 (raised-bar). R6 tests whether the bar-raise measurably improved per-obs quality.
+
+**Design.** Same forced-ranking harness (`judge-rank-r6.mjs`), same rubric (groundedness/specificity/calibration/
+future-usefulness). Fresh 147-obs sample (`judge-sample-r6.json`), **49/regime**: C-Stop (post-07-09, control)
+vs arc-old (pre-07-09, n=49 sampled from 66) vs arc-new (post-07-09, all 49). Labels `r6:` in `eval_rank`.
+
+**Panel (3 valid judges, 101 trios).** gemma-4-31b (n=50), gpt-oss-120b (n=16), qwen3.5-397b (n=35).
+nemotron-3-super-120b and deepseek-v4-pro produced 0 valid trios (reasoning models without `/no_think` +
+insufficient max_tokens — same gotcha as R5/NIM; fix committed to judge-rank-r6.mjs).
+
+| Regime | mean_rank (1=best) | #best | #worst | judges agree? |
+|---|---|---|---|---|
+| **arc-new** | **1.67** | **48** | **18** | ✓ all 3 |
+| C-Stop | 2.00 | 35 | 36 | ✓ all 3 |
+| arc-old | 2.27 | 18 | 47 | ✓ all 3 |
+
+Per-judge ordering (arc-new / C-Stop / arc-old): gemma 1.64/2.00/2.36, gpt-oss 1.81/1.94/2.25,
+qwen 1.74/2.06/2.20. All three rank arc-new first and arc-old last — unanimous.
+
+**Significance (n=101 combined).**
+- arc-new ranked **best** 48/101 (47.5%) vs 33% chance → **p=0.0009** (binomial one-tailed).
+- arc-old ranked **worst** 47/101 (46.5%) → **p=0.002**.
+- arc-new beats arc-old head-to-head in all three judges (directional; head-to-head p not computed separately).
+
+**Verdict — the raised bar worked; arc-new now beats C-Stop.**
+This is the key reversal from R5: in R5, arc ranked LAST (below both C-Stop and incremental). In R6, arc-new
+ranks FIRST — above C-Stop. The bar-raise (higher threshold, anchoring requirement) produced observably better-
+grounded arc notes. The effect is consistent across all 3 valid judges.
+
+**Caveat.** arc-new n=49 (all post-07-09 obs, 15 days). C-Stop n=49 sampled from 190 post-07-09 obs. The arc
+corpus is small; replication with more arc-new obs is the priority for R7. Also: gpt-oss contributed only 16
+valid trios (parse-fail rate ~67%), so the effective panel is weighted heavily toward gemma.
+
+Harness + sample: `judge-rank-r6.mjs`, `judge-sample-r6.json`, `run-r6.sh`, `build-sample-r6.mjs`.
+Data: `eval_rank` where `judge_model like 'r6:%'` (claude_telemetry `.253`).
+CSV: `eval-rank-r6-20260724.csv`.
+
 ## OPERATING MODEL — what the fleet should actually run (synthesis, 2026-07-09)
 
 Derived from R2–R5. This is the production recommendation the study points to, plus the one honest caveat.

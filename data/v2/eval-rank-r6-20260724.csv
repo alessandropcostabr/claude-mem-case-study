@@ -1,0 +1,10 @@
+judge_model,regime,n,mean_rank,best,worst
+r6:gemma-4-31b,arc-new,50,1.640,25,7
+r6:gemma-4-31b,C-Stop,50,2.000,18,18
+r6:gemma-4-31b,arc-old,50,2.360,7,25
+r6:gpt-oss-120b,arc-new,16,1.813,8,5
+r6:gpt-oss-120b,C-Stop,16,1.938,6,5
+r6:gpt-oss-120b,arc-old,16,2.250,2,6
+r6:qwen3.5-397b,arc-new,35,1.743,15,6
+r6:qwen3.5-397b,C-Stop,35,2.057,11,13
+r6:qwen3.5-397b,arc-old,35,2.200,9,16

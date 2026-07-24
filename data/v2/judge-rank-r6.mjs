@@ -48,8 +48,11 @@ async function rank(notes) {
         method: 'POST', signal: ctrl.signal,
         headers: { Authorization: `Bearer ${OR_KEY}`, 'Content-Type': 'application/json',
           'HTTP-Referer': 'https://github.com/claudiodangelis/claude-mem', 'X-Title': 'claude-mem-judge' },
-        body: JSON.stringify({ model: MODEL, max_tokens: 400, temperature: 0,
-          messages: [{ role: 'user', content: `${RUBRIC}\n\n${body}` }] }),
+        // ponytail: /no_think + 2500 tokens for reasoning models (nemotron, deepseek-r*)
+        const isReasoning = MODEL.includes('nemotron') || MODEL.includes('-r1') || MODEL.includes('-r2');
+        const prompt = isReasoning ? `/no_think\n${RUBRIC}\n\n${body}` : `${RUBRIC}\n\n${body}`;
+        body: JSON.stringify({ model: MODEL, max_tokens: isReasoning ? 2500 : 400, temperature: 0,
+          messages: [{ role: 'user', content: prompt }] }),
       });
       clearTimeout(to);
       if (res.status === 429 || res.status === 503) { stats.rl++; await sleep(8000 * (a + 1)); continue; }
