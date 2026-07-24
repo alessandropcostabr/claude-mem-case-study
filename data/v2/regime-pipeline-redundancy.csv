@@ -1,21 +1,21 @@
 title,occurrences
-Task Status Update Completed,239
-Task Status Update via Hook Integration,215
-System Performance Bottlenecks Identified,139
+Task Status Update via Hook Integration,275
+Task Status Update Completed,273
+System Performance Bottlenecks Identified,187
 Docker build in progress for honcho-stack-honcho-api,134
-Linux Performance Bottleneck Diagnostic Framework,79
-Task Status Update via TaskUpdate Tool,77
+System Performance Bottleneck Analysis Framework,122
+System Performance Bottleneck Diagnosis Framework,120
+Linux Performance Bottleneck Diagnostic Framework,107
+Task Status Update via TaskUpdate Tool,95
+Linux Performance Bottleneck Diagnosis Framework,91
+Bash Port Availability Check Function,73
+Legacy Compatibility Detection Script Execution,73
+System Performance Bottleneck Diagnostic Framework,72
+Bash Port Availability Check Implementation,70
+Performance Bottleneck Diagnosis Framework,69
 Docker build in progress for honcho-stack-honcho-api image,66
-System Performance Bottleneck Diagnosis Framework,64
-System Performance Bottleneck Diagnostic Framework,62
-Bash Port Availability Check Implementation,61
-Bash Port Availability Check Function,53
-Performance Bottleneck Diagnosis Framework,43
-Bash Function for Port Availability Checking,39
-Legacy Compatibility Detection Script Execution,38
-System Performance Bottleneck Analysis Framework,37
-Linux Performance Bottleneck Diagnosis Framework,33
-Task Status Update via Hook Tool,33
-Credential Exposure in Command Execution,30
-Performance Bottleneck Diagnostic Framework Identified,29
-System Performance Bottleneck Analysis,26
+System Performance Bottleneck Analysis,61
+Bash Function for Port Availability Checking,56
+Task Status Update via Hook Tool,44
+Linux Performance Bottleneck Analysis Framework,40
+Legacy Compatibility Detection Gate Passed,35
