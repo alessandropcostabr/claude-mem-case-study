@@ -28,3 +28,10 @@ date,event,category,description
 2026-06-09,self-author-regime-c,milestone,Self-author E2E closed across fleet 4/4 (Machine-A/B/C + Windows) — session writes its own observations at Stop with zero external LLM (generation_key NULL) — Regime C begins
 2026-06-09,save-observation-server-beta-routing,bugfix,save_observation routed to PG via /v1/memories in server-beta runtime (was writing to local SQLite island); PR #17 on fork
 2026-06-09,worker-restart-on-deploy,infra,Lesson: bundle deploy/sync does not reload the running worker daemon (bun no hot-reload) — must restart worker + verify /api/memory/stats post-deploy (fleet-wide)
+2026-06-12,behavioral-eval-benchmark,milestone,Behavioral eval (task-success/give-up) + latency benchmark daily cron added for Opus 4.8 degradation study (opus-4-8/4-6/haiku controls)
+2026-06-21,judge-panel-r3-r4,milestone,Judge panels R3 (12 judges) + R4 (7 NVIDIA judges n=80/regime) — self-author (C/C') robustly out-ranks pipeline B p<0.05 all judges; C≈C' in quality
+2026-06-23,checkpoint-rider-ab,feature,Checkpoint Rider A/B deployed .254 — real-time self-author per turn (UserPromptSubmit); incremental vs arc prompt arms to test if arc abstraction is prompt-driven
+2026-06-29,rider-100pct-arc,decision,.254 rider forced to 100% arc arm — incremental baseline saturated; arc reaches 73.8% pattern/architecture vs incremental 0.6%
+2026-07-01,integrity-attribution-fix,bugfix,Data-integrity audit — self-author write-loss = ZERO (net); real defect was attribution; 1104 obs backfilled with content_session_id; Stop :stop-key + type-enum forward fixes deployed fleet-wide
+2026-07-09,judge-panel-r5,milestone,Round 5 judge panel — arc regime judged per-obs for the FIRST time; 4 judges/260 trios; arc has LOWEST per-obs quality (ranked last 42.3% p=0.0027) — trades altitude for anchoring
+2026-07-09,operating-model-deploy,milestone,OPERATING MODEL deployed fleet-wide (.254/.253/.100) — C(Stop) grounded base + arc rider with RAISED BAR + anchoring requirement; REALTIME=true + cooldown=3 on all three; B retired as production regime

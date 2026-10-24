@@ -1,0 +1,4 @@
+regime,n,avg_chars,pattern_pct,arch_pct,pattern_arch_pct
+B,97165,1149,0.76,0.00,0.77
+C,625,2362,3.04,0.64,3.68
+C-prime,244,2072,0.41,0.00,0.41

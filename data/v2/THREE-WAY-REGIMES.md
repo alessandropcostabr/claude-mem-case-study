@@ -14,6 +14,29 @@ Extends the B-vs-C analysis (`REGIME-COMPARISON.md` §3–4) with the third regi
 | **C** | `metadata.regime = 'C'` | 0 | at Stop (session end) |
 | **C′** | `metadata.regime = 'C-prime'` | 0 | mid-session (UserPromptSubmit rider) |
 
+### Canonical self-author filter (16/jun) — exclude untagged buckets
+
+`generation_key IS NULL` alone is NOT self-author: it also catches non-instrumented
+observations. The **canonical filter** for the regime experiment is:
+
+```sql
+-- self-author (instrumented): generation_key IS NULL AND metadata->>'regime' IN ('C','C-prime')
+-- pipeline: generation_key IS NOT NULL
+```
+
+The 579 `generation_key IS NULL` rows **without** a regime tag decompose into:
+
+| bucket | n | window | note |
+|---|---:|---|---|
+| legacy-sqlite (`metadata ? 'sqlite_id'`) | 351 | 12–14/mai | migrated SQLite→PG, pre-experiment, hand-curated (inflates pat/arch) |
+| manual saves (no `checkpoint_key`) | 181 | ≥10/jun | `save_observation` ad-hoc, outside Stop/rider (interactive sessions) |
+| pre-tag self-author | 47 | 17/mai–10/jun | self-author before regime tagging existed |
+
+These are **excluded** from regime comparisons. Effect of applying the filter to the
+in-window metrics (since 10/jun 22:00): self-author **621 → 504** obs; avg_chars
+**2162 → 2208** (dropped manual saves were shorter). `export-regime-comparison.mjs`
+now enforces this filter; all `data/v2/regime-*.csv` are regenerated under it.
+
 ## Structure (all-time)
 | | n | avg chars | redundancy | meta-correction |
 |---|---:|---:|---:|---:|
@@ -63,6 +86,11 @@ So C′ sits structurally **between** B and C: session-level synthesis with per-
 Directional, not conclusive. Watch the C′ pattern/architecture gap as `.254` accumulates
 (review 2026-06-20). A blind quality rating (LLM-judge / human) is the next instrument — structure
 is a proxy, not quality.
+
+> **REVIEW DONE — 2026-06-21 (see "Structure update" at end):** with C′ now at n=241 (was 35)
+> the pattern/architecture gap holds and is **no longer attributable to small-n** (Poisson
+> p≈0.001). Two corrections also land: C's pattern rate was inflated by small-n (10.7%→3.1%),
+> and C is **multi-host** (not `.100`-only), which weakens the workload-confound.
 
 ---
 
@@ -263,3 +291,492 @@ majority signal, with one credible dissenter.**
   pooled p. Per-judge, 3/5 are significant.
 - Trios pair B[i]/C[i]/C′[i] by sample order (deterministic from `md5(id)` DB ordering), not by topic —
   notes within a trio are unrelated; the judge ranks *quality signals*, not the same finding told 3×.
+
+---
+
+## STRUCTURE UPDATE — 2026-06-21 (robust n; C′ review closed; corrections)
+
+The 2026-06-20 review (above) is executed here. Volumes grew enough to kill the small-n caveat
+that blocked the C′ structural conclusion.
+
+### New volumes (all-time, vs 16/jun snapshot)
+| | n (16/jun) | **n (21/jun)** | avg chars |
+|---|---:|---:|---:|
+| **B** (1× LLM, per-event) | 77,237 | **96,257** | 1,148 |
+| **C** (Stop, 0×) | 150 | **617** | 2,371 |
+| **C′** (rider, 0×) | 35 | **241** | 2,068 |
+
+### Pattern/architecture — the C′ caveat resolves
+| | pattern+arch | rate |
+|---|---|---:|
+| **C** (Stop) | 23/617 | **3.7%** |
+| **C′** (rider) | 1/241 | **0.4%** |
+
+At n=241, if C′ shared C's rate we'd expect ~9 arc-level notes; we see **1**. One-sided Poisson
+(λ≈9) gives **p≈0.001** — the gap is **real, not small-n chance**. This confirms the
+temporal-vantage axis: only the Stop vantage (whole session in view) abstracts arc; the mid-session
+rider sees a partial arc and essentially never emits `pattern`/`architecture`.
+
+### Two corrections to the earlier sections
+1. **C's pattern rate was inflated by small-n.** §kind-mix reported pattern 10.7% / architecture
+   1.3% at n=150. At n=617 these are **pattern 3.1% / architecture 0.6%** (combined 3.7%). The
+   *direction* (C ≫ C′) holds and is now robust, but C abstracts **less** than the original note
+   implied. Treat the §kind-mix table as the n=150 snapshot.
+2. **C is multi-host, not `.100`-only.** Recent C observations come from **mach10 (.253), HyperII
+   (.100) AND DarkStarII (.254)**. The Caveats §"workload-confound (C from autonomous .100, C′ from
+   interactive .254)" is therefore **weaker than stated** — C is fleet-wide. (Op note: C generation
+   stalled 20–21/jun = weekend activity −91% + `.253` OAuth token expired; not a self-author bug.)
+
+### ROUND 3 — NVIDIA NIM judge panel (DONE 2026-06-21, same frozen 90-obs sample)
+Adds 7 neutral judges from **distinct model families** (via `integrate.api.nvidia.com`, free tier) to
+the Round-2 panel — same trios, just more independent votes — to settle the Llama-3.3 dissent.
+Harness: `judge-rank-nim.mjs`; aggregate: `aggregate-round3.mjs` (per-judge exact binomial sign test).
+
+### FULL PANEL — 12 judges, mean rank (1=best, 3=worst; chance=2.00)
+| judge | round | C | C′ | **B** | B-last | sign-p |
+|---|---|---:|---:|---:|---:|---:|
+| claude-haiku-4-5 | R2 | 1.59 | 1.52 | 2.89 | 25/27 93% | **1.9e-10** |
+| deepseek-chat-v3.1 | R2 | 1.83 | 1.60 | 2.57 | 22/30 73% | **8.8e-6** |
+| **meta-llama-3.3-70b** | R2 | 1.93 | 2.03 | 2.03 | 12/30 40% | 0.276 *(dissenter)* |
+| gpt-oss-120b | R2 | 1.77 | 1.77 | 2.47 | 18/30 60% | **0.002** |
+| qwen-2.5-72b | R2 | 2.03 | 1.77 | 2.20 | 14/30 47% | 0.090 ~ |
+| deepseek-v4-pro | R3 | 1.80 | 1.60 | 2.60 | 7/10 70% | 0.020 * |
+| gemma-4-31b | R3 | 1.70 | 1.57 | 2.73 | 23/30 77% | **1.5e-6** |
+| llama-4-maverick | R3 | 1.67 | 1.70 | 2.63 | 21/30 70% | **4.4e-5** |
+| mistral-large-3-675b | R3 | 1.73 | 1.80 | 2.47 | 9/15 60% | 0.031 * |
+| nemotron-3-super-120b | R3 | 1.67 | 1.67 | 2.67 | 23/30 77% | **1.5e-6** |
+| gpt-oss-120b (nvidia) | R3 | 1.63 | 1.93 | 2.43 | 18/30 60% | **0.002** |
+| qwen3.5-397b | R3 | 1.70 | 1.43 | 2.87 | 27/30 90% | **1.7e-10** |
+
+(deepseek-v4 n=10, mistral-large-3 n=15 — aborted on free-tier rate-limit; same direction, weaker power.)
+
+**Verdict: 12/12 judges rank B worst-than-chance; 10/12 significant (p<0.05).** Both Round-2 caveats close:
+1. **The Llama-3.3 dissent is now isolated.** It is the lone non-significant outlier against 11 other
+   judges — and **Llama-4-maverick, same Meta family, is strongly anti-B (70%, p=4.4e-5)**. The dissent
+   was **generation-specific to Llama-3.3, not a Meta-family trait.**
+2. **The Qwen family flipped with the new generation.** qwen-2.5 was marginal (47%, n.s.); **qwen3.5-397b
+   is the single strongest anti-B judge (90%, p=1.7e-10).**
+
+The signal now spans **8 distinct families** (Anthropic, DeepSeek, Meta, Qwen, OpenAI, Google, Mistral,
+NVIDIA). **C vs C′ stays a tie** across both rounds — timing changes WHAT they capture (§kind-mix), not
+HOW WELL. Honest residual caveats: still the same 90-obs sample (a larger re-sample = Round 4); per-judge
+reporting only (pooling violates independence — same 30 trios judged 12×); two R3 judges have small n.
+
+---
+
+## ROUND 4 — larger fresh re-sample (n=80/regime) — 2026-06-21
+
+The last R3 caveat ("still the same 90-obs sample") is addressed here. New sample: **240 obs
+(80/regime)**, drawn from the **full fresh window (10–21 Jun)** under the canonical filter, with **B
+from the same window** (era control preserved). File: `judge-sample-r4.json`. Seven NVIDIA judges
+(distinct families), **including Llama-3.3 on purpose** — the R2/R3 dissenter — to test whether its
+tie survives a bigger sample. Stored isolated (`r4:` prefix). Raw: `eval-rank-r4-20260621.csv`.
+
+### Result — 7 judges, B-last rate (n=80 except where noted)
+| judge | trios | B-last | sign-p |
+|---|---:|---:|---:|
+| qwen3.5-397b | 80 | 84% | **1.9e-20** |
+| gemma-4-31b | 80 | 79% | **1.0e-16** |
+| nemotron-3-super-120b | 80 | 74% | **1.7e-13** |
+| llama-4-maverick | 80 | 70% | **2.3e-11** |
+| gpt-oss-120b | 80 | 64% | **2.6e-8** |
+| **meta-llama-3.3-70b** | 80 | **53%** | **~1.4e-4** ✅ |
+| deepseek-v4-pro | 10* | 80% | 0.003 |
+
+(*aborted on free-tier rate-limit.)
+
+### Verdict — the dissent was small-n, and it's now gone
+**7/7 judges rank B worst, ALL significant (p<0.05).** The headline: **Llama-3.3 — the lone dissenter
+in R2/R3 (40%, p=0.276 at n=30) — converted at n=80 to 53% B-last, p≈1.4e-4 (significant)**. Its tie
+was a **small-sample artifact**, not a real divergence; on a fresh, larger sample even the holdout
+agrees B is worst. The remaining caveats also weaken: the sample is now larger (n=80) and from the
+full window, not 3 days. **C vs C′ stays a tie** (mild C tilt this round vs mild C′ tilt before = noise).
+
+**Bottom line across R2+R3+R4 (19 judge-runs, 8 families):** self-author (C/C′) out-ranks the pipeline
+(B) **robustly and now without a credible dissenter**. C and C′ remain indistinguishable in quality —
+they differ in *what* they capture (structure/kind-mix), not *how well*.
+
+---
+
+## RIDER A/B (C-prime incremental vs C-prime-arc) — preliminary result + anti-demand-effect — 2026-06-29
+
+This closes the one axis where C′ lost to C in the three-way: **arc abstraction** (pattern/architecture).
+The §STRUCTURE-UPDATE showed C′ emits ~0 pattern/architecture (0.4–0.6%) vs C's 3–4%, and attributed it
+to **temporal vantage** (mid-session can't see the whole arc). The Rider A/B (deployed `.254` 2026-06-23,
+`riderArm(sid)` djb2-xor 50/50, between-subjects) tests the rival hypothesis: the gap is **prompt scope**,
+not timing. Arm A (`C-prime`) = historical incremental prompt ("since the last checkpoint, max 3"). Arm B
+(`C-prime-arc`) = same real-time rider, prompt reframed to "review the arc-so-far, abstract
+pattern/architecture when already visible." Same mechanism (mid-session, online, injectable at prompt N+1),
+only the instruction changes.
+
+### Result (PG `.253`, as of 2026-06-29; host = DarkStarII/.254)
+| arm | regime | n | sessions | pattern+arch | rate |
+|---|---|---:|---:|---:|---:|
+| incremental (control) | `C-prime` | 313 | 49 | 2 | **0.6%** |
+| **arc (treatment)** | `C-prime-arc` | **7** | **3** | **6** | **85.7%** |
+| Stop baseline | `C` | 864 | — | 27 | 3.1% |
+
+Same-window check (≥24/jun, the fair 50/50 comparison): incremental **1/14 sessions** had pat/arch (1.9%)
+vs arc **3/3 sessions** (every arc session produced pattern/architecture). The arc arm even **exceeds the
+Stop baseline** (85.7% vs 3.1%).
+
+### Conclusion — the C′ abstraction gap was PROMPT-driven, not timing-driven
+Reframing the rider's window recovers arc-level abstraction **in real time**. If the limit were structural
+(mid-session can't see the arc), no prompt could recover it — but it did. **Real-time arc abstraction is
+achievable**; the earlier "only the Stop vantage abstracts arc" was an artifact of the rider's incremental
+prompt, not a law of the real-time regime.
+
+### Anti-demand-effect verification (the arc prompt explicitly says "abstract pattern/architecture" — is it
+just relabeling to please the instruction?). Read full content of all arc obs vs incremental obs on the
+**same work** (2FA PR #1734; Meta Ads canvas). Verdict: **genuine abstraction, not relabeling.** Three
+independent signals:
+1. **Content genuinely generalizes** — e.g. `[architecture]` TOTP encryption framed as "expand-contract
+   4-PR rollout, **reusable for any at-rest crypto / load-bearing column format change**"; `[pattern]`
+   distilling 3 Codex findings into **categorized reusable gotchas** (cross-layer / fail-open / boundary).
+   Transferable principles, not session facts.
+2. **The arm is discriminating, not blind** — 1 of the arc obs was correctly tagged `change` ("completed
+   angles 01-05"), not pattern. A demand effect would tag everything as abstraction; it didn't.
+3. **Same work, two altitudes** — incremental logs the event (`[change]` "release v2.36.0, backfill 2
+   secrets"); arc extracts the principle (`[architecture]` "expand-contract gated on PROD"). Altitude
+   difference is visible in the text, not a tag swap.
+
+### Caveats (still preliminary)
+- **n = 3 sessions** (PR #1734 25/jun, canvas 26/jun, +1 on 29/jun). Honest unit is sessions: 3/3 vs 1/14
+  (Fisher ~p≈0.01). The content verification proves *quality*, not *n*. Needs ~10-15 arc sessions for firm
+  significance.
+- The intrinsic instruction effect (prompt asks for abstraction) **is the tested mechanism**, not a confound.
+
+### Fleet design (confirmed from data, not an anomaly)
+The A/B test runs **`.254` ONLY**; the rest of the fleet is **B (pipeline 1×LLM) + C (Stop, session-end)**.
+B runs everywhere (~96k obs). Verified host×regime (≥11/jun): `.254` = `C-prime` 313 + `C-prime-arc` 7 + `C` 94;
+`.100` (HyperII) = `C` 660 + `C-prime` 1 (legacy, pre-12/jun swap), rider **disabled** (`REALTIME=false`,
+no `riderArm` in bundle); `.253` (mach10) = `C` 109. This is the deliberate 12/jun swap, not staleness.
+
+### DECISION (2026-06-29) — `.254` → 100% arc, to accelerate the rare cell
+The bottleneck is arc-arm sessions (3), not C′ in general (incremental baseline is saturated at 313/49
+sessions). Cheapest lever: flip the `.254` A/B from 50/50 to **100% arc** (force arm B in `riderArm`) — doubles
+arc accrual, **no new host, preserves the `.254`-only design, keeps C and B intact**. Arc keeps recording
+**online** (rider, injectable N+1); C (Stop) keeps running transparently in parallel.
+**EXECUTED 2026-06-29 01:16 BRT:** surgical patch of the live `worker-service.cjs` `riderArm` (`_Y`) → always
+returns `'arc'` (prompt builder `yNe` and tagger `bY` both share `_Y`, so prompt↔tag stay consistent). Golden
+markers preserved (inject=2, BanditEngine=1, C-prime-arc=1, scoreAndRank=2; −23 bytes). Worker restarted,
+active, NRestarts=0, /api/health=200, journal clean. Backup `worker-service.cjs.bak-pre-100arc-20260629-011539`.
+Source edit also kept in `/tmp/cr-impl/src/shared/self-author.ts` (uncommitted) so a future esbuild rebuild
+reproduces it. Revert = restore backup (or `return h%2===0?'incremental':'arc'`). From now every `.254` rider
+fire → `C-prime-arc`.
+
+**`.100` → C′ deferred (secondary).** With autonomous Fable/OpenClaw retired and interactive woo dev now on
+`.100`, the old "autonomous → rider won't fire" veto no longer holds — `.100` is *plausibly* viable now. But
+switching it costs: breaks the `.254`-only design, needs the arc bundle deployed there + sync-clobber care,
+and adds a domain confound (woo/PHP/ops vs LATE/Node). Its only unique payoff is **cross-domain generalization
+evidence** — worth doing only after the signal is firm on `.254`.
+
+### DATA-INTEGRITY AUDIT + ROOT FIX (2026-07-01) — the `n` is a LOWER BOUND; a write-loss leak was found and closed
+Auditing whether the accrued arc obs are *complete*, reconciled three sources (PG obs, local
+`self-author/*.state.json` checkpoint counters, MCP write logs) for the 7 arc sessions:
+
+| | value |
+|---|---:|
+| Checkpoints **fired** (Σ `lastCheckpointSeq`) | **48** |
+| Checkpoints that produced ≥1 obs | 25 |
+| **Obs landed in PG** | **26** (7 sessions) |
+| Empty checkpoints (0 obs) | 23 |
+| Max obs per checkpoint (cap = 3) | **2 — cap never hit** |
+
+Three gap categories, only one is real loss:
+1. **Cap truncation → NONE.** Max 2 obs/checkpoint vs cap 3 → nothing was cut by the limit.
+2. **"Nothing salient" declines → by design.** Most of the 23 empty checkpoints are legit (the pattern was
+   already abstracted at an earlier checkpoint). Cannot distinguish, without reading transcripts, a legit
+   decline from the busy primary agent silently skipping a real pattern — this is the self-author's structural
+   weakness (compliance-dependent), exactly the axis where the per-event pipeline B is deterministic.
+3. **Write rejections → mostly SELF-HEALED; content is RECOVERABLE.** The MCP logs show **12 `save_observation`
+   calls rejected with HTTP 400** (10× invalid `type` — out-of-enum kind, e.g. `reference`; 2× empty narrative).
+   Reconciling the two arc sessions' CC transcripts (`.jsonl` `tool_use` blocks) against PG **corrects the
+   first-pass claim** ("≥2 lost, unrecoverable"):
+   - The MCP log lacks the payload, **but the CC session transcript keeps every `save_observation` input** →
+     the attempted content is **fully recoverable** (title/type/narrative/facts).
+   - `ba52feaf` (25/06): 3 calls, **all 3 landed** — the 25/06 18:57 rejection was a *different concurrent
+     session*, not this arc session (the earlier time-window attribution was wrong).
+   - `8d9ff3d2` (01/07): 9 calls, 7 landed. The `type:"reference"` rejection (18:55:25) **self-healed** — the
+     model re-saved the same content as `discovery` 23s later → **it is in PG**. One call — a *valid-type*
+     `[bugfix]` on the EADDRINUSE:9464 root cause (14:11:30) — did **not** land, for a **non-enum reason**
+     (transient 5xx/drop, not validation). Its topic is independently covered by the **B pipeline**
+     (`v2.40.1 PROD: Root fix for worker OTEL port collision`), so it is not a knowledge gap; the detailed
+     self-author version is recoverable from the transcript.
+   - **Net permanent self-author loss across the two arc sessions ≈ 1 obs, and it is recoverable.**
+
+**Fleet-wide sweep (1181 transcripts, 517 `save_observation` calls) — the type-enum problem NEVER lost
+content.** All **12** invalid calls (bad `type` or empty narrative) **self-healed within ~15-30s** via a retry
+with a valid type. The invalid types the model tried are exactly the **memory-layer taxonomy**
+(`feedback`, `correction`, `project`, `reference`) — i.e. the session confused the *observation* enum with the
+*memory* node types, then corrected. So the enum fix **removes a wasted rejection→retry round-trip + log
+noise**, it does NOT recover lost signal (there was none from this class).
+
+**Valid-type transient-drop loss quantified fleet-wide = 0%.** Reconciling all valid-type `save_observation`
+calls (471 distinct, 60 sessions, full-title match) against PG genkey-NULL obs: **471/471 landed, 0 dropped.**
+The anchor that seemed lost — the `[bugfix]` EADDRINUSE obs in `8d9ff3d2` — actually **landed** as a self-author
+obs with `regime = (none)` and `content_session_id = NULL` (that is why a `sid`-scoped query missed it). So the
+prior "≈1 recoverable loss" is also **retracted: net self-author content loss = 0.**
+
+**The real defect is attribution, not loss.** Of 1813 genkey-NULL self-author obs: C (Stop) is **895/895 with
+NULL `content_session_id`** (Stop never carries a checkpoint_key → never tagged), plus **579 obs with no
+`regime` at all** — spontaneous mid-session saves the model makes *outside* a rider checkpoint (the EADDRINUSE
+one is one of these). They land but count toward **no regime**, blinding per-session/per-regime analysis. This
+is a metadata gap (fixable: tag Stop/spontaneous saves), not data loss.
+
+**Consequence for the headline:** the arc count is **unaffected — all 26 `C-prime-arc` obs carry a sid** — so
+the arc rate **65.4% (17/26, n=7 sessions)** stands, **still ~100× the incremental arm (0.6%) and ~20× the Stop
+baseline (3.1%)**. Net audit result: the self-author write path loses **nothing**; its real weaknesses are
+compliance-dependent declines (§2 above) and metadata tagging (this §), not durability. The type-enum fix +
+this audit close the "is the data complete?" question: **yes, nothing is lost.**
+
+**Attribution fixes (2026-07-01).** (a) **Backfill (2 rounds):** 1104 self-author obs recovered their `content_session_id` by full-title match
+against `.254`+`.253`+`.100` transcripts (combined map, 0 cross-host collision; reversible flag). C (Stop) went
+from 895/895 NULL-sid to **5/896**; C-prime and C-prime-arc are 100% attributed. 372 remain NULL-sid (367
+no-regime spontaneous + 5 C — `.94` Windows unreachable + purged sessions). (b) **Forward fix (source, commit `0c98353f`,
+34/34 tests):** the Stop prompt now carries `checkpoint_key="selfauthor:<sid>:stop"` → Stop obs get
+`content_session_id` and stay regime C. **Deployed fleet-wide (`.254` + `.253` + `.100`, all on build `4b4c242b`)** — hook handlers live in
+`worker-service.cjs`, one common bundle. Marker-by-marker comparison disproved the "`.100` has LATE customs"
+worry: `.100` carried **no** custom the current build lacks (BanditEngine/FileReadTracking/scoreAndRank/etc.
+all identical; the agents-LATE customs were archived 2026-06-08). `.100` was merely frozen older (`92b98763`,
+the common 12-jun bundle, sync-excluded), so the current build is a strict superset — a clean upgrade. The Stop
+fix is **active on `.253` + `.100`** (both blocking-Stop, REALTIME=false → the 660+109 C producers now attribute
+Stop obs); dormant on `.254` (transparent Stop). All workers active/health-ok/journal-clean, customs preserved,
+backups kept. Spontaneous saves (no hook/no key) remain unattributed — would need the CC session id plumbed to
+the MCP/worker (separate feature).
+
+**ROOT FIX (deployed 2026-07-01 ~21:12 BRT):** neither the arc rider nor `SELF_AUTHOR_PROMPT` told the session
+the exact `type` enum. Both now enumerate `discovery|decision|feature|bugfix|change|pattern|architecture`
+verbatim (new `OBSERVATION_TYPE_ENUM` constant). Incremental rider left byte-identical (frozen control, dead
+arm under 100%-arc). Source commit `d10f5f9f` on `feat/checkpoint-rider` (local, no push). Worker rebuilt via
+`scripts/build-hooks.js` — fresh bundle reproduced all 7 golden markers (inject=2, BanditEngine=1,
+scoreAndRank=2, C-prime-arc=1, ARCO=1, server-beta=1, self.author=4) + the enum; deployed to `.254`, worker
+active/NRestarts=0/health ok, journal clean. Backup `worker-service.cjs.bak-pre-enumfix-20260701-211245`.
+Post-fix arc obs should carry only valid `type`s → re-check the 400 count is flat after a few new arc sessions.
+⚠️ Separate pre-existing item: 3 red tests in `checkpoint-rider.test.ts` assume the 50/50 split and fail under
+the 100%-arc hardcode (not caused by this fix); clean up when the A/B override is made configurable.
+
+### Side finding (c-mem health, unrelated) — MCP search returns 0 observations on `.254`
+The `search`/`observation` MCP tool returns **only prompts, 0 observations** — even for old terms ("deploy",
+"checkpoint rider"). Not a stale-index lag (old obs missing too); the observation-search path on this host is
+broken/misrouted (likely reading a local SQLite empty of obs instead of PG `.253`, or `content_search` not
+populated). Direct PG ILIKE finds everything. Affects manual recall and possibly injection quality. **Pending
+diagnosis.**
+
+## ROUND 5 — does the arc's abstraction advantage survive per-obs QUALITY judging? — 2026-07-09
+
+**Motivation.** R4 judged `C′` as the *incremental* rider (pre-arc; arc only went 100% on `.254` at 06-29). So
+no round had ever judged **arc-regime** observations for quality. RIDER A/B (06-29) proved arc wins on
+*kind-mix* (73.8% pattern/architecture @ n=16 sessions vs incremental 0.6% / Stop 3.6%) — a **corpus** property.
+Open question: does that structural advantage show up when a blind judge ranks the notes **individually**?
+
+**Design.** Same forced-ranking harness (`judge-rank-r5.mjs`, copy of the NIM harness with regime labels
+`C-Stop` / `C-prime-inc` / `C-prime-arc`), rubric identical (groundedness / specificity / calibration /
+future-usefulness). Fresh 195-obs sample (`judge-sample-r5-arc.json`), **65/regime, host-controlled to
+DarkStarII/.254**, `content` = the full self-authored note. Namespaced `r5:` in `eval_rank` (R2/R3/R4 untouched).
+
+**Panel (4 complete judges, 260 trios).** gemma-4-31b, nemotron-3-120b, gpt-oss-120b, qwen3.5-397b — 65 trios each.
+deepseek-v4 partial (30, rate-limited); `meta/llama-4-maverick` (0) and `meta/llama-3.3-70b` (8) DROPPED — both
+emit reasoning-only output today (no / intermittent JSON parse, ~10 min/trio); same Llama:free gotcha noted before.
+
+| Regime | mean_rank (1=best) | #best | #worst |
+|---|---|---|---|
+| **C-prime-inc** (incremental) | **1.835** | 109 | 66 |
+| C-Stop | 2.012 | 83 | 84 |
+| **C-prime-arc** (arc) | **2.161** | 68 | 110 |
+
+Per-judge, all four agree on the ordering (arc worst, inc best): gemma 2.24/2.00/1.78, nemotron 2.09/2.00/1.91,
+gpt-oss 2.14/2.05/1.82, qwen 2.35/1.77/1.88. (Adding qwen to the 3-judge cut left the means essentially unchanged:
+1.836→1.835 / 2.015→2.012 / 2.158→2.161.)
+
+**Significance (n=260).**
+- Arc ranked **last** 42.3% (110/260) vs 33% chance → **p=0.0027**.
+- Incremental ranked **best** 41.9% (109/260) → **p=0.0041**.
+- Head-to-head: **Stop beats arc** 154/260 (59.2%) → **p=0.0035**; **incremental beats arc** 147/260 (56.5%) →
+  **p=0.041** (at n=195 this was p=0.115 / n.s.; the larger panel pushes it over the line — all three contrasts
+  now significant).
+
+**Verdict — the arc trades altitude for anchoring; the study closes on a two-faced result.**
+The arc rider produces the LOWEST per-observation quality of the three regimes (significantly below Stop,
+directionally below incremental) — precisely because abstraction swaps concrete anchors (file:line, ids, counts,
+hashes) that the rubric rewards for generalization. Yet on *kind-mix* it dominates (~120× more pattern/architecture
+than incremental). So the closing statement is NOT "arc is better memory" but: **arc and Stop/incremental sit at
+different altitudes** — arc yields far more structural/abstract notes, each individually less grounded; incremental
+yields fewer but tightly-anchored notes. Which is preferable depends on the consumer: real-time injectable
+*structure* (arc) vs verifiable *specifics* (incremental/Stop). The effect is modest in magnitude (mean-rank spread
+1.84→2.02→2.16 on a 1–3 scale) but consistent across every judge. Combined with R4 (C≈C′ on quality when C′ was
+incremental), the picture is coherent: **timing/scope changes WHAT is captured, not uniformly HOW WELL** — and when
+the scope is pushed to arc-abstraction, individual groundedness drops even as structural coverage soars.
+
+Harness + sample: `judge-rank-r5.mjs`, `judge-sample-r5-arc.json`, `run-r5*.sh`. Data: `eval_rank` where
+`judge_model like 'r5:%'` (claude_telemetry `.253`).
+
+## ROUND 6 — does the raised-bar deployment improve arc per-obs quality? — 2026-07-24
+
+**Motivation.** R5 found arc-regime had the LOWEST per-obs quality of the three (p=0.0027), precisely because
+abstraction trades concrete anchors for structural generalization. On 2026-07-09 the fleet deployed a raised-bar
+arc rider prompt (commit `c7a4c7b6`): higher exigency threshold, explicit anchoring requirement, reduced output
+(max 2 notes/turn). This created a natural before/after experiment: 66 arc obs pre-07-09 (old prompt) vs 49 arc
+obs post-07-09 (raised-bar). R6 tests whether the bar-raise measurably improved per-obs quality.
+
+**Design.** Same forced-ranking harness (`judge-rank-r6.mjs`), same rubric (groundedness/specificity/calibration/
+future-usefulness). Fresh 147-obs sample (`judge-sample-r6.json`), **49/regime**: C-Stop (post-07-09, control)
+vs arc-old (pre-07-09, n=49 sampled from 66) vs arc-new (post-07-09, all 49). Labels `r6:` in `eval_rank`.
+
+**Panel (3 valid judges, 101 trios).** gemma-4-31b (n=50), gpt-oss-120b (n=16), qwen3.5-397b (n=35).
+nemotron-3-super-120b and deepseek-v4-pro produced 0 valid trios (reasoning models without `/no_think` +
+insufficient max_tokens — same gotcha as R5/NIM; fix committed to judge-rank-r6.mjs).
+
+| Regime | mean_rank (1=best) | #best | #worst | judges agree? |
+|---|---|---|---|---|
+| **arc-new** | **1.67** | **48** | **18** | ✓ all 3 |
+| C-Stop | 2.00 | 35 | 36 | ✓ all 3 |
+| arc-old | 2.27 | 18 | 47 | ✓ all 3 |
+
+Per-judge ordering (arc-new / C-Stop / arc-old): gemma 1.64/2.00/2.36, gpt-oss 1.81/1.94/2.25,
+qwen 1.74/2.06/2.20. All three rank arc-new first and arc-old last — unanimous.
+
+**Significance (n=101 combined).**
+- arc-new ranked **best** 48/101 (47.5%) vs 33% chance → **p=0.0009** (binomial one-tailed).
+- arc-old ranked **worst** 47/101 (46.5%) → **p=0.002**.
+- arc-new beats arc-old head-to-head in all three judges (directional; head-to-head p not computed separately).
+
+**Verdict — the raised bar worked; arc-new now beats C-Stop.**
+This is the key reversal from R5: in R5, arc ranked LAST (below both C-Stop and incremental). In R6, arc-new
+ranks FIRST — above C-Stop. The bar-raise (higher threshold, anchoring requirement) produced observably better-
+grounded arc notes. The effect is consistent across all 3 valid judges.
+
+**Caveat.** arc-new n=49 (all post-07-09 obs, 15 days). C-Stop n=49 sampled from 190 post-07-09 obs. The arc
+corpus is small; replication with more arc-new obs is the priority for R7. Also: gpt-oss contributed only 16
+valid trios (parse-fail rate ~67%), so the effective panel is weighted heavily toward gemma.
+
+Harness + sample: `judge-rank-r6.mjs`, `judge-sample-r6.json`, `run-r6.sh`, `build-sample-r6.mjs`.
+Data: `eval_rank` where `judge_model like 'r6:%'` (claude_telemetry `.253`).
+CSV: `eval-rank-r6-20260724.csv`.
+
+## OPERATING MODEL — what the fleet should actually run (synthesis, 2026-07-09)
+
+Derived from R2–R5. This is the production recommendation the study points to, plus the one honest caveat.
+
+**1. Self-author beats the external pipeline — settled.** B (external LLM reading the transcript after the fact)
+loses to C/C′ (the session writing its own notes, with full working context) across R2–R4, 7 judges, all p<0.05.
+The losing trait of B is being an *external observer without the working context* — NOT its frequency. Running
+the pipeline "N times" wouldn't fix it. **Action: retire B as a production regime** (keep only as A/B control).
+
+**2. C and C′ are not quality tiers — they are ALTITUDES.** R4: C ≈ C′ in per-obs quality. R5: the arc rider has
+the LOWEST per-obs grounding (p=0.012) but ~120× the pattern/architecture rate. Timing/scope changes WHAT is
+captured, not uniformly HOW WELL. So you don't pick a winner — you place each at the altitude it serves:
+- **C (Stop, end-of-session arc)** = the grounded BASE. Reviews the whole session arc, keeps concrete anchors
+  (file:line, ids, commit hashes, error strings). This is what prevents 3am repeats. Fires at session end,
+  gated by threshold+cooldown (not per turn). **Default everywhere, zero day-to-day config.**
+- **C′ (arc rider, real-time)** = a THIN abstraction layer. Its only unique value over C is *real-time
+  injectability* (available at turn N+1) and higher structural coverage. Fires per turn (UserPromptSubmit).
+
+**3. Selectivity is NOT a human toggle — it is structural + prompt-driven.** You never flip C′ on/off daily.
+Two automatic mechanisms:
+- **By host role (config once):** the rider only meaningfully fires where UserPromptSubmit is frequent =
+  interactive dev. On autonomous hosts its hit-rate is ~1% → it is naturally dormant. Set per host, never touched
+  again.
+- **By prompt self-gating (the real knob):** the rider's behavior is prompt-defined (proven: its low abstraction
+  under the incremental prompt was a scope effect, not a real-time limitation). The correct design is: the rider
+  ALWAYS runs but is instructed *"save nothing unless a genuinely reusable arc-level pattern/architecture is
+  visible; most turns, save nothing."* The MODEL decides per turn whether anything deserves abstracting. "Selective"
+  becomes automatic; no operator intervention.
+
+**4. R5 gives the tuning direction.** The arc rider we tested abstracts TOO eagerly (73.8% pattern/arch) — it tags
+`pattern` even when grounding is thin, which is exactly why its per-obs quality dropped. The fix is not to disable
+it but to **RAISE ITS BAR**: fire less often, only on clearly recurring patterns, so each arc note is more deserved
+and better anchored. The single production knob worth touching is the rider's *exigency threshold* — occasional
+tuning, not a daily routine.
+
+**Target fleet configuration:** C (Stop) as the automatic grounded base on every host; C′ (arc rider) always
+running on interactive hosts but self-gating via a raised-bar prompt (silent by default), rate-limited by
+threshold+cooldown set once; B retired. The operator never toggles — they calibrate the rider's bar occasionally.
+
+**HONEST CAVEAT (unchanged):** everything above is inferred from PROXIES — LLM-judge per-obs quality and kind-mix
+rate. We never measured downstream UTILITY (did an injected memory actually prevent a bug or speed a task?). The
+definitive test is a utility eval: inject each regime and measure time-to-resolve / repeat-incident rate. Until
+that exists, this operating model is the best reading of the proxies + the target codebase profile (LATE:
+production ops, grounding-dominant), not a proven optimum.
+
+### DEPLOYED fleet-wide (2026-07-09)
+The operating model above is now live on the whole Linux fleet (.254/.253/.100). Source commit `c7a4c7b6` on
+`feat/checkpoint-rider` (local): `buildArcRider` raised bar + anchoring requirement + max 3→2; defaults
+threshold 4→8, cooldown 2→3, max 3→2 (34/34 tests green). Bundle built via `scripts/build-hooks.js` (golden
+markers intact: inject=2, BanditEngine=1, scoreAndRank=2, ARCO=1, enum=1) and deployed to each host's
+`worker-service.cjs` (backups `*.bak-pre-riderbar-20260709-19*`). Settings set `REALTIME=true` +
+`COOLDOWN=3` on all three (`.100`/`.253` flipped from Stop-blocking to transparent). All workers
+active/NRestarts=0/health ok; `.253` server-beta :37877 still 200. Rider now self-gates (silence by default),
+so no operator toggling — only the exigency bar is tunable. `.94` Windows not touched.
+
+## MEMORY-UTILITY — the non-proxy number (LATE downstream utility) — 2026-07-09
+
+R2–R5 measured PROXIES (judge quality, kind-mix). This measures the actual DOWNSTREAM effect: does injecting a
+LATE memory change a fresh session's outcome? Controlled sandbox (Option C) — every production session already uses
+c-mem, so the only clean counterfactual is a harness. 6 LATE gotcha tasks × 5 conditions × 3 models × 3 reps =
+270 runs, `claude --print` in an empty cwd (memory = only source), machine-checked (regex), `evals` table
+(`task_id='memutil:*'`). Harness `run-mem-eval.mjs`, spec `MEMORY-UTILITY-EVAL-SPEC.md`.
+
+### Result — pass-rate by condition (n=54 each)
+| Condition | pass | avg out-tok | avg latency |
+|---|---|---|---|
+| **mem-C** (grounded Stop note) | **96%** | 294 | 9.4s |
+| mem-B (pipeline-flat note) | 91% | 334 | 10.3s |
+| mem-Carc (arc-abstract note) | 83% | 347 | 10.9s |
+| control (no memory) | 67% | 411 | 11.8s |
+| distractor (irrelevant memory) | 39% | 473 | 12.8s |
+
+### Four findings
+1. **Memory has real, causal downstream utility.** mem-C 96% vs control 67% → **+29pp, p=0.0001** — and it's also
+   FASTER (9.4s vs 11.8s) and CHEAPER (294 vs 411 out-tokens). The proxy caveat is now backed by a hard number for
+   LATE: grounded memory raises correctness AND cuts effort.
+2. **Regime matters downstream: grounded (C) > abstract-arc (Carc).** 96% vs 83%, **p=0.026**. The R5 finding —
+   the arc trades anchoring for altitude — now shows in ACTUAL task outcomes, not just judge scores. The arc note
+   (83%) barely beats no-memory (67%) and is BELOW the flat pipeline note (91%). Validates the operating model
+   (C grounded base; arc a thin layer) with downstream evidence. (mem-C vs mem-B: p=0.24 — not separable; the
+   penalty is the arc's abstraction, not the pipeline's flatness.)
+3. **Irrelevant memory is ACTIVELY HARMFUL.** distractor 39% vs control 67% → **−28pp, p=0.004**. Injecting an
+   off-topic memory is worse than injecting nothing — it distracts/misleads. Relevance and injection filtering are
+   not optional; noise is worse than silence. (This is the injection-side twin of the raised-bar rider: silence
+   beats a bad note.)
+4. **Utility is heterogeneous — memory rescues arbitrary facts, is redundant on derivable ones.**
+   - `jest-not-ci` (org-specific, non-derivable): control 0% → mem-C 100% (mem-Carc only 33%). Memory is essential;
+     grounding is what makes it usable.
+   - `capture-open-stage`: control 56% → all memory 100%. `redis-scriptload`: control 44% → memory 100%.
+   - `dnsmasq-bak` / `win-settings-bom`: control already 100% (strong models derive these) → memory adds nothing;
+     `gate6-fallback` control 100% but mem-C 78% / mem-Carc 67% — verbose memory mildly HURT a known answer (the
+     distractor effect in miniature).
+
+### Honest limits
+Regex grading (not an LLM judge); curated tasks (selection bias toward facts we know matter); single-fact
+injection (not a full session panel); does not capture the ORGANIC value (the gotcha you didn't know you'd need)
+— that needs the empty-injection natural experiment or a human-rating layer (follow-ups). Still: this is the first
+CAUSAL, non-proxy measurement of LATE memory utility, and it both (a) confirms memory helps and (b) reproduces the
+regime ordering from the judge study in real outcomes.
+
+## MEMORY-UTILITY — replicação 3 meses depois — 2026-10-24
+
+Re-rodei o mesmo harness (`run-mem-eval.mjs`, 6 tasks × 5 condições × 3 modelos × 3 reps) para testar se o número de jul/09 se sustenta com um roster de modelos novo (`opus-4-8` / `opus-4-6` / `haiku-4-5`). Abortou no cap de tokens (3,0M) antes dos 270 runs completos, mas com **todas as condições/tasks/modelos cobertos** (n=45–48 por condição) — amostra suficiente.
+
+### Resultado — pass-rate por condição (out 2026-10-24)
+| Condição | out/24 | jul/09 | Δ |
+|---|---|---|---|
+| **mem-C** (grounded) | **100% (45/45)** | 96% | +4pp |
+| mem-B (pipeline-flat) | 89% (42/47) | 91% | −2pp |
+| mem-Carc (arc) | 80% (36/45) | 83% | −3pp |
+| control (sem memória) | **38% (18/48)** | 67% | **−29pp** |
+| distractor (memória irrelevante) | 35% (17/48) | 39% | −4pp |
+
+Por família de modelo (o `llm_model` colapsa opus-4-6+opus-4-8 em "opus-4"): **mem-C = 100% nas duas famílias** (opus-4 36/36, haiku-4 9/9); control baixo nas duas (opus-4 42%, haiku-4 25%). O padrão não é artefato de um modelo.
+
+### O que reproduz (e fica MAIS forte)
+1. **Ordem dos regimes idêntica:** mem-C > mem-B > mem-Carc > control/distractor. O achado central de jul se mantém.
+2. **Utilidade causal da memória grounded, ainda mais forte:** mem-C 100% vs control 38% → **+62pp, Fisher p=3,5×10⁻¹²** (jul foi +29pp, p=1e-4). mem-C praticamente no teto independentemente do modelo.
+3. **Regime importa:** C (100%) acima de Carc (80%) de novo — a camada-arco troca ancoragem por altitude, como em jul.
+
+### O que NÃO reproduz — e por quê (nuance honesta)
+4. **O achado "memória irrelevante é ATIVAMENTE nociva" de jul NÃO se replica.** Em jul, distractor (39%) ficava −28pp abaixo do control (67%), p=0,004. Agora distractor (35%) ≈ control (38%), **Fisher p=1,00 (n.s.)** — indistinguíveis. O efeito "ruído pior que silêncio" sumiu neste roster.
+5. **A causa é o control que DESPENCOU (67%→38%), não a memória.** mem-C ficou em ~100% nas duas rodadas; o que mudou foi o baseline sem-memória, que caiu. Como os modelos mudaram e as tasks/grading são as mesmas, a leitura é: **o pass-rate absoluto de control/distractor é sensível ao modelo e NÃO é comparável ponto-a-ponto entre rodadas** — esses modelos simplesmente erram mais as gotchas sem a memória. Isso **reforça** o headline (memória grounded leva a ~teto em qualquer roster) e ao mesmo tempo **enfraquece** a tese secundária de dano do distractor, que dependia de distractor << control.
+
+### Limites (desta rodada)
+Abortou no cap (233/270 runs — n desbalanceado leve: 45–48/condição). `split_part` junta opus-4-6/4-8 na visão por família. Mesmo regex-grading e mesmas tasks curadas de jul (comparabilidade mantida, viés de seleção idem). Conclusão: o **número causal da memória é robusto a 3 meses e troca de modelos (+62pp, p≈1e-12)**; a secundária sobre distractor é **condicional ao roster** e não deve ser citada como achado estável.

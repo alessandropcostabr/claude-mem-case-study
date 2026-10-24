@@ -1,0 +1,6 @@
+condition,pass_pct,avg_out,avg_ms
+mem-C,96,294,9392
+mem-B,91,334,10315
+mem-Carc,83,347,10868
+control,67,411,11759
+distractor,39,473,12836

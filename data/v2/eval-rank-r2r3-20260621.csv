@@ -1,0 +1,967 @@
+judge_model,trio_idx,regime,obs_id,rank,why
+claude-haiku-4-5,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,3,Note 3: metrics+calibration+transferable pattern; Note 2: process+gotchas; Note 1: one-off completion record.
+claude-haiku-4-5,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,2,Note 3: metrics+calibration+transferable pattern; Note 2: process+gotchas; Note 1: one-off completion record.
+claude-haiku-4-5,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,1,Note 3: metrics+calibration+transferable pattern; Note 2: process+gotchas; Note 1: one-off completion record.
+claude-haiku-4-5,2,B,99f158da-cb72-4922-9064-01615cb286e2,3,Note 3: UUIDs+self-awareness+generalizable dedup pattern. Note 1: actionable fixes but narrow scope. Note 2: lacks test evidence.
+claude-haiku-4-5,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,2,Note 3: UUIDs+self-awareness+generalizable dedup pattern. Note 1: actionable fixes but narrow scope. Note 2: lacks test evidence.
+claude-haiku-4-5,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,1,Note 3: UUIDs+self-awareness+generalizable dedup pattern. Note 1: actionable fixes but narrow scope. Note 2: lacks test evidence.
+claude-haiku-4-5,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Note 3: file:line+commit+durable checklist prevent rework; Note 1: IDs lack code anchors, narrow scope; Note 2: reference unanchored, requires re-reading code"
+claude-haiku-4-5,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,1,"Note 3: file:line+commit+durable checklist prevent rework; Note 1: IDs lack code anchors, narrow scope; Note 2: reference unanchored, requires re-reading code"
+claude-haiku-4-5,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,2,"Note 3: file:line+commit+durable checklist prevent rework; Note 1: IDs lack code anchors, narrow scope; Note 2: reference unanchored, requires re-reading code"
+claude-haiku-4-5,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note 2 owns failure, maps root cause, discovers transferable pattern"
+claude-haiku-4-5,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,1,"Note 2 owns failure, maps root cause, discovers transferable pattern"
+claude-haiku-4-5,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,2,"Note 2 owns failure, maps root cause, discovers transferable pattern"
+claude-haiku-4-5,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,3,Note 2 proves fix+teaches pattern; Note 3 unfinished audit; Note 1 unverified architecture doc
+claude-haiku-4-5,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,1,Note 2 proves fix+teaches pattern; Note 3 unfinished audit; Note 1 unverified architecture doc
+claude-haiku-4-5,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,2,Note 2 proves fix+teaches pattern; Note 3 unfinished audit; Note 1 unverified architecture doc
+claude-haiku-4-5,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,Note 3: TDD breakdown + verified tests + explicit TODOs prevent rework. Note 2: strong root cause but narrower domain + unsolved residual. Note 1: low-value codebase documentation.
+claude-haiku-4-5,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,Note 3: TDD breakdown + verified tests + explicit TODOs prevent rework. Note 2: strong root cause but narrower domain + unsolved residual. Note 1: low-value codebase documentation.
+claude-haiku-4-5,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,Note 3: TDD breakdown + verified tests + explicit TODOs prevent rework. Note 2: strong root cause but narrower domain + unsolved residual. Note 1: low-value codebase documentation.
+claude-haiku-4-5,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note 3: complete narrative + exact blocker + fix command. Note 1: passive state documentation. Note 2: static file description, no work narrative."
+claude-haiku-4-5,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,2,"Note 3: complete narrative + exact blocker + fix command. Note 1: passive state documentation. Note 2: static file description, no work narrative."
+claude-haiku-4-5,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,1,"Note 3: complete narrative + exact blocker + fix command. Note 1: passive state documentation. Note 2: static file description, no work narrative."
+claude-haiku-4-5,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"N1: generalizable schema-mocking lesson, commits+migrations; N2: operational runbook, grounded; N3: no fix guidance, unverified grep"
+claude-haiku-4-5,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"N1: generalizable schema-mocking lesson, commits+migrations; N2: operational runbook, grounded; N3: no fix guidance, unverified grep"
+claude-haiku-4-5,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"N1: generalizable schema-mocking lesson, commits+migrations; N2: operational runbook, grounded; N3: no fix guidance, unverified grep"
+claude-haiku-4-5,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,File:line pattern (3) > Model benchmark+self-aware limits (1) > Task snapshot no transfer (2)
+claude-haiku-4-5,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,1,File:line pattern (3) > Model benchmark+self-aware limits (1) > Task snapshot no transfer (2)
+claude-haiku-4-5,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,2,File:line pattern (3) > Model benchmark+self-aware limits (1) > Task snapshot no transfer (2)
+claude-haiku-4-5,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note 1: exact counts, IDs, table/CSV paths, anti-join logic. Note 2: migration/PR grounded, decision unsubstantiated. Note 3: procedural prose, zero artifact paths."
+claude-haiku-4-5,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note 1: exact counts, IDs, table/CSV paths, anti-join logic. Note 2: migration/PR grounded, decision unsubstantiated. Note 3: procedural prose, zero artifact paths."
+claude-haiku-4-5,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note 1: exact counts, IDs, table/CSV paths, anti-join logic. Note 2: migration/PR grounded, decision unsubstantiated. Note 3: procedural prose, zero artifact paths."
+claude-haiku-4-5,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,3,"Gate 6: file:line + mechanic verify. Brevo: counts + refutation, no anchors. listRulesPanel: codebase-only, rederivable."
+claude-haiku-4-5,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Gate 6: file:line + mechanic verify. Brevo: counts + refutation, no anchors. listRulesPanel: codebase-only, rederivable."
+claude-haiku-4-5,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,2,"Gate 6: file:line + mechanic verify. Brevo: counts + refutation, no anchors. listRulesPanel: codebase-only, rederivable."
+claude-haiku-4-5,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,3,Operational fix with recurrence pattern + verification > deployment checklist > investigation narrative
+claude-haiku-4-5,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,1,Operational fix with recurrence pattern + verification > deployment checklist > investigation narrative
+claude-haiku-4-5,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,2,Operational fix with recurrence pattern + verification > deployment checklist > investigation narrative
+claude-haiku-4-5,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Note 3: root cause + surgical fix + measurable thresholds + state boundary. Note 1: good pattern but already fixed. Note 2: pure snapshot, no decision."
+claude-haiku-4-5,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,2,"Note 3: root cause + surgical fix + measurable thresholds + state boundary. Note 1: good pattern but already fixed. Note 2: pure snapshot, no decision."
+claude-haiku-4-5,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,1,"Note 3: root cause + surgical fix + measurable thresholds + state boundary. Note 1: good pattern but already fixed. Note 2: pure snapshot, no decision."
+claude-haiku-4-5,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,Note 2: verified race condition remediation. Note 1: quality bugs grounded. Note 3: unresolved error.
+claude-haiku-4-5,15,C,d683c010-89dd-4b20-9086-48a3916578b4,2,Note 2: verified race condition remediation. Note 1: quality bugs grounded. Note 3: unresolved error.
+claude-haiku-4-5,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,1,Note 2: verified race condition remediation. Note 1: quality bugs grounded. Note 3: unresolved error.
+claude-haiku-4-5,16,B,709daba9-9666-424a-a5de-a096679e7f03,1,"ChromeDriver: actionable (versions/paths/errors). Email: state + metrics but domain-specific. Broadcast: IDs, no file anchors."
+claude-haiku-4-5,16,C,500cca5d-683d-4a27-8a40-456d07688921,2,"ChromeDriver: actionable (versions/paths/errors). Email: state + metrics but domain-specific. Broadcast: IDs, no file anchors."
+claude-haiku-4-5,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,3,"ChromeDriver: actionable (versions/paths/errors). Email: state + metrics but domain-specific. Broadcast: IDs, no file anchors."
+claude-haiku-4-5,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,Note 1: code-grounded pattern reusable. Note 2: discovery unfinished. Note 3: snapshot no context.
+claude-haiku-4-5,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,Note 1: code-grounded pattern reusable. Note 2: discovery unfinished. Note 3: snapshot no context.
+claude-haiku-4-5,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,Note 1: code-grounded pattern reusable. Note 2: discovery unfinished. Note 3: snapshot no context.
+claude-haiku-4-5,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,3,NOTE 3: root-cause + transferable pattern. NOTE 2: UX + testing. NOTE 1: trace log.
+claude-haiku-4-5,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,2,NOTE 3: root-cause + transferable pattern. NOTE 2: UX + testing. NOTE 1: trace log.
+claude-haiku-4-5,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,1,NOTE 3: root-cause + transferable pattern. NOTE 2: UX + testing. NOTE 1: trace log.
+claude-haiku-4-5,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,3,"Note 2: root-cause discovery + evidence (4 strays) + actionable paths; Note 3: pattern hypothesis, mitigation untested; Note 1: codebase description, no execution evidence"
+claude-haiku-4-5,19,C,7b000068-550e-4169-981e-23b105e5143b,2,"Note 2: root-cause discovery + evidence (4 strays) + actionable paths; Note 3: pattern hypothesis, mitigation untested; Note 1: codebase description, no execution evidence"
+claude-haiku-4-5,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,1,"Note 2: root-cause discovery + evidence (4 strays) + actionable paths; Note 3: pattern hypothesis, mitigation untested; Note 1: codebase description, no execution evidence"
+claude-haiku-4-5,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,3,Note 3: decision framework with future gate. Note 1: preventive rule. Note 2: execution trace.
+claude-haiku-4-5,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,Note 3: decision framework with future gate. Note 1: preventive rule. Note 2: execution trace.
+claude-haiku-4-5,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,Note 3: decision framework with future gate. Note 1: preventive rule. Note 2: execution trace.
+claude-haiku-4-5,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,"Note 1: paths+counts+99.8% join proof. Note 2: pattern durable, narrow scope. Note 3: no line numbers/no evidence."
+claude-haiku-4-5,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,"Note 1: paths+counts+99.8% join proof. Note 2: pattern durable, narrow scope. Note 3: no line numbers/no evidence."
+claude-haiku-4-5,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,2,"Note 1: paths+counts+99.8% join proof. Note 2: pattern durable, narrow scope. Note 3: no line numbers/no evidence."
+claude-haiku-4-5,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,"Note 1: execution trace with commit+counts+verification. Note 2: audit detail but unfixed findings. Note 3: blocker, user-dependent."
+claude-haiku-4-5,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Note 1: execution trace with commit+counts+verification. Note 2: audit detail but unfixed findings. Note 3: blocker, user-dependent."
+claude-haiku-4-5,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Note 1: execution trace with commit+counts+verification. Note 2: audit detail but unfixed findings. Note 3: blocker, user-dependent."
+claude-haiku-4-5,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,"Note 1: root cause + upgrade path, PR#/version/frame-types grounded. Note 2: high specificity but one-off batch, narrow transfer. Note 3: generic code description, no examples, zero durability."
+claude-haiku-4-5,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,"Note 1: root cause + upgrade path, PR#/version/frame-types grounded. Note 2: high specificity but one-off batch, narrow transfer. Note 3: generic code description, no examples, zero durability."
+claude-haiku-4-5,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,"Note 1: root cause + upgrade path, PR#/version/frame-types grounded. Note 2: high specificity but one-off batch, narrow transfer. Note 3: generic code description, no examples, zero durability."
+claude-haiku-4-5,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,Note 2 generalizable+verified+self-aware; Note 3 solid but narrow; Note 1 zero reuse
+claude-haiku-4-5,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,Note 2 generalizable+verified+self-aware; Note 3 solid but narrow; Note 1 zero reuse
+claude-haiku-4-5,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,Note 2 generalizable+verified+self-aware; Note 3 solid but narrow; Note 1 zero reuse
+claude-haiku-4-5,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,3,"NOTE 2: file:line+mechanics+generalizable. NOTE 3: process lesson, weak anchors. NOTE 1: security without evidence."
+claude-haiku-4-5,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,2,"NOTE 2: file:line+mechanics+generalizable. NOTE 3: process lesson, weak anchors. NOTE 1: security without evidence."
+claude-haiku-4-5,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,"NOTE 2: file:line+mechanics+generalizable. NOTE 3: process lesson, weak anchors. NOTE 1: security without evidence."
+claude-haiku-4-5,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,Note 3: groundedness+calibration+decision context. Note 1: security checklist. Note 2: snapshot only.
+claude-haiku-4-5,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,2,Note 3: groundedness+calibration+decision context. Note 1: security checklist. Note 2: snapshot only.
+claude-haiku-4-5,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,1,Note 3: groundedness+calibration+decision context. Note 1: security checklist. Note 2: snapshot only.
+claude-haiku-4-5,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,"NOTE 1: Setup prompt + priorização futura (max actionable). NOTE 2: Dados específicos AuxVet (groundedness alta, escopo narrow). NOTE 3: Defensivo sem file paths (groundedness baixa)."
+claude-haiku-4-5,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,"NOTE 1: Setup prompt + priorização futura (max actionable). NOTE 2: Dados específicos AuxVet (groundedness alta, escopo narrow). NOTE 3: Defensivo sem file paths (groundedness baixa)."
+claude-haiku-4-5,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,2,"NOTE 1: Setup prompt + priorização futura (max actionable). NOTE 2: Dados específicos AuxVet (groundedness alta, escopo narrow). NOTE 3: Defensivo sem file paths (groundedness baixa)."
+claude-haiku-4-5,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"2: pixel-measured, reproducible checklist. 1: backed-up data + principle. 3: pending decision, unverified claim, no artifact."
+claude-haiku-4-5,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,1,"2: pixel-measured, reproducible checklist. 1: backed-up data + principle. 3: pending decision, unverified claim, no artifact."
+claude-haiku-4-5,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,2,"2: pixel-measured, reproducible checklist. 1: backed-up data + principle. 3: pending decision, unverified claim, no artifact."
+deepseek/deepseek-chat-v3.1,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,"Note 1 has file:line anchors, Note 3 has counts/ids, Note 2 lacks specificity"
+deepseek/deepseek-chat-v3.1,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,3,"Note 1 has file:line anchors, Note 3 has counts/ids, Note 2 lacks specificity"
+deepseek/deepseek-chat-v3.1,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,2,"Note 1 has file:line anchors, Note 3 has counts/ids, Note 2 lacks specificity"
+deepseek/deepseek-chat-v3.1,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,1,"Note 1 has specific code patterns, Note 2 has file details, Note 3 is vague planning"
+deepseek/deepseek-chat-v3.1,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,3,"Note 1 has specific code patterns, Note 2 has file details, Note 3 is vague planning"
+deepseek/deepseek-chat-v3.1,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,2,"Note 1 has specific code patterns, Note 2 has file details, Note 3 is vague planning"
+deepseek/deepseek-chat-v3.1,2,B,99f158da-cb72-4922-9064-01615cb286e2,3,"Note 1 has specific anchors, 3 is detailed but less grounded, 2 is generic plan."
+deepseek/deepseek-chat-v3.1,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,1,"Note 1 has specific anchors, 3 is detailed but less grounded, 2 is generic plan."
+deepseek/deepseek-chat-v3.1,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,2,"Note 1 has specific anchors, 3 is detailed but less grounded, 2 is generic plan."
+deepseek/deepseek-chat-v3.1,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,"Note 1 has specific hashes, paths, PR numbers; 2 has line numbers but speculative; 3 lacks actionable anchors"
+deepseek/deepseek-chat-v3.1,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,"Note 1 has specific hashes, paths, PR numbers; 2 has line numbers but speculative; 3 lacks actionable anchors"
+deepseek/deepseek-chat-v3.1,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,"Note 1 has specific hashes, paths, PR numbers; 2 has line numbers but speculative; 3 lacks actionable anchors"
+deepseek/deepseek-chat-v3.1,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Note 1 grounded with IDs, hashes, paths; Note 3 specific process; Note 2 generic."
+deepseek/deepseek-chat-v3.1,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,"Note 1 grounded with IDs, hashes, paths; Note 3 specific process; Note 2 generic."
+deepseek/deepseek-chat-v3.1,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,"Note 1 grounded with IDs, hashes, paths; Note 3 specific process; Note 2 generic."
+deepseek/deepseek-chat-v3.1,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note 2 has specific commit, lesson; 1 has API path; 3 vague audit."
+deepseek/deepseek-chat-v3.1,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,1,"Note 2 has specific commit, lesson; 1 has API path; 3 vague audit."
+deepseek/deepseek-chat-v3.1,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,2,"Note 2 has specific commit, lesson; 1 has API path; 3 vague audit."
+deepseek/deepseek-chat-v3.1,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,"Note 2 has specific fixes, tests, and a durable lesson. Note 1 is grounded but less actionable. Note 3 is a list, not a note."
+deepseek/deepseek-chat-v3.1,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,1,"Note 2 has specific fixes, tests, and a durable lesson. Note 1 is grounded but less actionable. Note 3 is a list, not a note."
+deepseek/deepseek-chat-v3.1,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,3,"Note 2 has specific fixes, tests, and a durable lesson. Note 1 is grounded but less actionable. Note 3 is a list, not a note."
+deepseek/deepseek-chat-v3.1,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Most grounded, specific, calibrated, useful future signal."
+deepseek/deepseek-chat-v3.1,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,"Most grounded, specific, calibrated, useful future signal."
+deepseek/deepseek-chat-v3.1,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,"Most grounded, specific, calibrated, useful future signal."
+deepseek/deepseek-chat-v3.1,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note 1 has specific anchors, actions, and pending work. Note 3 is useful but less grounded. Note 2 is descriptive but static."
+deepseek/deepseek-chat-v3.1,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"Note 1 has specific anchors, actions, and pending work. Note 3 is useful but less grounded. Note 2 is descriptive but static."
+deepseek/deepseek-chat-v3.1,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"Note 1 has specific anchors, actions, and pending work. Note 3 is useful but less grounded. Note 2 is descriptive but static."
+deepseek/deepseek-chat-v3.1,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note 1 has critical bug, schema mismatch, prod impact. Note 2 has security fix, implementation. Note 3 is minor doc gap."
+deepseek/deepseek-chat-v3.1,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"Note 1 has critical bug, schema mismatch, prod impact. Note 2 has security fix, implementation. Note 3 is minor doc gap."
+deepseek/deepseek-chat-v3.1,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"Note 1 has critical bug, schema mismatch, prod impact. Note 2 has security fix, implementation. Note 3 is minor doc gap."
+deepseek/deepseek-chat-v3.1,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"Note 1 has specific anchors, calibration, and future utility. Note 3 is specific but less calibrated. Note 2 is generic log."
+deepseek/deepseek-chat-v3.1,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"Note 1 has specific anchors, calibration, and future utility. Note 3 is specific but less calibrated. Note 2 is generic log."
+deepseek/deepseek-chat-v3.1,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"Note 1 has specific anchors, calibration, and future utility. Note 3 is specific but less calibrated. Note 2 is generic log."
+deepseek/deepseek-chat-v3.1,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note 1 has specific counts, paths, IDs, and actionable outputs."
+deepseek/deepseek-chat-v3.1,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note 1 has specific counts, paths, IDs, and actionable outputs."
+deepseek/deepseek-chat-v3.1,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note 1 has specific counts, paths, IDs, and actionable outputs."
+deepseek/deepseek-chat-v3.1,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Note 2 most grounded, 1 specific, 3 vague/uncalibrated."
+deepseek/deepseek-chat-v3.1,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note 2 most grounded, 1 specific, 3 vague/uncalibrated."
+deepseek/deepseek-chat-v3.1,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Note 2 most grounded, 1 specific, 3 vague/uncalibrated."
+deepseek/deepseek-chat-v3.1,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"Note 1 has specific commit, card, files. Note 2 has merge commits. Note 3 is generic troubleshooting."
+deepseek/deepseek-chat-v3.1,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"Note 1 has specific commit, card, files. Note 2 has merge commits. Note 3 is generic troubleshooting."
+deepseek/deepseek-chat-v3.1,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,2,"Note 1 has specific commit, card, files. Note 2 has merge commits. Note 3 is generic troubleshooting."
+deepseek/deepseek-chat-v3.1,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Note 1 has specific code/file anchors, error analysis, and a durable lesson."
+deepseek/deepseek-chat-v3.1,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"Note 1 has specific code/file anchors, error analysis, and a durable lesson."
+deepseek/deepseek-chat-v3.1,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"Note 1 has specific code/file anchors, error analysis, and a durable lesson."
+deepseek/deepseek-chat-v3.1,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,"Note 2 has specific race details, fixes; Note 1 is grounded but less critical; Note 3 is vague error."
+deepseek/deepseek-chat-v3.1,15,C,d683c010-89dd-4b20-9086-48a3916578b4,2,"Note 2 has specific race details, fixes; Note 1 is grounded but less critical; Note 3 is vague error."
+deepseek/deepseek-chat-v3.1,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,1,"Note 2 has specific race details, fixes; Note 1 is grounded but less critical; Note 3 is vague error."
+deepseek/deepseek-chat-v3.1,16,B,709daba9-9666-424a-a5de-a096679e7f03,3,"Note 1 most grounded: IDs, counts, paths, actions. Note 3 specific but less actionable. Note 2 generic recurring issue."
+deepseek/deepseek-chat-v3.1,16,C,500cca5d-683d-4a27-8a40-456d07688921,2,"Note 1 most grounded: IDs, counts, paths, actions. Note 3 specific but less actionable. Note 2 generic recurring issue."
+deepseek/deepseek-chat-v3.1,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,1,"Note 1 most grounded: IDs, counts, paths, actions. Note 3 specific but less actionable. Note 2 generic recurring issue."
+deepseek/deepseek-chat-v3.1,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,"Note 1 has specific code anchors, fix, and outcome. Note 2 is detailed but less actionable. Note 3 is just a status snapshot."
+deepseek/deepseek-chat-v3.1,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,"Note 1 has specific code anchors, fix, and outcome. Note 2 is detailed but less actionable. Note 3 is just a status snapshot."
+deepseek/deepseek-chat-v3.1,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,"Note 1 has specific code anchors, fix, and outcome. Note 2 is detailed but less actionable. Note 3 is just a status snapshot."
+deepseek/deepseek-chat-v3.1,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,1,"Note 1 has specific IDs, hashes, timestamps; 3 has root cause; 2 lacks code anchors."
+deepseek/deepseek-chat-v3.1,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,3,"Note 1 has specific IDs, hashes, timestamps; 3 has root cause; 2 lacks code anchors."
+deepseek/deepseek-chat-v3.1,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,2,"Note 1 has specific IDs, hashes, timestamps; 3 has root cause; 2 lacks code anchors."
+deepseek/deepseek-chat-v3.1,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,1,"Note 1 has specific file anchors, Note 2 flags uncertainty, Note 3 lacks actionable details."
+deepseek/deepseek-chat-v3.1,19,C,7b000068-550e-4169-981e-23b105e5143b,3,"Note 1 has specific file anchors, Note 2 flags uncertainty, Note 3 lacks actionable details."
+deepseek/deepseek-chat-v3.1,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,2,"Note 1 has specific file anchors, Note 2 flags uncertainty, Note 3 lacks actionable details."
+deepseek/deepseek-chat-v3.1,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,3,"Note 3 has most grounded facts, Note 1 has specific commit IDs, Note 2 is generic."
+deepseek/deepseek-chat-v3.1,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,"Note 3 has most grounded facts, Note 1 has specific commit IDs, Note 2 is generic."
+deepseek/deepseek-chat-v3.1,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,"Note 3 has most grounded facts, Note 1 has specific commit IDs, Note 2 is generic."
+deepseek/deepseek-chat-v3.1,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,"Root cause, fix, security risk, calibration."
+deepseek/deepseek-chat-v3.1,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,2,"Root cause, fix, security risk, calibration."
+deepseek/deepseek-chat-v3.1,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,1,"Root cause, fix, security risk, calibration."
+deepseek/deepseek-chat-v3.1,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,"Note 1 has specific file paths, commit hash, and verified test results."
+deepseek/deepseek-chat-v3.1,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Note 1 has specific file paths, commit hash, and verified test results."
+deepseek/deepseek-chat-v3.1,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Note 1 has specific file paths, commit hash, and verified test results."
+deepseek/deepseek-chat-v3.1,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,"Note 1 has specific anchors, future upgrade path. Note 2 is specific but less general. Note 3 is generic observation."
+deepseek/deepseek-chat-v3.1,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,"Note 1 has specific anchors, future upgrade path. Note 2 is specific but less general. Note 3 is generic observation."
+deepseek/deepseek-chat-v3.1,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,"Note 1 has specific anchors, future upgrade path. Note 2 is specific but less general. Note 3 is generic observation."
+deepseek/deepseek-chat-v3.1,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,"Specific operational lessons, file paths, hashes, and checks."
+deepseek/deepseek-chat-v3.1,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,"Specific operational lessons, file paths, hashes, and checks."
+deepseek/deepseek-chat-v3.1,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,"Specific operational lessons, file paths, hashes, and checks."
+deepseek/deepseek-chat-v3.1,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,3,"Note 2 highly specific, calibrated; 3 grounded but less actionable; 1 vague, overconfident."
+deepseek/deepseek-chat-v3.1,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,2,"Note 2 highly specific, calibrated; 3 grounded but less actionable; 1 vague, overconfident."
+deepseek/deepseek-chat-v3.1,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,"Note 2 highly specific, calibrated; 3 grounded but less actionable; 1 vague, overconfident."
+deepseek/deepseek-chat-v3.1,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,"Note 1 has specific file:line anchors, Note 3 has actionable gaps, Note 2 is generic."
+deepseek/deepseek-chat-v3.1,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,"Note 1 has specific file:line anchors, Note 3 has actionable gaps, Note 2 is generic."
+deepseek/deepseek-chat-v3.1,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,2,"Note 1 has specific file:line anchors, Note 3 has actionable gaps, Note 2 is generic."
+deepseek/deepseek-chat-v3.1,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,"Note 2 has specific data, Note 1 is a setup guide, Note 3 is vague on location."
+deepseek/deepseek-chat-v3.1,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,2,"Note 2 has specific data, Note 1 is a setup guide, Note 3 is vague on location."
+deepseek/deepseek-chat-v3.1,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,1,"Note 2 has specific data, Note 1 is a setup guide, Note 3 is vague on location."
+deepseek/deepseek-chat-v3.1,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,"Note 1 has concrete counts, IDs, decisions. Note 3 has specific bugs and fixes. Note 2 is less specific."
+deepseek/deepseek-chat-v3.1,28,C,c3e15471-c285-449a-886f-3be942aa38f8,2,"Note 1 has concrete counts, IDs, decisions. Note 3 has specific bugs and fixes. Note 2 is less specific."
+deepseek/deepseek-chat-v3.1,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,1,"Note 1 has concrete counts, IDs, decisions. Note 3 has specific bugs and fixes. Note 2 is less specific."
+deepseek/deepseek-chat-v3.1,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Note 1 has specific counts, paths, code. Note 2 has diagnosis steps. Note 3 is vague, no anchors."
+deepseek/deepseek-chat-v3.1,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Note 1 has specific counts, paths, code. Note 2 has diagnosis steps. Note 3 is vague, no anchors."
+deepseek/deepseek-chat-v3.1,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Note 1 has specific counts, paths, code. Note 2 has diagnosis steps. Note 3 is vague, no anchors."
+meta-llama/llama-3.3-70b,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,Note 1 most specific
+meta-llama/llama-3.3-70b,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,2,Note 1 most specific
+meta-llama/llama-3.3-70b,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,3,Note 1 most specific
+meta-llama/llama-3.3-70b,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,2,B,99f158da-cb72-4922-9064-01615cb286e2,1,Specificity and groundedness
+meta-llama/llama-3.3-70b,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,2,Specificity and groundedness
+meta-llama/llama-3.3-70b,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,3,Specificity and groundedness
+meta-llama/llama-3.3-70b,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,Groundedness
+meta-llama/llama-3.3-70b,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,Groundedness
+meta-llama/llama-3.3-70b,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,Groundedness
+meta-llama/llama-3.3-70b,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,Note 1 most grounded
+meta-llama/llama-3.3-70b,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,2,Note 1 most grounded
+meta-llama/llama-3.3-70b,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,1,Note 1 most grounded
+meta-llama/llama-3.3-70b,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,2,Specificity and anchors
+meta-llama/llama-3.3-70b,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,3,Specificity and anchors
+meta-llama/llama-3.3-70b,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,1,Specificity and anchors
+meta-llama/llama-3.3-70b,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,15,C,d683c010-89dd-4b20-9086-48a3916578b4,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,16,B,709daba9-9666-424a-a5de-a096679e7f03,2,"Groundedness, specificity, calibration"
+meta-llama/llama-3.3-70b,16,C,500cca5d-683d-4a27-8a40-456d07688921,3,"Groundedness, specificity, calibration"
+meta-llama/llama-3.3-70b,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,1,"Groundedness, specificity, calibration"
+meta-llama/llama-3.3-70b,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,19,C,7b000068-550e-4169-981e-23b105e5143b,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,1,Specificity and groundedness
+meta-llama/llama-3.3-70b,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,Specificity and groundedness
+meta-llama/llama-3.3-70b,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,3,Specificity and groundedness
+meta-llama/llama-3.3-70b,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,Note 1 most specific
+meta-llama/llama-3.3-70b,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,Note 1 most specific
+meta-llama/llama-3.3-70b,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,Note 1 most specific
+meta-llama/llama-3.3-70b,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,24,B,81068e05-2523-458d-921b-521e8ed05c34,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,24,C,d991a835-59e4-4363-90b6-1cd024902d80,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,26,B,f25cadbc-4a6d-4199-989d-488518a72193,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,Groundedness and specificity
+meta-llama/llama-3.3-70b,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,Groundedness and specificity
+meta-llama/llama-3.3-70b,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,2,Groundedness and specificity
+meta-llama/llama-3.3-70b,28,B,5e361353-3948-47ef-b6ba-1505c542232f,1,Specificity and groundedness
+meta-llama/llama-3.3-70b,28,C,c3e15471-c285-449a-886f-3be942aa38f8,3,Specificity and groundedness
+meta-llama/llama-3.3-70b,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,2,Specificity and groundedness
+meta-llama/llama-3.3-70b,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Groundedness, specificity, calibration"
+meta-llama/llama-3.3-70b,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Groundedness, specificity, calibration"
+meta-llama/llama-3.3-70b,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Groundedness, specificity, calibration"
+nim/deepseek-ai/deepseek-v4-pro,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,Note 1 has file:line anchors and commit SHA; Note 3 has specific counts and paths; Note 2 is narrative-heavy without anchors.
+nim/deepseek-ai/deepseek-v4-pro,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,3,Note 1 has file:line anchors and commit SHA; Note 3 has specific counts and paths; Note 2 is narrative-heavy without anchors.
+nim/deepseek-ai/deepseek-v4-pro,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,2,Note 1 has file:line anchors and commit SHA; Note 3 has specific counts and paths; Note 2 is narrative-heavy without anchors.
+nim/deepseek-ai/deepseek-v4-pro,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,2,"Note 3 has concrete hashes, agent IDs, file paths, and explicit next steps; Note 1 is specific but lacks file:line; Note 2 is narrative-heavy."
+nim/deepseek-ai/deepseek-v4-pro,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,1,"Note 3 has concrete hashes, agent IDs, file paths, and explicit next steps; Note 1 is specific but lacks file:line; Note 2 is narrative-heavy."
+nim/deepseek-ai/deepseek-v4-pro,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,3,"Note 3 has concrete hashes, agent IDs, file paths, and explicit next steps; Note 1 is specific but lacks file:line; Note 2 is narrative-heavy."
+nim/deepseek-ai/deepseek-v4-pro,2,B,99f158da-cb72-4922-9064-01615cb286e2,3,"Note 3 has concrete IDs, cleanup hashes, explicit anti-pattern flag, and actionable proposal; Note 1 has file paths and specific triggers; Note 2 is abstract."
+nim/deepseek-ai/deepseek-v4-pro,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,2,"Note 3 has concrete IDs, cleanup hashes, explicit anti-pattern flag, and actionable proposal; Note 1 has file paths and specific triggers; Note 2 is abstract."
+nim/deepseek-ai/deepseek-v4-pro,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,1,"Note 3 has concrete IDs, cleanup hashes, explicit anti-pattern flag, and actionable proposal; Note 1 has file paths and specific triggers; Note 2 is abstract."
+nim/deepseek-ai/deepseek-v4-pro,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,"Note 1 has precise SHAs, file:line diffs, and calibrated decisions; Note 2 has code anchors but overconfident; Note 3 is vague, no paths."
+nim/deepseek-ai/deepseek-v4-pro,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,"Note 1 has precise SHAs, file:line diffs, and calibrated decisions; Note 2 has code anchors but overconfident; Note 3 is vague, no paths."
+nim/deepseek-ai/deepseek-v4-pro,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,"Note 1 has precise SHAs, file:line diffs, and calibrated decisions; Note 2 has code anchors but overconfident; Note 3 is vague, no paths."
+nim/deepseek-ai/deepseek-v4-pro,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Note 1 has concrete ids, file:line anchors, and verified outcomes; Note 3 has commit hash and specific line numbers; Note 2 is abstract and lacks checkable anchors."
+nim/deepseek-ai/deepseek-v4-pro,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,"Note 1 has concrete ids, file:line anchors, and verified outcomes; Note 3 has commit hash and specific line numbers; Note 2 is abstract and lacks checkable anchors."
+nim/deepseek-ai/deepseek-v4-pro,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,"Note 1 has concrete ids, file:line anchors, and verified outcomes; Note 3 has commit hash and specific line numbers; Note 2 is abstract and lacks checkable anchors."
+nim/deepseek-ai/deepseek-v4-pro,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note 2 has commit hash, file path, specific counts; Note 1 has API path, dates, counts; Note 3 vague, no paths, future dates."
+nim/deepseek-ai/deepseek-v4-pro,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,1,"Note 2 has commit hash, file path, specific counts; Note 1 has API path, dates, counts; Note 3 vague, no paths, future dates."
+nim/deepseek-ai/deepseek-v4-pro,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,2,"Note 2 has commit hash, file path, specific counts; Note 1 has API path, dates, counts; Note 3 vague, no paths, future dates."
+nim/deepseek-ai/deepseek-v4-pro,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,"Note 3 has concrete file:line anchors, severity calibration, and verified OK list; Note 1 has paths/lines but less depth; Note 2 is narrative-heavy without file:line anchors."
+nim/deepseek-ai/deepseek-v4-pro,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,3,"Note 3 has concrete file:line anchors, severity calibration, and verified OK list; Note 1 has paths/lines but less depth; Note 2 is narrative-heavy without file:line anchors."
+nim/deepseek-ai/deepseek-v4-pro,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,1,"Note 3 has concrete file:line anchors, severity calibration, and verified OK list; Note 1 has paths/lines but less depth; Note 2 is narrative-heavy without file:line anchors."
+nim/deepseek-ai/deepseek-v4-pro,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Note 3 has commit counts, file paths, test counts, and explicit gaps; Note 2 has commit hash and specific parameters; Note 1 is vague."
+nim/deepseek-ai/deepseek-v4-pro,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,"Note 3 has commit counts, file paths, test counts, and explicit gaps; Note 2 has commit hash and specific parameters; Note 1 is vague."
+nim/deepseek-ai/deepseek-v4-pro,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,"Note 3 has commit counts, file paths, test counts, and explicit gaps; Note 2 has commit hash and specific parameters; Note 1 is vague."
+nim/deepseek-ai/deepseek-v4-pro,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note 3 has actionable specifics (ids, counts, hash, exact command); Note 1 has file:line anchors but less future utility; Note 2 is purely descriptive."
+nim/deepseek-ai/deepseek-v4-pro,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,2,"Note 3 has actionable specifics (ids, counts, hash, exact command); Note 1 has file:line anchors but less future utility; Note 2 is purely descriptive."
+nim/deepseek-ai/deepseek-v4-pro,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,1,"Note 3 has actionable specifics (ids, counts, hash, exact command); Note 1 has file:line anchors but less future utility; Note 2 is purely descriptive."
+nim/deepseek-ai/deepseek-v4-pro,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note 2 has file:line, commit hashes, regex, and test numbers; Note 1 has schema names and commit hashes but less specificity; Note 3 lacks hashes/ids."
+nim/deepseek-ai/deepseek-v4-pro,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,2,"Note 2 has file:line, commit hashes, regex, and test numbers; Note 1 has schema names and commit hashes but less specificity; Note 3 lacks hashes/ids."
+nim/deepseek-ai/deepseek-v4-pro,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,1,"Note 2 has file:line, commit hashes, regex, and test numbers; Note 1 has schema names and commit hashes but less specificity; Note 3 lacks hashes/ids."
+nim/google/gemma-4-31b-it,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,2,"Note 2 is superior with precise SHAs, PRs, IP-like IDs, and deployment steps."
+nim/google/gemma-4-31b-it,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,1,"Note 2 is superior with precise SHAs, PRs, IP-like IDs, and deployment steps."
+nim/google/gemma-4-31b-it,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,3,"Note 2 is superior with precise SHAs, PRs, IP-like IDs, and deployment steps."
+nim/google/gemma-4-31b-it,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,3,"Note 3 has highest groundedness with hashes, IDs, paths, and specific line references."
+nim/google/gemma-4-31b-it,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,1,"Note 3 has highest groundedness with hashes, IDs, paths, and specific line references."
+nim/google/gemma-4-31b-it,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,2,"Note 3 has highest groundedness with hashes, IDs, paths, and specific line references."
+nim/google/gemma-4-31b-it,2,B,99f158da-cb72-4922-9064-01615cb286e2,2,"Note 3 has highest groundedness with specific IDs, API paths, and state cleanup logs."
+nim/google/gemma-4-31b-it,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,3,"Note 3 has highest groundedness with specific IDs, API paths, and state cleanup logs."
+nim/google/gemma-4-31b-it,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,1,"Note 3 has highest groundedness with specific IDs, API paths, and state cleanup logs."
+nim/google/gemma-4-31b-it,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,Note 2 has highest density of file:line anchors and precise logic analysis.
+nim/google/gemma-4-31b-it,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,2,Note 2 has highest density of file:line anchors and precise logic analysis.
+nim/google/gemma-4-31b-it,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,1,Note 2 has highest density of file:line anchors and precise logic analysis.
+nim/google/gemma-4-31b-it,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,Note 1 is hyper-grounded with IDs/logs; 3 has commits/lines; 2 is generic.
+nim/google/gemma-4-31b-it,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,Note 1 is hyper-grounded with IDs/logs; 3 has commits/lines; 2 is generic.
+nim/google/gemma-4-31b-it,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,Note 1 is hyper-grounded with IDs/logs; 3 has commits/lines; 2 is generic.
+nim/google/gemma-4-31b-it,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note 1 has highest groundedness (API paths, env files, specific counts, logic)."
+nim/google/gemma-4-31b-it,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,2,"Note 1 has highest groundedness (API paths, env files, specific counts, logic)."
+nim/google/gemma-4-31b-it,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,1,"Note 1 has highest groundedness (API paths, env files, specific counts, logic)."
+nim/google/gemma-4-31b-it,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,3,"Note 3 has highest density of checkable anchors, specific files, and actionable security findings."
+nim/google/gemma-4-31b-it,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,2,"Note 3 has highest density of checkable anchors, specific files, and actionable security findings."
+nim/google/gemma-4-31b-it,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,1,"Note 3 has highest density of checkable anchors, specific files, and actionable security findings."
+nim/google/gemma-4-31b-it,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Note 2 has best calibration, commit hashes, and specific technical trade-offs."
+nim/google/gemma-4-31b-it,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,2,"Note 2 has best calibration, commit hashes, and specific technical trade-offs."
+nim/google/gemma-4-31b-it,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,1,"Note 2 has best calibration, commit hashes, and specific technical trade-offs."
+nim/google/gemma-4-31b-it,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note 1 has superior grounding with hashes, paths, and precise state diffs."
+nim/google/gemma-4-31b-it,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"Note 1 has superior grounding with hashes, paths, and precise state diffs."
+nim/google/gemma-4-31b-it,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"Note 1 has superior grounding with hashes, paths, and precise state diffs."
+nim/google/gemma-4-31b-it,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note 1 has highest groundedness (commits, schema types, PRs) and critical architectural lessons."
+nim/google/gemma-4-31b-it,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"Note 1 has highest groundedness (commits, schema types, PRs) and critical architectural lessons."
+nim/google/gemma-4-31b-it,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"Note 1 has highest groundedness (commits, schema types, PRs) and critical architectural lessons."
+nim/google/gemma-4-31b-it,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,Note 3 has highest groundedness (file:line) specificity; 1 is detailed; 2 is trivial.
+nim/google/gemma-4-31b-it,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,1,Note 3 has highest groundedness (file:line) specificity; 1 is detailed; 2 is trivial.
+nim/google/gemma-4-31b-it,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,2,Note 3 has highest groundedness (file:line) specificity; 1 is detailed; 2 is trivial.
+nim/google/gemma-4-31b-it,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note 1 has extreme groundedness with exact counts, paths, and DB connection quirks."
+nim/google/gemma-4-31b-it,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note 1 has extreme groundedness with exact counts, paths, and DB connection quirks."
+nim/google/gemma-4-31b-it,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note 1 has extreme groundedness with exact counts, paths, and DB connection quirks."
+nim/google/gemma-4-31b-it,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Note 2 has highest groundedness (file:line, exit codes, specific logic patterns)."
+nim/google/gemma-4-31b-it,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note 2 has highest groundedness (file:line, exit codes, specific logic patterns)."
+nim/google/gemma-4-31b-it,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Note 2 has highest groundedness (file:line, exit codes, specific logic patterns)."
+nim/google/gemma-4-31b-it,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,2,"Note 2 has highest density of hashes, PRs, SQL files, and deployment steps."
+nim/google/gemma-4-31b-it,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"Note 2 has highest density of hashes, PRs, SQL files, and deployment steps."
+nim/google/gemma-4-31b-it,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,1,"Note 2 has highest density of hashes, PRs, SQL files, and deployment steps."
+nim/google/gemma-4-31b-it,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Note 1 has superior groundedness (line numbers, commit, specific RBAC logic) and calibration."
+nim/google/gemma-4-31b-it,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"Note 1 has superior groundedness (line numbers, commit, specific RBAC logic) and calibration."
+nim/google/gemma-4-31b-it,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"Note 1 has superior groundedness (line numbers, commit, specific RBAC logic) and calibration."
+nim/google/gemma-4-31b-it,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,"Note 1 has superior grounded commits, file paths, and specific bug-fix logic."
+nim/google/gemma-4-31b-it,15,C,d683c010-89dd-4b20-9086-48a3916578b4,1,"Note 1 has superior grounded commits, file paths, and specific bug-fix logic."
+nim/google/gemma-4-31b-it,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,2,"Note 1 has superior grounded commits, file paths, and specific bug-fix logic."
+nim/google/gemma-4-31b-it,16,B,709daba9-9666-424a-a5de-a096679e7f03,1,"Note 2 has highest groundedness with exact paths, versions, and clear resolution."
+nim/google/gemma-4-31b-it,16,C,500cca5d-683d-4a27-8a40-456d07688921,2,"Note 2 has highest groundedness with exact paths, versions, and clear resolution."
+nim/google/gemma-4-31b-it,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,3,"Note 2 has highest groundedness with exact paths, versions, and clear resolution."
+nim/google/gemma-4-31b-it,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,Note 1 has highest groundedness with specific code lines and logic fixes.
+nim/google/gemma-4-31b-it,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,Note 1 has highest groundedness with specific code lines and logic fixes.
+nim/google/gemma-4-31b-it,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,Note 1 has highest groundedness with specific code lines and logic fixes.
+nim/google/gemma-4-31b-it,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,3,"Note 2 has highest density of file paths, PRs, and specific code logic."
+nim/google/gemma-4-31b-it,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,1,"Note 2 has highest density of file paths, PRs, and specific code logic."
+nim/google/gemma-4-31b-it,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,2,"Note 2 has highest density of file paths, PRs, and specific code logic."
+nim/google/gemma-4-31b-it,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,3,"Note 2 has highest groundedness (specific IDs, counts, logs, paths, and failure modes)."
+nim/google/gemma-4-31b-it,19,C,7b000068-550e-4169-981e-23b105e5143b,2,"Note 2 has highest groundedness (specific IDs, counts, logs, paths, and failure modes)."
+nim/google/gemma-4-31b-it,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,1,"Note 2 has highest groundedness (specific IDs, counts, logs, paths, and failure modes)."
+nim/google/gemma-4-31b-it,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,3,"Note 3 has extreme specificity, versioning, dates, and a clear technical verdict."
+nim/google/gemma-4-31b-it,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,"Note 3 has extreme specificity, versioning, dates, and a clear technical verdict."
+nim/google/gemma-4-31b-it,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,"Note 3 has extreme specificity, versioning, dates, and a clear technical verdict."
+nim/google/gemma-4-31b-it,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,"Note 2 has highest groundedness (line numbers, hashes, error codes, documented behavior)."
+nim/google/gemma-4-31b-it,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,2,"Note 2 has highest groundedness (line numbers, hashes, error codes, documented behavior)."
+nim/google/gemma-4-31b-it,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,1,"Note 2 has highest groundedness (line numbers, hashes, error codes, documented behavior)."
+nim/google/gemma-4-31b-it,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,"Note 1 is superior due to extreme groundedness, specific IDs, and verification logs."
+nim/google/gemma-4-31b-it,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Note 1 is superior due to extreme groundedness, specific IDs, and verification logs."
+nim/google/gemma-4-31b-it,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Note 1 is superior due to extreme groundedness, specific IDs, and verification logs."
+nim/google/gemma-4-31b-it,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,"Note 1 has highest groundedness with PRs, hex codes, and specific versioning."
+nim/google/gemma-4-31b-it,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,"Note 1 has highest groundedness with PRs, hex codes, and specific versioning."
+nim/google/gemma-4-31b-it,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,"Note 1 has highest groundedness with PRs, hex codes, and specific versioning."
+nim/google/gemma-4-31b-it,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,"Note 2 has highest density of checkable anchors, operational warnings, and commit hashes, and IDs."
+nim/google/gemma-4-31b-it,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,"Note 2 has highest density of checkable anchors, operational warnings, and commit hashes, and IDs."
+nim/google/gemma-4-31b-it,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,"Note 2 has highest density of checkable anchors, operational warnings, and commit hashes, and IDs."
+nim/google/gemma-4-31b-it,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,3,"Note 2 has highest groundedness (ms, line numbers, specific payloads, test results)."
+nim/google/gemma-4-31b-it,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,2,"Note 2 has highest groundedness (ms, line numbers, specific payloads, test results)."
+nim/google/gemma-4-31b-it,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,"Note 2 has highest groundedness (ms, line numbers, specific payloads, test results)."
+nim/google/gemma-4-31b-it,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,Note 1 has superior groundedness with precise file:line anchors and actionable for security fixes.
+nim/google/gemma-4-31b-it,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,Note 1 has superior groundedness with precise file:line anchors and actionable for security fixes.
+nim/google/gemma-4-31b-it,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,2,Note 1 has superior groundedness with precise file:line anchors and actionable for security fixes.
+nim/google/gemma-4-31b-it,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,2,"Note 1 has superior groundedness (paths, PRs, IDs) and a structured handoff plan."
+nim/google/gemma-4-31b-it,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,"Note 1 has superior groundedness (paths, PRs, IDs) and a structured handoff plan."
+nim/google/gemma-4-31b-it,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,3,"Note 1 has superior groundedness (paths, PRs, IDs) and a structured handoff plan."
+nim/google/gemma-4-31b-it,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,"Note 1 has extreme groundedness (exact counts, IDs, paths, and logic decisions)."
+nim/google/gemma-4-31b-it,28,C,c3e15471-c285-449a-886f-3be942aa38f8,2,"Note 1 has extreme groundedness (exact counts, IDs, paths, and logic decisions)."
+nim/google/gemma-4-31b-it,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,1,"Note 1 has extreme groundedness (exact counts, IDs, paths, and logic decisions)."
+nim/google/gemma-4-31b-it,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Note 1 has extreme groundedness (hashes, counts, paths, specific to the state)."
+nim/google/gemma-4-31b-it,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Note 1 has extreme groundedness (hashes, counts, paths, specific to the state)."
+nim/google/gemma-4-31b-it,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Note 1 has extreme groundedness (hashes, counts, paths, specific to the state)."
+nim/meta/llama-4-maverick-17b-128e-instruct,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,"Most specific, grounded, and useful is note 1, then note 3"
+nim/meta/llama-4-maverick-17b-128e-instruct,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,3,"Most specific, grounded, and useful is note 1, then note 3"
+nim/meta/llama-4-maverick-17b-128e-instruct,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,2,"Most specific, grounded, and useful is note 1, then note 3"
+nim/meta/llama-4-maverick-17b-128e-instruct,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,3,Detail and usefulness
+nim/meta/llama-4-maverick-17b-128e-instruct,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,2,Detail and usefulness
+nim/meta/llama-4-maverick-17b-128e-instruct,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,1,Detail and usefulness
+nim/meta/llama-4-maverick-17b-128e-instruct,2,B,99f158da-cb72-4922-9064-01615cb286e2,3,"Notes ranked by specificity, groundedness, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,1,"Notes ranked by specificity, groundedness, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,2,"Notes ranked by specificity, groundedness, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,NOTE 1 and 2 are more grounded and useful
+nim/meta/llama-4-maverick-17b-128e-instruct,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,NOTE 1 and 2 are more grounded and useful
+nim/meta/llama-4-maverick-17b-128e-instruct,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,NOTE 1 and 2 are more grounded and useful
+nim/meta/llama-4-maverick-17b-128e-instruct,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Groundedness, specificity, and usefulness considered"
+nim/meta/llama-4-maverick-17b-128e-instruct,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,"Groundedness, specificity, and usefulness considered"
+nim/meta/llama-4-maverick-17b-128e-instruct,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,"Groundedness, specificity, and usefulness considered"
+nim/meta/llama-4-maverick-17b-128e-instruct,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"NOTE 2 most instructive, NOTE 1 very specific, NOTE 3 observational"
+nim/meta/llama-4-maverick-17b-128e-instruct,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,1,"NOTE 2 most instructive, NOTE 1 very specific, NOTE 3 observational"
+nim/meta/llama-4-maverick-17b-128e-instruct,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,2,"NOTE 2 most instructive, NOTE 1 very specific, NOTE 3 observational"
+nim/meta/llama-4-maverick-17b-128e-instruct,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,"Calibration, narrative, and lesson learned"
+nim/meta/llama-4-maverick-17b-128e-instruct,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,1,"Calibration, narrative, and lesson learned"
+nim/meta/llama-4-maverick-17b-128e-instruct,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,3,"Calibration, narrative, and lesson learned"
+nim/meta/llama-4-maverick-17b-128e-instruct,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,Comprehensive coverage and clear next steps
+nim/meta/llama-4-maverick-17b-128e-instruct,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,Comprehensive coverage and clear next steps
+nim/meta/llama-4-maverick-17b-128e-instruct,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,Comprehensive coverage and clear next steps
+nim/meta/llama-4-maverick-17b-128e-instruct,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,Based on overall quality signals and usefulness
+nim/meta/llama-4-maverick-17b-128e-instruct,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,Based on overall quality signals and usefulness
+nim/meta/llama-4-maverick-17b-128e-instruct,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,Based on overall quality signals and usefulness
+nim/meta/llama-4-maverick-17b-128e-instruct,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,NOTE 1 most comprehensive and insightful
+nim/meta/llama-4-maverick-17b-128e-instruct,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,NOTE 1 most comprehensive and insightful
+nim/meta/llama-4-maverick-17b-128e-instruct,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,NOTE 1 most comprehensive and insightful
+nim/meta/llama-4-maverick-17b-128e-instruct,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"Groundedness, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"Groundedness, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"Groundedness, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Based on groundedness, specificity, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Based on groundedness, specificity, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Based on groundedness, specificity, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Calibration, specificity, and coding relevance"
+nim/meta/llama-4-maverick-17b-128e-instruct,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Calibration, specificity, and coding relevance"
+nim/meta/llama-4-maverick-17b-128e-instruct,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Calibration, specificity, and coding relevance"
+nim/meta/llama-4-maverick-17b-128e-instruct,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"Based on groundedness, specificity, calibration, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,2,"Based on groundedness, specificity, calibration, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,3,"Based on groundedness, specificity, calibration, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Groundedness, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"Groundedness, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"Groundedness, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,Diagnostic depth and usefulness for future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,15,C,d683c010-89dd-4b20-9086-48a3916578b4,2,Diagnostic depth and usefulness for future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,1,Diagnostic depth and usefulness for future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,16,B,709daba9-9666-424a-a5de-a096679e7f03,2,Note 1 has most specific checkable details and actionable insights
+nim/meta/llama-4-maverick-17b-128e-instruct,16,C,500cca5d-683d-4a27-8a40-456d07688921,3,Note 1 has most specific checkable details and actionable insights
+nim/meta/llama-4-maverick-17b-128e-instruct,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,1,Note 1 has most specific checkable details and actionable insights
+nim/meta/llama-4-maverick-17b-128e-instruct,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,"Note 1 is most grounded, specific, and useful to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,"Note 1 is most grounded, specific, and useful to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,"Note 1 is most grounded, specific, and useful to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,3,Detail and usefulness to future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,1,Detail and usefulness to future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,2,Detail and usefulness to future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,2,"Detail, insight, and actionable recommendations"
+nim/meta/llama-4-maverick-17b-128e-instruct,19,C,7b000068-550e-4169-981e-23b105e5143b,3,"Detail, insight, and actionable recommendations"
+nim/meta/llama-4-maverick-17b-128e-instruct,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,1,"Detail, insight, and actionable recommendations"
+nim/meta/llama-4-maverick-17b-128e-instruct,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,3,"Based on groundedness, specificity, calibration, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,"Based on groundedness, specificity, calibration, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,"Based on groundedness, specificity, calibration, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,"Based on groundedness, specificity, calibration, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,"Based on groundedness, specificity, calibration, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,2,"Based on groundedness, specificity, calibration, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,"Most grounded, specific, and useful notes first"
+nim/meta/llama-4-maverick-17b-128e-instruct,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Most grounded, specific, and useful notes first"
+nim/meta/llama-4-maverick-17b-128e-instruct,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Most grounded, specific, and useful notes first"
+nim/meta/llama-4-maverick-17b-128e-instruct,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,2,"Groundedness, specificity, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,3,"Groundedness, specificity, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,"Groundedness, specificity, and future usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,24,B,81068e05-2523-458d-921b-521e8ed05c34,2,Calibration and operational context
+nim/meta/llama-4-maverick-17b-128e-instruct,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,Calibration and operational context
+nim/meta/llama-4-maverick-17b-128e-instruct,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,3,Calibration and operational context
+nim/meta/llama-4-maverick-17b-128e-instruct,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,3,"Detail, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,2,"Detail, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,"Detail, specificity, and usefulness to future sessions"
+nim/meta/llama-4-maverick-17b-128e-instruct,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,Actionability and issue resolution clarity
+nim/meta/llama-4-maverick-17b-128e-instruct,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,Actionability and issue resolution clarity
+nim/meta/llama-4-maverick-17b-128e-instruct,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,2,Actionability and issue resolution clarity
+nim/meta/llama-4-maverick-17b-128e-instruct,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,NOTE 1 is most actionable and useful for future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,NOTE 1 is most actionable and useful for future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,2,NOTE 1 is most actionable and useful for future sessions
+nim/meta/llama-4-maverick-17b-128e-instruct,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,Complexity and breadth of insights
+nim/meta/llama-4-maverick-17b-128e-instruct,28,C,c3e15471-c285-449a-886f-3be942aa38f8,1,Complexity and breadth of insights
+nim/meta/llama-4-maverick-17b-128e-instruct,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,2,Complexity and breadth of insights
+nim/meta/llama-4-maverick-17b-128e-instruct,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Groundedness, specificity, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Groundedness, specificity, and usefulness"
+nim/meta/llama-4-maverick-17b-128e-instruct,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Groundedness, specificity, and usefulness"
+nim/mistralai/mistral-large-3-675b-instruct-2512,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,"1: precise anchors, calibration; 2: actionable but verbose; 3: useful but less grounded"
+nim/mistralai/mistral-large-3-675b-instruct-2512,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,2,"1: precise anchors, calibration; 2: actionable but verbose; 3: useful but less grounded"
+nim/mistralai/mistral-large-3-675b-instruct-2512,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,3,"1: precise anchors, calibration; 2: actionable but verbose; 3: useful but less grounded"
+nim/mistralai/mistral-large-3-675b-instruct-2512,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,3,"2: grounded, specific, calibrated. 3: detailed but verbose. 1: abstract, no anchors."
+nim/mistralai/mistral-large-3-675b-instruct-2512,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,2,"2: grounded, specific, calibrated. 3: detailed but verbose. 1: abstract, no anchors."
+nim/mistralai/mistral-large-3-675b-instruct-2512,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,1,"2: grounded, specific, calibrated. 3: detailed but verbose. 1: abstract, no anchors."
+nim/mistralai/mistral-large-3-675b-instruct-2512,2,B,99f158da-cb72-4922-9064-01615cb286e2,2,"1: anchored, calibrated, actionable; 2: specific but less grounded; 3: verbose, less structured"
+nim/mistralai/mistral-large-3-675b-instruct-2512,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,1,"1: anchored, calibrated, actionable; 2: specific but less grounded; 3: verbose, less structured"
+nim/mistralai/mistral-large-3-675b-instruct-2512,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,3,"1: anchored, calibrated, actionable; 2: specific but less grounded; 3: verbose, less structured"
+nim/mistralai/mistral-large-3-675b-instruct-2512,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,"2: precise anchors, calibrated, actionable; 1: detailed but verbose; 3: shallow DOM snapshot"
+nim/mistralai/mistral-large-3-675b-instruct-2512,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,2,"2: precise anchors, calibrated, actionable; 1: detailed but verbose; 3: shallow DOM snapshot"
+nim/mistralai/mistral-large-3-675b-instruct-2512,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,1,"2: precise anchors, calibrated, actionable; 1: detailed but verbose; 3: shallow DOM snapshot"
+nim/mistralai/mistral-large-3-675b-instruct-2512,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"1: grounded, specific, calibrated, actionable; 3: thorough but verbose; 2: abstract, less anchored"
+nim/mistralai/mistral-large-3-675b-instruct-2512,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,"1: grounded, specific, calibrated, actionable; 3: thorough but verbose; 2: abstract, less anchored"
+nim/mistralai/mistral-large-3-675b-instruct-2512,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,"1: grounded, specific, calibrated, actionable; 3: thorough but verbose; 2: abstract, less anchored"
+nim/mistralai/mistral-large-3-675b-instruct-2512,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"1: grounded, specific, calibrated; 2: detailed but less anchored; 3: descriptive, lacks checkable anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,2,"1: grounded, specific, calibrated; 2: detailed but less anchored; 3: descriptive, lacks checkable anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,1,"1: grounded, specific, calibrated; 2: detailed but less anchored; 3: descriptive, lacks checkable anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,"2: grounded, calibrated, actionable. 1: specific but less calibrated. 3: broad, less anchored."
+nim/mistralai/mistral-large-3-675b-instruct-2512,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,1,"2: grounded, calibrated, actionable. 1: specific but less calibrated. 3: broad, less anchored."
+nim/mistralai/mistral-large-3-675b-instruct-2512,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,3,"2: grounded, calibrated, actionable. 1: specific but less calibrated. 3: broad, less anchored."
+nim/mistralai/mistral-large-3-675b-instruct-2512,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"2: grounded, calibrated, actionable; 3: detailed but verbose; 1: vague anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,2,"2: grounded, calibrated, actionable; 3: detailed but verbose; 1: vague anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,1,"2: grounded, calibrated, actionable; 3: detailed but verbose; 1: vague anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"1: rich anchors, calibration, actionable; 3: specific metrics; 2: shallow"
+nim/mistralai/mistral-large-3-675b-instruct-2512,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"1: rich anchors, calibration, actionable; 3: specific metrics; 2: shallow"
+nim/mistralai/mistral-large-3-675b-instruct-2512,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"1: rich anchors, calibration, actionable; 3: specific metrics; 2: shallow"
+nim/mistralai/mistral-large-3-675b-instruct-2512,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"1: rich anchors, calibrated, actionable; 2: good specifics; 3: minimal anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"1: rich anchors, calibrated, actionable; 2: good specifics; 3: minimal anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"1: rich anchors, calibrated, actionable; 2: good specifics; 3: minimal anchors"
+nim/mistralai/mistral-large-3-675b-instruct-2512,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"1: rich anchors, calibrated, actionable; 3: specific paths/lines; 2: minimal context"
+nim/mistralai/mistral-large-3-675b-instruct-2512,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"1: rich anchors, calibrated, actionable; 3: specific paths/lines; 2: minimal context"
+nim/mistralai/mistral-large-3-675b-instruct-2512,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"1: rich anchors, calibrated, actionable; 3: specific paths/lines; 2: minimal context"
+nim/mistralai/mistral-large-3-675b-instruct-2512,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,2,"1: rich anchors, calibrated, actionable. 3: grounded but narrow. 2: vague, no checkable details."
+nim/mistralai/mistral-large-3-675b-instruct-2512,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,3,"1: rich anchors, calibrated, actionable. 3: grounded but narrow. 2: vague, no checkable details."
+nim/mistralai/mistral-large-3-675b-instruct-2512,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"1: rich anchors, calibrated, actionable. 3: grounded but narrow. 2: vague, no checkable details."
+nim/mistralai/mistral-large-3-675b-instruct-2512,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"2: precise anchors, calibrated, actionable; 1: structured but less urgent; 3: verbose, vague decisions"
+nim/mistralai/mistral-large-3-675b-instruct-2512,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"2: precise anchors, calibrated, actionable; 1: structured but less urgent; 3: verbose, vague decisions"
+nim/mistralai/mistral-large-3-675b-instruct-2512,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"2: precise anchors, calibrated, actionable; 1: structured but less urgent; 3: verbose, vague decisions"
+nim/mistralai/mistral-large-3-675b-instruct-2512,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"1: rich anchors, calibrated, actionable; 2: specific but less grounded; 3: minimal future utility"
+nim/mistralai/mistral-large-3-675b-instruct-2512,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"1: rich anchors, calibrated, actionable; 2: specific but less grounded; 3: minimal future utility"
+nim/mistralai/mistral-large-3-675b-instruct-2512,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,2,"1: rich anchors, calibrated, actionable; 2: specific but less grounded; 3: minimal future utility"
+nim/mistralai/mistral-large-3-675b-instruct-2512,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"1: grounded, specific, calibrated, actionable. 3: technical but less anchored. 2: vague counts, no code refs."
+nim/mistralai/mistral-large-3-675b-instruct-2512,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"1: grounded, specific, calibrated, actionable. 3: technical but less anchored. 2: vague counts, no code refs."
+nim/mistralai/mistral-large-3-675b-instruct-2512,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"1: grounded, specific, calibrated, actionable. 3: technical but less anchored. 2: vague counts, no code refs."
+nim/nvidia/nemotron-3-super-120b-a12b,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,3,"Note 2 offers most detailed, actionable release log with explicit uncertainties and verification steps."
+nim/nvidia/nemotron-3-super-120b-a12b,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,1,"Note 2 offers most detailed, actionable release log with explicit uncertainties and verification steps."
+nim/nvidia/nemotron-3-super-120b-a12b,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,2,"Note 2 offers most detailed, actionable release log with explicit uncertainties and verification steps."
+nim/nvidia/nemotron-3-super-120b-a12b,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,3,Note2 most grounded with file specifics; Note3 detailed; Note1 less concrete
+nim/nvidia/nemotron-3-super-120b-a12b,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,2,Note2 most grounded with file specifics; Note3 detailed; Note1 less concrete
+nim/nvidia/nemotron-3-super-120b-a12b,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,1,Note2 most grounded with file specifics; Note3 detailed; Note1 less concrete
+nim/nvidia/nemotron-3-super-120b-a12b,2,B,99f158da-cb72-4922-9064-01615cb286e2,2,"Note 3 shows highest calibration, specific IDs, and actionable dedup-aware solution."
+nim/nvidia/nemotron-3-super-120b-a12b,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,3,"Note 3 shows highest calibration, specific IDs, and actionable dedup-aware solution."
+nim/nvidia/nemotron-3-super-120b-a12b,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,1,"Note 3 shows highest calibration, specific IDs, and actionable dedup-aware solution."
+nim/nvidia/nemotron-3-super-120b-a12b,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,Note1 most grounded/specific; Note2 good; Note3 lacks anchors and actionable detail.
+nim/nvidia/nemotron-3-super-120b-a12b,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,Note1 most grounded/specific; Note2 good; Note3 lacks anchors and actionable detail.
+nim/nvidia/nemotron-3-super-120b-a12b,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,Note1 most grounded/specific; Note2 good; Note3 lacks anchors and actionable detail.
+nim/nvidia/nemotron-3-super-120b-a12b,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Note1: detailed runtime evidence; Note3: solid doc audit; Note2: vague, low specificity."
+nim/nvidia/nemotron-3-super-120b-a12b,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,"Note1: detailed runtime evidence; Note3: solid doc audit; Note2: vague, low specificity."
+nim/nvidia/nemotron-3-super-120b-a12b,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,"Note1: detailed runtime evidence; Note3: solid doc audit; Note2: vague, low specificity."
+nim/nvidia/nemotron-3-super-120b-a12b,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,Note2 best calibrated & specific; Note1 grounded; Note3 less actionable.
+nim/nvidia/nemotron-3-super-120b-a12b,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,1,Note2 best calibrated & specific; Note1 grounded; Note3 less actionable.
+nim/nvidia/nemotron-3-super-120b-a12b,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,2,Note2 best calibrated & specific; Note1 grounded; Note3 less actionable.
+nim/nvidia/nemotron-3-super-120b-a12b,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,3,"Note 2 best: commit hash, lessons, calibration; Note 3 detailed; Note 1 less specific."
+nim/nvidia/nemotron-3-super-120b-a12b,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,1,"Note 2 best: commit hash, lessons, calibration; Note 3 detailed; Note 1 less specific."
+nim/nvidia/nemotron-3-super-120b-a12b,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,2,"Note 2 best: commit hash, lessons, calibration; Note 3 detailed; Note 1 less specific."
+nim/nvidia/nemotron-3-super-120b-a12b,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Note3 most specific, actionable, grounded; Note2 good; Note1 least detail."
+nim/nvidia/nemotron-3-super-120b-a12b,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,"Note3 most specific, actionable, grounded; Note2 good; Note1 least detail."
+nim/nvidia/nemotron-3-super-120b-a12b,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,"Note3 most specific, actionable, grounded; Note2 good; Note1 least detail."
+nim/nvidia/nemotron-3-super-120b-a12b,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,Note1 most grounded/specific; Note3 actionable; Note2 descriptive but less verifiable
+nim/nvidia/nemotron-3-super-120b-a12b,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,Note1 most grounded/specific; Note3 actionable; Note2 descriptive but less verifiable
+nim/nvidia/nemotron-3-super-120b-a12b,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,Note1 most grounded/specific; Note3 actionable; Note2 descriptive but less verifiable
+nim/nvidia/nemotron-3-super-120b-a12b,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,Note1 offers deepest anchors and lessons; Note2 solid; Note3 lacks detail.
+nim/nvidia/nemotron-3-super-120b-a12b,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,Note1 offers deepest anchors and lessons; Note2 solid; Note3 lacks detail.
+nim/nvidia/nemotron-3-super-120b-a12b,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,Note1 offers deepest anchors and lessons; Note2 solid; Note3 lacks detail.
+nim/nvidia/nemotron-3-super-120b-a12b,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,Note1 most grounded/specific/calibrated; Note3 detailed; Note2 minimal
+nim/nvidia/nemotron-3-super-120b-a12b,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,Note1 most grounded/specific/calibrated; Note3 detailed; Note2 minimal
+nim/nvidia/nemotron-3-super-120b-a12b,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,Note1 most grounded/specific/calibrated; Note3 detailed; Note2 minimal
+nim/nvidia/nemotron-3-super-120b-a12b,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,Note1 most detailed with verifiable data; Note2 moderate; Note3 least specific
+nim/nvidia/nemotron-3-super-120b-a12b,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,Note1 most detailed with verifiable data; Note2 moderate; Note3 least specific
+nim/nvidia/nemotron-3-super-120b-a12b,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,Note1 most detailed with verifiable data; Note2 moderate; Note3 least specific
+nim/nvidia/nemotron-3-super-120b-a12b,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Note 2 most specific, self‑correcting, actionable; Note 1 detailed; Note 3 less anchored."
+nim/nvidia/nemotron-3-super-120b-a12b,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note 2 most specific, self‑correcting, actionable; Note 1 detailed; Note 3 less anchored."
+nim/nvidia/nemotron-3-super-120b-a12b,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Note 2 most specific, self‑correcting, actionable; Note 1 detailed; Note 3 less anchored."
+nim/nvidia/nemotron-3-super-120b-a12b,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"Note 1 provides richest anchors, clear fix, and future‑use guidance."
+nim/nvidia/nemotron-3-super-120b-a12b,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"Note 1 provides richest anchors, clear fix, and future‑use guidance."
+nim/nvidia/nemotron-3-super-120b-a12b,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,2,"Note 1 provides richest anchors, clear fix, and future‑use guidance."
+nim/nvidia/nemotron-3-super-120b-a12b,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Note1 offers specific anchors, self‑critique, actionable lesson; others less grounded."
+nim/nvidia/nemotron-3-super-120b-a12b,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"Note1 offers specific anchors, self‑critique, actionable lesson; others less grounded."
+nim/nvidia/nemotron-3-super-120b-a12b,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"Note1 offers specific anchors, self‑critique, actionable lesson; others less grounded."
+nim/nvidia/nemotron-3-super-120b-a12b,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,Note1 most specific with commits/files/tests; Note2 solid; Note3 vague.
+nim/nvidia/nemotron-3-super-120b-a12b,15,C,d683c010-89dd-4b20-9086-48a3916578b4,1,Note1 most specific with commits/files/tests; Note2 solid; Note3 vague.
+nim/nvidia/nemotron-3-super-120b-a12b,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,2,Note1 most specific with commits/files/tests; Note2 solid; Note3 vague.
+nim/nvidia/nemotron-3-super-120b-a12b,16,B,709daba9-9666-424a-a5de-a096679e7f03,2,"Note1 most specific, actionable, grounded; Note2 solid fix; Note3 less detailed future steps."
+nim/nvidia/nemotron-3-super-120b-a12b,16,C,500cca5d-683d-4a27-8a40-456d07688921,3,"Note1 most specific, actionable, grounded; Note2 solid fix; Note3 less detailed future steps."
+nim/nvidia/nemotron-3-super-120b-a12b,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,1,"Note1 most specific, actionable, grounded; Note2 solid fix; Note3 less detailed future steps."
+nim/nvidia/nemotron-3-super-120b-a12b,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,Note1 most grounded/specific; Note2 good but less code-level; Note3 least actionable
+nim/nvidia/nemotron-3-super-120b-a12b,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,Note1 most grounded/specific; Note2 good but less code-level; Note3 least actionable
+nim/nvidia/nemotron-3-super-120b-a12b,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,Note1 most grounded/specific; Note2 good but less code-level; Note3 least actionable
+nim/nvidia/nemotron-3-super-120b-a12b,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,1,"Note 1 provides most concrete, verifiable details with IDs, timestamps, and reproduction steps."
+nim/nvidia/nemotron-3-super-120b-a12b,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,2,"Note 1 provides most concrete, verifiable details with IDs, timestamps, and reproduction steps."
+nim/nvidia/nemotron-3-super-120b-a12b,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,3,"Note 1 provides most concrete, verifiable details with IDs, timestamps, and reproduction steps."
+nim/nvidia/nemotron-3-super-120b-a12b,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,1,Note1 detailed & useful; Note2 calibrated; Note3 least actionable for future work.
+nim/nvidia/nemotron-3-super-120b-a12b,19,C,7b000068-550e-4169-981e-23b105e5143b,3,Note1 detailed & useful; Note2 calibrated; Note3 least actionable for future work.
+nim/nvidia/nemotron-3-super-120b-a12b,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,2,Note1 detailed & useful; Note2 calibrated; Note3 least actionable for future work.
+nim/nvidia/nemotron-3-super-120b-a12b,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,3,"Note 3 most detailed, actionable, and calibrated; Note 1 clear rule; Note 2 merely procedural."
+nim/nvidia/nemotron-3-super-120b-a12b,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,"Note 3 most detailed, actionable, and calibrated; Note 1 clear rule; Note 2 merely procedural."
+nim/nvidia/nemotron-3-super-120b-a12b,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,"Note 3 most detailed, actionable, and calibrated; Note 1 clear rule; Note 2 merely procedural."
+nim/nvidia/nemotron-3-super-120b-a12b,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,"Note1 most detailed with paths, counts, validation; Note2 solid; Note3 lacks metrics"
+nim/nvidia/nemotron-3-super-120b-a12b,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,"Note1 most detailed with paths, counts, validation; Note2 solid; Note3 lacks metrics"
+nim/nvidia/nemotron-3-super-120b-a12b,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,2,"Note1 most detailed with paths, counts, validation; Note2 solid; Note3 lacks metrics"
+nim/nvidia/nemotron-3-super-120b-a12b,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,Note1 most grounded/specific; Note2 strong but less actionable; Note3 least detailed.
+nim/nvidia/nemotron-3-super-120b-a12b,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,Note1 most grounded/specific; Note2 strong but less actionable; Note3 least detailed.
+nim/nvidia/nemotron-3-super-120b-a12b,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,Note1 most grounded/specific; Note2 strong but less actionable; Note3 least detailed.
+nim/nvidia/nemotron-3-super-120b-a12b,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,"Note1 most specific, grounded, actionable; Note2 solid; Note3 vague"
+nim/nvidia/nemotron-3-super-120b-a12b,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,"Note1 most specific, grounded, actionable; Note2 solid; Note3 vague"
+nim/nvidia/nemotron-3-super-120b-a12b,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,"Note1 most specific, grounded, actionable; Note2 solid; Note3 vague"
+nim/nvidia/nemotron-3-super-120b-a12b,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,Note 2 most specific & grounded; note 3 detailed; note 1 less actionable.
+nim/nvidia/nemotron-3-super-120b-a12b,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,Note 2 most specific & grounded; note 3 detailed; note 1 less actionable.
+nim/nvidia/nemotron-3-super-120b-a12b,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,Note 2 most specific & grounded; note 3 detailed; note 1 less actionable.
+nim/nvidia/nemotron-3-super-120b-a12b,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,3,"Note 3 shows strongest grounding, specificity, self‑calibration, and actionable guidance."
+nim/nvidia/nemotron-3-super-120b-a12b,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,1,"Note 3 shows strongest grounding, specificity, self‑calibration, and actionable guidance."
+nim/nvidia/nemotron-3-super-120b-a12b,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,2,"Note 3 shows strongest grounding, specificity, self‑calibration, and actionable guidance."
+nim/nvidia/nemotron-3-super-120b-a12b,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,"Note1: deepest grounding, specific fixes; Note3: solid but pending decision; Note2: merely descriptive."
+nim/nvidia/nemotron-3-super-120b-a12b,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,"Note1: deepest grounding, specific fixes; Note3: solid but pending decision; Note2: merely descriptive."
+nim/nvidia/nemotron-3-super-120b-a12b,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,2,"Note1: deepest grounding, specific fixes; Note3: solid but pending decision; Note2: merely descriptive."
+nim/nvidia/nemotron-3-super-120b-a12b,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,"Note1 most specific with file paths, PRs, cards; Note2 solid data; Note3 least grounded."
+nim/nvidia/nemotron-3-super-120b-a12b,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,"Note1 most specific with file paths, PRs, cards; Note2 solid data; Note3 least grounded."
+nim/nvidia/nemotron-3-super-120b-a12b,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,2,"Note1 most specific with file paths, PRs, cards; Note2 solid data; Note3 least grounded."
+nim/nvidia/nemotron-3-super-120b-a12b,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,"Note1 most detailed with IDs, counts, gotchas; Note3 solid; Note2 least specific"
+nim/nvidia/nemotron-3-super-120b-a12b,28,C,c3e15471-c285-449a-886f-3be942aa38f8,2,"Note1 most detailed with IDs, counts, gotchas; Note3 solid; Note2 least specific"
+nim/nvidia/nemotron-3-super-120b-a12b,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,1,"Note1 most detailed with IDs, counts, gotchas; Note3 solid; Note2 least specific"
+nim/nvidia/nemotron-3-super-120b-a12b,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,Note1 most specific & grounded; Note2 good evidence; Note3 vague & unactionable
+nim/nvidia/nemotron-3-super-120b-a12b,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,Note1 most specific & grounded; Note2 good evidence; Note3 vague & unactionable
+nim/nvidia/nemotron-3-super-120b-a12b,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,Note1 most specific & grounded; Note2 good evidence; Note3 vague & unactionable
+nim/openai/gpt-oss-120b,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,2,Note3 most concrete anchors & calibrated advice; Note1 solid code specifics; Note2 vague process.
+nim/openai/gpt-oss-120b,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,3,Note3 most concrete anchors & calibrated advice; Note1 solid code specifics; Note2 vague process.
+nim/openai/gpt-oss-120b,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,1,Note3 most concrete anchors & calibrated advice; Note1 solid code specifics; Note2 vague process.
+nim/openai/gpt-oss-120b,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,2,"3 has most concrete anchors, counts, IDs; 1 clear pattern; 2 less actionable, vague."
+nim/openai/gpt-oss-120b,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,1,"3 has most concrete anchors, counts, IDs; 1 clear pattern; 2 less actionable, vague."
+nim/openai/gpt-oss-120b,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,3,"3 has most concrete anchors, counts, IDs; 1 clear pattern; 2 less actionable, vague."
+nim/openai/gpt-oss-120b,2,B,99f158da-cb72-4922-9064-01615cb286e2,2,Note1 most concrete actionable; Note2 detailed but less immediate; Note3 speculative
+nim/openai/gpt-oss-120b,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,1,Note1 most concrete actionable; Note2 detailed but less immediate; Note3 speculative
+nim/openai/gpt-oss-120b,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,3,Note1 most concrete actionable; Note2 detailed but less immediate; Note3 speculative
+nim/openai/gpt-oss-120b,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,Note1 most grounded/actionable; Note2 detailed but narrower; Note3 least specific.
+nim/openai/gpt-oss-120b,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,Note1 most grounded/actionable; Note2 detailed but narrower; Note3 least specific.
+nim/openai/gpt-oss-120b,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,Note1 most grounded/actionable; Note2 detailed but narrower; Note3 least specific.
+nim/openai/gpt-oss-120b,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Note3 most grounded with file:line, commit hash and actionable process; Note2 least specific."
+nim/openai/gpt-oss-120b,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,1,"Note3 most grounded with file:line, commit hash and actionable process; Note2 least specific."
+nim/openai/gpt-oss-120b,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,2,"Note3 most grounded with file:line, commit hash and actionable process; Note2 least specific."
+nim/openai/gpt-oss-120b,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note1 has concrete API, paths, counts; Note2 detailed but less immediate; Note3 vague."
+nim/openai/gpt-oss-120b,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,2,"Note1 has concrete API, paths, counts; Note2 detailed but less immediate; Note3 vague."
+nim/openai/gpt-oss-120b,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,1,"Note1 has concrete API, paths, counts; Note2 detailed but less immediate; Note3 vague."
+nim/openai/gpt-oss-120b,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,Note3 most concrete anchors & actionable; Note1 solid but narrower; Note2 less verifiable details.
+nim/openai/gpt-oss-120b,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,3,Note3 most concrete anchors & actionable; Note1 solid but narrower; Note2 less verifiable details.
+nim/openai/gpt-oss-120b,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,1,Note3 most concrete anchors & actionable; Note1 solid but narrower; Note2 less verifiable details.
+nim/openai/gpt-oss-120b,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Note 3 most grounded, detailed, actionable; Note 2 solid but narrower; Note 1 least depth."
+nim/openai/gpt-oss-120b,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,"Note 3 most grounded, detailed, actionable; Note 2 solid but narrower; Note 1 least depth."
+nim/openai/gpt-oss-120b,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,"Note 3 most grounded, detailed, actionable; Note 2 solid but narrower; Note 1 least depth."
+nim/openai/gpt-oss-120b,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note1 most grounded, specific, calibrated; note3 detailed but less clear; note2 limited scope"
+nim/openai/gpt-oss-120b,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"Note1 most grounded, specific, calibrated; note3 detailed but less clear; note2 limited scope"
+nim/openai/gpt-oss-120b,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"Note1 most grounded, specific, calibrated; note3 detailed but less clear; note2 limited scope"
+nim/openai/gpt-oss-120b,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note1 most anchored, specific, actionable; Note2 decent; Note3 least detail."
+nim/openai/gpt-oss-120b,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"Note1 most anchored, specific, actionable; Note2 decent; Note3 least detail."
+nim/openai/gpt-oss-120b,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"Note1 most anchored, specific, actionable; Note2 decent; Note3 least detail."
+nim/openai/gpt-oss-120b,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"Note1 most grounded, specific, calibrated; Note3 detailed but less uncertainty; Note2 minimal."
+nim/openai/gpt-oss-120b,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"Note1 most grounded, specific, calibrated; Note3 detailed but less uncertainty; Note2 minimal."
+nim/openai/gpt-oss-120b,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"Note1 most grounded, specific, calibrated; Note3 detailed but less uncertainty; Note2 minimal."
+nim/openai/gpt-oss-120b,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note1 most concrete counts, paths, IDs; Note2 solid but fewer specifics; Note3 vague."
+nim/openai/gpt-oss-120b,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note1 most concrete counts, paths, IDs; Note2 solid but fewer specifics; Note3 vague."
+nim/openai/gpt-oss-120b,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note1 most concrete counts, paths, IDs; Note2 solid but fewer specifics; Note3 vague."
+nim/openai/gpt-oss-120b,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Note2 most concrete fixes, anchors, calibration; Note1 clear code addition; Note3 less actionable, more business."
+nim/openai/gpt-oss-120b,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note2 most concrete fixes, anchors, calibration; Note1 clear code addition; Note3 less actionable, more business."
+nim/openai/gpt-oss-120b,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Note2 most concrete fixes, anchors, calibration; Note1 clear code addition; Note3 less actionable, more business."
+nim/openai/gpt-oss-120b,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"Note1 most specific, many anchors, clear resolution; Note2 solid but less depth; Note3 narrow scope."
+nim/openai/gpt-oss-120b,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"Note1 most specific, many anchors, clear resolution; Note2 solid but less depth; Note3 narrow scope."
+nim/openai/gpt-oss-120b,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,2,"Note1 most specific, many anchors, clear resolution; Note2 solid but less depth; Note3 narrow scope."
+nim/openai/gpt-oss-120b,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,Note1 most grounded; Note3 detailed config; Note2 least actionable.
+nim/openai/gpt-oss-120b,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,Note1 most grounded; Note3 detailed config; Note2 least actionable.
+nim/openai/gpt-oss-120b,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,Note1 most grounded; Note3 detailed config; Note2 least actionable.
+nim/openai/gpt-oss-120b,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,"Note1 most concrete anchors & fixes; Note2 solid data but speculative; Note3 vague, less actionable."
+nim/openai/gpt-oss-120b,15,C,d683c010-89dd-4b20-9086-48a3916578b4,1,"Note1 most concrete anchors & fixes; Note2 solid data but speculative; Note3 vague, less actionable."
+nim/openai/gpt-oss-120b,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,2,"Note1 most concrete anchors & fixes; Note2 solid data but speculative; Note3 vague, less actionable."
+nim/openai/gpt-oss-120b,16,B,709daba9-9666-424a-a5de-a096679e7f03,1,"2 most actionable, precise; 3 detailed status; 1 overly specific, less reusable"
+nim/openai/gpt-oss-120b,16,C,500cca5d-683d-4a27-8a40-456d07688921,2,"2 most actionable, precise; 3 detailed status; 1 overly specific, less reusable"
+nim/openai/gpt-oss-120b,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,3,"2 most actionable, precise; 3 detailed status; 1 overly specific, less reusable"
+nim/openai/gpt-oss-120b,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,Note1 most grounded/actionable; Note2 specific with uncertainty flags; Note3 only status snapshot.
+nim/openai/gpt-oss-120b,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,Note1 most grounded/actionable; Note2 specific with uncertainty flags; Note3 only status snapshot.
+nim/openai/gpt-oss-120b,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,Note1 most grounded/actionable; Note2 specific with uncertainty flags; Note3 only status snapshot.
+nim/openai/gpt-oss-120b,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,2,2 most specific with lessons & pending merge; 1 solid but narrower; 3 least context.
+nim/openai/gpt-oss-120b,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,1,2 most specific with lessons & pending merge; 1 solid but narrower; 3 least context.
+nim/openai/gpt-oss-120b,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,3,2 most specific with lessons & pending merge; 1 solid but narrower; 3 least context.
+nim/openai/gpt-oss-120b,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,1,"Note1 most concrete; Note3 clear PR details; Note2 vague, less verifiable."
+nim/openai/gpt-oss-120b,19,C,7b000068-550e-4169-981e-23b105e5143b,2,"Note1 most concrete; Note3 clear PR details; Note2 vague, less verifiable."
+nim/openai/gpt-oss-120b,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,3,"Note1 most concrete; Note3 clear PR details; Note2 vague, less verifiable."
+nim/openai/gpt-oss-120b,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,1,"2 gives concrete steps, paths, hashes; 1 is specific but narrower; 3 is high‑level."
+nim/openai/gpt-oss-120b,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,"2 gives concrete steps, paths, hashes; 1 is specific but narrower; 3 is high‑level."
+nim/openai/gpt-oss-120b,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,3,"2 gives concrete steps, paths, hashes; 1 is specific but narrower; 3 is high‑level."
+nim/openai/gpt-oss-120b,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,"Note1 most concrete data, counts, paths; Note2 solid env fix; Note3 least detailed."
+nim/openai/gpt-oss-120b,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,"Note1 most concrete data, counts, paths; Note2 solid env fix; Note3 least detailed."
+nim/openai/gpt-oss-120b,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,2,"Note1 most concrete data, counts, paths; Note2 solid env fix; Note3 least detailed."
+nim/openai/gpt-oss-120b,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,"Note1 most concrete, anchored and actionable; Note2 detailed but less verified; Note3 many blockers"
+nim/openai/gpt-oss-120b,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Note1 most concrete, anchored and actionable; Note2 detailed but less verified; Note3 many blockers"
+nim/openai/gpt-oss-120b,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Note1 most concrete, anchored and actionable; Note2 detailed but less verified; Note3 many blockers"
+nim/openai/gpt-oss-120b,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,Note1 most concrete anchors and actionable; Note2 decent data but less technical depth; Note3 vague.
+nim/openai/gpt-oss-120b,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,Note1 most concrete anchors and actionable; Note2 decent data but less technical depth; Note3 vague.
+nim/openai/gpt-oss-120b,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,Note1 most concrete anchors and actionable; Note2 decent data but less technical depth; Note3 vague.
+nim/openai/gpt-oss-120b,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,"Note2 most grounded, specific, actionable; Note3 detailed; Note1 less critical"
+nim/openai/gpt-oss-120b,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,"Note2 most grounded, specific, actionable; Note3 detailed; Note1 less critical"
+nim/openai/gpt-oss-120b,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,"Note2 most grounded, specific, actionable; Note3 detailed; Note1 less critical"
+nim/openai/gpt-oss-120b,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,1,Note1 most concrete anchors and actionable details; Note2 detailed but less critical; Note3 vague prescriptions.
+nim/openai/gpt-oss-120b,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,3,Note1 most concrete anchors and actionable details; Note2 detailed but less critical; Note3 vague prescriptions.
+nim/openai/gpt-oss-120b,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,2,Note1 most concrete anchors and actionable details; Note2 detailed but less critical; Note3 vague prescriptions.
+nim/openai/gpt-oss-120b,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,"Note 1 concrete, actionable fixes; Note 3 detailed but decision‑pending; Note 2 generic API overview."
+nim/openai/gpt-oss-120b,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,"Note 1 concrete, actionable fixes; Note 3 detailed but decision‑pending; Note 2 generic API overview."
+nim/openai/gpt-oss-120b,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,2,"Note 1 concrete, actionable fixes; Note 3 detailed but decision‑pending; Note 2 generic API overview."
+nim/openai/gpt-oss-120b,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,"Note1 most concrete, many anchors; Note2 solid data; Note3 least specific/grounded."
+nim/openai/gpt-oss-120b,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,"Note1 most concrete, many anchors; Note2 solid data; Note3 least specific/grounded."
+nim/openai/gpt-oss-120b,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,2,"Note1 most concrete, many anchors; Note2 solid data; Note3 least specific/grounded."
+nim/openai/gpt-oss-120b,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,"Note3 most concrete, actionable bugs; Note1 detailed but niche; Note2 minimal info"
+nim/openai/gpt-oss-120b,28,C,c3e15471-c285-449a-886f-3be942aa38f8,1,"Note3 most concrete, actionable bugs; Note1 detailed but niche; Note2 minimal info"
+nim/openai/gpt-oss-120b,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,2,"Note3 most concrete, actionable bugs; Note1 detailed but niche; Note2 minimal info"
+nim/openai/gpt-oss-120b,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Note1 most concrete anchors, counts, paths; Note2 specific but fewer anchors; Note3 vague."
+nim/openai/gpt-oss-120b,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Note1 most concrete anchors, counts, paths; Note2 specific but fewer anchors; Note3 vague."
+nim/openai/gpt-oss-120b,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Note1 most concrete anchors, counts, paths; Note2 specific but fewer anchors; Note3 vague."
+nim/qwen/qwen3.5-397b-a17b,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,Note 1 has precise file:line anchors; Note 2 lacks line numbers; Note 3 mixes paths with vague counts.
+nim/qwen/qwen3.5-397b-a17b,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,2,Note 1 has precise file:line anchors; Note 2 lacks line numbers; Note 3 mixes paths with vague counts.
+nim/qwen/qwen3.5-397b-a17b,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,3,Note 1 has precise file:line anchors; Note 2 lacks line numbers; Note 3 mixes paths with vague counts.
+nim/qwen/qwen3.5-397b-a17b,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,3,"Note 2 has precise file names, counts, and logic; Note 3 has IDs but is ongoing; Note 1 is generic pattern description."
+nim/qwen/qwen3.5-397b-a17b,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,2,"Note 2 has precise file names, counts, and logic; Note 3 has IDs but is ongoing; Note 1 is generic pattern description."
+nim/qwen/qwen3.5-397b-a17b,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,1,"Note 2 has precise file names, counts, and logic; Note 3 has IDs but is ongoing; Note 1 is generic pattern description."
+nim/qwen/qwen3.5-397b-a17b,2,B,99f158da-cb72-4922-9064-01615cb286e2,3,"Note 3 has highest groundedness with specific IDs, cleanup proof, and clear actionable paths."
+nim/qwen/qwen3.5-397b-a17b,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,2,"Note 3 has highest groundedness with specific IDs, cleanup proof, and clear actionable paths."
+nim/qwen/qwen3.5-397b-a17b,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,1,"Note 3 has highest groundedness with specific IDs, cleanup proof, and clear actionable paths."
+nim/qwen/qwen3.5-397b-a17b,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,Note 1 has precise hashes/IDs; Note 2 has file:lines but no hashes; Note 3 lacks code anchors.
+nim/qwen/qwen3.5-397b-a17b,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,Note 1 has precise hashes/IDs; Note 2 has file:lines but no hashes; Note 3 lacks code anchors.
+nim/qwen/qwen3.5-397b-a17b,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,Note 1 has precise hashes/IDs; Note 2 has file:lines but no hashes; Note 3 lacks code anchors.
+nim/qwen/qwen3.5-397b-a17b,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,Note 1 has specific IDs/hashes/actions; Note 3 has commit hashes/process; Note 2 is generic design description.
+nim/qwen/qwen3.5-397b-a17b,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,Note 1 has specific IDs/hashes/actions; Note 3 has commit hashes/process; Note 2 is generic design description.
+nim/qwen/qwen3.5-397b-a17b,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,Note 1 has specific IDs/hashes/actions; Note 3 has commit hashes/process; Note 2 is generic design description.
+nim/qwen/qwen3.5-397b-a17b,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,Note 2 has commit hashes and full parse logic; Note 1 has API paths but less structural depth; Note 3 lacks specific anchors.
+nim/qwen/qwen3.5-397b-a17b,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,1,Note 2 has commit hashes and full parse logic; Note 1 has API paths but less structural depth; Note 3 lacks specific anchors.
+nim/qwen/qwen3.5-397b-a17b,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,2,Note 2 has commit hashes and full parse logic; Note 1 has API paths but less structural depth; Note 3 lacks specific anchors.
+nim/qwen/qwen3.5-397b-a17b,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,3,Note 3 has precise file:line IDs and counts; Note 2 has commit hash but fewer anchors; Note 1 lacks hashes or counts.
+nim/qwen/qwen3.5-397b-a17b,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,2,Note 3 has precise file:line IDs and counts; Note 2 has commit hash but fewer anchors; Note 1 lacks hashes or counts.
+nim/qwen/qwen3.5-397b-a17b,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,1,Note 3 has precise file:line IDs and counts; Note 2 has commit hash but fewer anchors; Note 1 lacks hashes or counts.
+nim/qwen/qwen3.5-397b-a17b,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Note 3 has precise paths, commits, and test counts; Note 2 has commit hash but vague paths; Note 1 lacks commit hashes."
+nim/qwen/qwen3.5-397b-a17b,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,"Note 3 has precise paths, commits, and test counts; Note 2 has commit hash but vague paths; Note 1 lacks commit hashes."
+nim/qwen/qwen3.5-397b-a17b,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,"Note 3 has precise paths, commits, and test counts; Note 2 has commit hash but vague paths; Note 1 lacks commit hashes."
+nim/qwen/qwen3.5-397b-a17b,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note 1 has precise hashes, paths, and actions; Note 3 has metrics but blocking auth issues; Note 2 is generic descriptive text."
+nim/qwen/qwen3.5-397b-a17b,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"Note 1 has precise hashes, paths, and actions; Note 3 has metrics but blocking auth issues; Note 2 is generic descriptive text."
+nim/qwen/qwen3.5-397b-a17b,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"Note 1 has precise hashes, paths, and actions; Note 3 has metrics but blocking auth issues; Note 2 is generic descriptive text."
+nim/qwen/qwen3.5-397b-a17b,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note 1 has strongest anchors (commits, schema types); Note 2 good but broader; Note 3 lacks commit IDs."
+nim/qwen/qwen3.5-397b-a17b,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"Note 1 has strongest anchors (commits, schema types); Note 2 good but broader; Note 3 lacks commit IDs."
+nim/qwen/qwen3.5-397b-a17b,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"Note 1 has strongest anchors (commits, schema types); Note 2 good but broader; Note 3 lacks commit IDs."
+nim/qwen/qwen3.5-397b-a17b,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"Note 1 has highest specificity, calibration, and actionable future plans."
+nim/qwen/qwen3.5-397b-a17b,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"Note 1 has highest specificity, calibration, and actionable future plans."
+nim/qwen/qwen3.5-397b-a17b,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"Note 1 has highest specificity, calibration, and actionable future plans."
+nim/qwen/qwen3.5-397b-a17b,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note 1 has precise counts, paths, and credentials; Note 2 has commits but less data; Note 3 is vague narrative."
+nim/qwen/qwen3.5-397b-a17b,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note 1 has precise counts, paths, and credentials; Note 2 has commits but less data; Note 3 is vague narrative."
+nim/qwen/qwen3.5-397b-a17b,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note 1 has precise counts, paths, and credentials; Note 2 has commits but less data; Note 3 is vague narrative."
+nim/qwen/qwen3.5-397b-a17b,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,3,"Note 2 has precise file paths, logic patterns, and CI gate IDs; Note 3 lacks specific commit hashes; Note 1 uses a temporary path."
+nim/qwen/qwen3.5-397b-a17b,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note 2 has precise file paths, logic patterns, and CI gate IDs; Note 3 lacks specific commit hashes; Note 1 uses a temporary path."
+nim/qwen/qwen3.5-397b-a17b,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,2,"Note 2 has precise file paths, logic patterns, and CI gate IDs; Note 3 lacks specific commit hashes; Note 1 uses a temporary path."
+nim/qwen/qwen3.5-397b-a17b,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,2,"Note 2 has highest specificity with hashes, paths, and clear deployment constraints."
+nim/qwen/qwen3.5-397b-a17b,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"Note 2 has highest specificity with hashes, paths, and clear deployment constraints."
+nim/qwen/qwen3.5-397b-a17b,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,1,"Note 2 has highest specificity with hashes, paths, and clear deployment constraints."
+nim/qwen/qwen3.5-397b-a17b,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,Note 3 has precise params/commits; Note 1 has file:line but less depth; Note 2 lacks code anchors.
+nim/qwen/qwen3.5-397b-a17b,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,2,Note 3 has precise params/commits; Note 1 has file:line but less depth; Note 2 lacks code anchors.
+nim/qwen/qwen3.5-397b-a17b,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,1,Note 3 has precise params/commits; Note 1 has file:line but less depth; Note 2 lacks code anchors.
+nim/qwen/qwen3.5-397b-a17b,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,Note 1 has commits/lines/tests; Note 2 has logs/lines but less scope; Note 3 is generic.
+nim/qwen/qwen3.5-397b-a17b,15,C,d683c010-89dd-4b20-9086-48a3916578b4,1,Note 1 has commits/lines/tests; Note 2 has logs/lines but less scope; Note 3 is generic.
+nim/qwen/qwen3.5-397b-a17b,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,2,Note 1 has commits/lines/tests; Note 2 has logs/lines but less scope; Note 3 is generic.
+nim/qwen/qwen3.5-397b-a17b,16,B,709daba9-9666-424a-a5de-a096679e7f03,3,Note 1 has highest ID/path specificity; Note 3 strong but mixed narrative; Note 2 lacks file anchors.
+nim/qwen/qwen3.5-397b-a17b,16,C,500cca5d-683d-4a27-8a40-456d07688921,2,Note 1 has highest ID/path specificity; Note 3 strong but mixed narrative; Note 2 lacks file anchors.
+nim/qwen/qwen3.5-397b-a17b,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,1,Note 1 has highest ID/path specificity; Note 3 strong but mixed narrative; Note 2 lacks file anchors.
+nim/qwen/qwen3.5-397b-a17b,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,Note 1 has deepest code anchors; Note 2 has file paths but less logic; Note 3 is transient status.
+nim/qwen/qwen3.5-397b-a17b,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,Note 1 has deepest code anchors; Note 2 has file paths but less logic; Note 3 is transient status.
+nim/qwen/qwen3.5-397b-a17b,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,Note 1 has deepest code anchors; Note 2 has file paths but less logic; Note 3 is transient status.
+nim/qwen/qwen3.5-397b-a17b,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,3,"Note 2 has precise file paths, PRs, and tests; Note 3 has root cause but fewer anchors; Note 1 lacks file references."
+nim/qwen/qwen3.5-397b-a17b,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,1,"Note 2 has precise file paths, PRs, and tests; Note 3 has root cause but fewer anchors; Note 1 lacks file references."
+nim/qwen/qwen3.5-397b-a17b,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,2,"Note 2 has precise file paths, PRs, and tests; Note 3 has root cause but fewer anchors; Note 1 lacks file references."
+nim/qwen/qwen3.5-397b-a17b,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,2,"Note 2 offers highest groundedness with specific IDs, counts, and failure modes; Note 1 is generic; Note 3 is narrow."
+nim/qwen/qwen3.5-397b-a17b,19,C,7b000068-550e-4169-981e-23b105e5143b,3,"Note 2 offers highest groundedness with specific IDs, counts, and failure modes; Note 1 is generic; Note 3 is narrow."
+nim/qwen/qwen3.5-397b-a17b,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,1,"Note 2 offers highest groundedness with specific IDs, counts, and failure modes; Note 1 is generic; Note 3 is narrow."
+nim/qwen/qwen3.5-397b-a17b,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,3,Note 3 has deepest technical grounding; Note 1 is actionable but narrow; Note 2 lacks specific commit hashes.
+nim/qwen/qwen3.5-397b-a17b,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,2,Note 3 has deepest technical grounding; Note 1 is actionable but narrow; Note 2 lacks specific commit hashes.
+nim/qwen/qwen3.5-397b-a17b,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,Note 3 has deepest technical grounding; Note 1 is actionable but narrow; Note 2 lacks specific commit hashes.
+nim/qwen/qwen3.5-397b-a17b,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,Note 2 has precise hashes/lines/root-cause; Note 1 has paths/counts but messy; Note 3 is generic with weak anchors.
+nim/qwen/qwen3.5-397b-a17b,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,2,Note 2 has precise hashes/lines/root-cause; Note 1 has paths/counts but messy; Note 3 is generic with weak anchors.
+nim/qwen/qwen3.5-397b-a17b,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,1,Note 2 has precise hashes/lines/root-cause; Note 1 has paths/counts but messy; Note 3 is generic with weak anchors.
+nim/qwen/qwen3.5-397b-a17b,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,3,"Note 1 has exact IDs, hashes, and counts. Note 3 has specific paths and blockers. Note 2 is vague without line numbers."
+nim/qwen/qwen3.5-397b-a17b,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,2,"Note 1 has exact IDs, hashes, and counts. Note 3 has specific paths and blockers. Note 2 is vague without line numbers."
+nim/qwen/qwen3.5-397b-a17b,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Note 1 has exact IDs, hashes, and counts. Note 3 has specific paths and blockers. Note 2 is vague without line numbers."
+nim/qwen/qwen3.5-397b-a17b,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,Note 1 has precise technical anchors; Note 2 has specific IDs but transient data; Note 3 lacks line numbers.
+nim/qwen/qwen3.5-397b-a17b,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,Note 1 has precise technical anchors; Note 2 has specific IDs but transient data; Note 3 lacks line numbers.
+nim/qwen/qwen3.5-397b-a17b,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,Note 1 has precise technical anchors; Note 2 has specific IDs but transient data; Note 3 lacks line numbers.
+nim/qwen/qwen3.5-397b-a17b,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,"Note 2 has highest specificity with hashes, lines, and operational logic; Note 3 good but less critical; Note 1 is generic summary."
+nim/qwen/qwen3.5-397b-a17b,24,C,d991a835-59e4-4363-90b6-1cd024902d80,1,"Note 2 has highest specificity with hashes, lines, and operational logic; Note 3 good but less critical; Note 1 is generic summary."
+nim/qwen/qwen3.5-397b-a17b,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,"Note 2 has highest specificity with hashes, lines, and operational logic; Note 3 good but less critical; Note 1 is generic summary."
+nim/qwen/qwen3.5-397b-a17b,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,3,Note 2 has precise metrics and root cause; Note 3 has commit IDs but process focus; Note 1 lacks line-level anchors.
+nim/qwen/qwen3.5-397b-a17b,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,2,Note 2 has precise metrics and root cause; Note 3 has commit IDs but process focus; Note 1 lacks line-level anchors.
+nim/qwen/qwen3.5-397b-a17b,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,Note 2 has precise metrics and root cause; Note 3 has commit IDs but process focus; Note 1 lacks line-level anchors.
+nim/qwen/qwen3.5-397b-a17b,26,B,f25cadbc-4a6d-4199-989d-488518a72193,3,Note 1 has precise file:line anchors and fixes; Note 3 has logic gaps but clear decisions; Note 2 is generic API summary.
+nim/qwen/qwen3.5-397b-a17b,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,Note 1 has precise file:line anchors and fixes; Note 3 has logic gaps but clear decisions; Note 2 is generic API summary.
+nim/qwen/qwen3.5-397b-a17b,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,2,Note 1 has precise file:line anchors and fixes; Note 3 has logic gaps but clear decisions; Note 2 is generic API summary.
+nim/qwen/qwen3.5-397b-a17b,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,Note 2 has precise counts/IDs; Note 1 has paths/PRs but less data; Note 3 lacks specific file anchors.
+nim/qwen/qwen3.5-397b-a17b,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,2,Note 2 has precise counts/IDs; Note 1 has paths/PRs but less data; Note 3 lacks specific file anchors.
+nim/qwen/qwen3.5-397b-a17b,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,1,Note 2 has precise counts/IDs; Note 1 has paths/PRs but less data; Note 3 lacks specific file anchors.
+nim/qwen/qwen3.5-397b-a17b,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,Note 3 offers deepest technical root-cause analysis; Note 1 has strong data but less logic depth; Note 2 is generic.
+nim/qwen/qwen3.5-397b-a17b,28,C,c3e15471-c285-449a-886f-3be942aa38f8,1,Note 3 offers deepest technical root-cause analysis; Note 1 has strong data but less logic depth; Note 2 is generic.
+nim/qwen/qwen3.5-397b-a17b,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,2,Note 3 offers deepest technical root-cause analysis; Note 1 has strong data but less logic depth; Note 2 is generic.
+nim/qwen/qwen3.5-397b-a17b,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Note 1 has specific file paths, counts, and hashes; Note 2 has pixel measurements; Note 3 is vague strategy."
+nim/qwen/qwen3.5-397b-a17b,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Note 1 has specific file paths, counts, and hashes; Note 2 has pixel measurements; Note 3 is vague strategy."
+nim/qwen/qwen3.5-397b-a17b,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Note 1 has specific file paths, counts, and hashes; Note 2 has pixel measurements; Note 3 is vague strategy."
+openai/gpt-oss-120b,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,Note1 most concrete anchors; Note3 detailed but some advisory; Note2 vague release narrative.
+openai/gpt-oss-120b,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,3,Note1 most concrete anchors; Note3 detailed but some advisory; Note2 vague release narrative.
+openai/gpt-oss-120b,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,2,Note1 most concrete anchors; Note3 detailed but some advisory; Note2 vague release narrative.
+openai/gpt-oss-120b,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,3,Note3 has most concrete anchors; Note2 solid specifics; Note1 least grounded details.
+openai/gpt-oss-120b,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,1,Note3 has most concrete anchors; Note2 solid specifics; Note1 least grounded details.
+openai/gpt-oss-120b,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,2,Note3 has most concrete anchors; Note2 solid specifics; Note1 least grounded details.
+openai/gpt-oss-120b,2,B,99f158da-cb72-4922-9064-01615cb286e2,3,"3 most concrete, actionable; 1 clear steps; 2 vague, less grounded"
+openai/gpt-oss-120b,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,2,"3 most concrete, actionable; 1 clear steps; 2 vague, less grounded"
+openai/gpt-oss-120b,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,1,"3 most concrete, actionable; 1 clear steps; 2 vague, less grounded"
+openai/gpt-oss-120b,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,"Note1 most grounded, specific, actionable; Note2 detailed but less comprehensive; Note3 vague UI."
+openai/gpt-oss-120b,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,1,"Note1 most grounded, specific, actionable; Note2 detailed but less comprehensive; Note3 vague UI."
+openai/gpt-oss-120b,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,2,"Note1 most grounded, specific, actionable; Note2 detailed but less comprehensive; Note3 vague UI."
+openai/gpt-oss-120b,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,Note1 most concrete anchors and actionable details; Note3 good but less code‑specific; Note2 vague.
+openai/gpt-oss-120b,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,Note1 most concrete anchors and actionable details; Note3 good but less code‑specific; Note2 vague.
+openai/gpt-oss-120b,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,Note1 most concrete anchors and actionable details; Note3 good but less code‑specific; Note2 vague.
+openai/gpt-oss-120b,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note1 most grounded, specific, actionable; Note2 detailed but less concrete; Note3 vague."
+openai/gpt-oss-120b,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,2,"Note1 most grounded, specific, actionable; Note2 detailed but less concrete; Note3 vague."
+openai/gpt-oss-120b,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,1,"Note1 most grounded, specific, actionable; Note2 detailed but less concrete; Note3 vague."
+openai/gpt-oss-120b,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,"3 most anchored, specific, actionable; 1 clear middleware details; 2 less concrete, narrative."
+openai/gpt-oss-120b,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,3,"3 most anchored, specific, actionable; 1 clear middleware details; 2 less concrete, narrative."
+openai/gpt-oss-120b,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,1,"3 most anchored, specific, actionable; 1 clear middleware details; 2 less concrete, narrative."
+openai/gpt-oss-120b,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,3 most detailed and anchored; 2 solid but less scope; 1 minimal specifics.
+openai/gpt-oss-120b,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,3 most detailed and anchored; 2 solid but less scope; 1 minimal specifics.
+openai/gpt-oss-120b,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,3 most detailed and anchored; 2 solid but less scope; 1 minimal specifics.
+openai/gpt-oss-120b,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note1 most grounded, specific, flags pending work; Note3 detailed but less clear; Note2 least depth."
+openai/gpt-oss-120b,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"Note1 most grounded, specific, flags pending work; Note3 detailed but less clear; Note2 least depth."
+openai/gpt-oss-120b,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"Note1 most grounded, specific, flags pending work; Note3 detailed but less clear; Note2 least depth."
+openai/gpt-oss-120b,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note1 most concrete anchors; Note2 detailed but less critical; Note3 vague, no fixes"
+openai/gpt-oss-120b,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"Note1 most concrete anchors; Note2 detailed but less critical; Note3 vague, no fixes"
+openai/gpt-oss-120b,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"Note1 most concrete anchors; Note2 detailed but less critical; Note3 vague, no fixes"
+openai/gpt-oss-120b,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"Note1 most grounded, specific, calibrated; Note3 detailed but less calibrated; Note2 minimal info."
+openai/gpt-oss-120b,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"Note1 most grounded, specific, calibrated; Note3 detailed but less calibrated; Note2 minimal info."
+openai/gpt-oss-120b,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"Note1 most grounded, specific, calibrated; Note3 detailed but less calibrated; Note2 minimal info."
+openai/gpt-oss-120b,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note1 most grounded, specific counts & paths; Note2 moderate detail; Note3 least actionable specifics."
+openai/gpt-oss-120b,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note1 most grounded, specific counts & paths; Note2 moderate detail; Note3 least actionable specifics."
+openai/gpt-oss-120b,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note1 most grounded, specific counts & paths; Note2 moderate detail; Note3 least actionable specifics."
+openai/gpt-oss-120b,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Note2 most grounded, specific, calibrated; Note1 solid; Note3 less concrete."
+openai/gpt-oss-120b,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note2 most grounded, specific, calibrated; Note1 solid; Note3 less concrete."
+openai/gpt-oss-120b,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Note2 most grounded, specific, calibrated; Note1 solid; Note3 less concrete."
+openai/gpt-oss-120b,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"Note1 most anchored, specific; Note3 clear actionable fix; Note2 less calibrated, more vague."
+openai/gpt-oss-120b,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,2,"Note1 most anchored, specific; Note3 clear actionable fix; Note2 less calibrated, more vague."
+openai/gpt-oss-120b,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,3,"Note1 most anchored, specific; Note3 clear actionable fix; Note2 less calibrated, more vague."
+openai/gpt-oss-120b,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Note1 most grounded, specific, calibrated; Note3 detailed but fewer anchors; Note2 least actionable."
+openai/gpt-oss-120b,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"Note1 most grounded, specific, calibrated; Note3 detailed but fewer anchors; Note2 least actionable."
+openai/gpt-oss-120b,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"Note1 most grounded, specific, calibrated; Note3 detailed but fewer anchors; Note2 least actionable."
+openai/gpt-oss-120b,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,Note1 most anchored & actionable; Note2 detailed but less complete; Note3 vague speculation.
+openai/gpt-oss-120b,15,C,d683c010-89dd-4b20-9086-48a3916578b4,1,Note1 most anchored & actionable; Note2 detailed but less complete; Note3 vague speculation.
+openai/gpt-oss-120b,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,2,Note1 most anchored & actionable; Note2 detailed but less complete; Note3 vague speculation.
+openai/gpt-oss-120b,16,B,709daba9-9666-424a-a5de-a096679e7f03,2,"Note1 most grounded, specific, actionable; Note2 solid fix but slightly overconfident; Note3 less calibrated."
+openai/gpt-oss-120b,16,C,500cca5d-683d-4a27-8a40-456d07688921,3,"Note1 most grounded, specific, actionable; Note2 solid fix but slightly overconfident; Note3 less calibrated."
+openai/gpt-oss-120b,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,1,"Note1 most grounded, specific, actionable; Note2 solid fix but slightly overconfident; Note3 less calibrated."
+openai/gpt-oss-120b,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,3,"Note1 most concrete, actionable; Note2 detailed but less code‑specific; Note3 only snapshot data."
+openai/gpt-oss-120b,17,C,538116b3-949a-428f-949e-64f1fd3332cd,2,"Note1 most concrete, actionable; Note2 detailed but less code‑specific; Note3 only snapshot data."
+openai/gpt-oss-120b,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,"Note1 most concrete, actionable; Note2 detailed but less code‑specific; Note3 only snapshot data."
+openai/gpt-oss-120b,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,1,Note1 most concrete anchors; Note2 detailed but broader; Note3 narrower scope.
+openai/gpt-oss-120b,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,2,Note1 most concrete anchors; Note2 detailed but broader; Note3 narrower scope.
+openai/gpt-oss-120b,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,3,Note1 most concrete anchors; Note2 detailed but broader; Note3 narrower scope.
+openai/gpt-oss-120b,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,1,"Note1 most concrete; Note3 clear actionable; Note2 vague, less actionable"
+openai/gpt-oss-120b,19,C,7b000068-550e-4169-981e-23b105e5143b,2,"Note1 most concrete; Note3 clear actionable; Note2 vague, less actionable"
+openai/gpt-oss-120b,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,3,"Note1 most concrete; Note3 clear actionable; Note2 vague, less actionable"
+openai/gpt-oss-120b,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,2,"Note1 gives concrete PR/commit fixes; Note2 solid setup details; Note3 broader analysis, less actionable."
+openai/gpt-oss-120b,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,1,"Note1 gives concrete PR/commit fixes; Note2 solid setup details; Note3 broader analysis, less actionable."
+openai/gpt-oss-120b,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,3,"Note1 gives concrete PR/commit fixes; Note2 solid setup details; Note3 broader analysis, less actionable."
+openai/gpt-oss-120b,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,3,Note1 most concrete data and paths; Note2 solid fix details; Note3 least specifics.
+openai/gpt-oss-120b,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,Note1 most concrete data and paths; Note2 solid fix details; Note3 least specifics.
+openai/gpt-oss-120b,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,2,Note1 most concrete data and paths; Note2 solid fix details; Note3 least specifics.
+openai/gpt-oss-120b,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,2,"Note1 most concrete anchors, calibrated, directly actionable; Note2 detailed but fewer anchors; Note3 messy, many uncertainties."
+openai/gpt-oss-120b,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Note1 most concrete anchors, calibrated, directly actionable; Note2 detailed but fewer anchors; Note3 messy, many uncertainties."
+openai/gpt-oss-120b,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,1,"Note1 most concrete anchors, calibrated, directly actionable; Note2 detailed but fewer anchors; Note3 messy, many uncertainties."
+openai/gpt-oss-120b,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,Note1 most anchored/actionable; Note2 detailed but narrower; Note3 least depth.
+openai/gpt-oss-120b,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,Note1 most anchored/actionable; Note2 detailed but narrower; Note3 least depth.
+openai/gpt-oss-120b,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,Note1 most anchored/actionable; Note2 detailed but narrower; Note3 least depth.
+openai/gpt-oss-120b,24,B,81068e05-2523-458d-921b-521e8ed05c34,3,3 provides concrete live‑deploy info; 2 precise bind config; 1 less actionable.
+openai/gpt-oss-120b,24,C,d991a835-59e4-4363-90b6-1cd024902d80,2,3 provides concrete live‑deploy info; 2 precise bind config; 1 less actionable.
+openai/gpt-oss-120b,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,1,3 provides concrete live‑deploy info; 2 precise bind config; 1 less actionable.
+openai/gpt-oss-120b,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,2,"2 most concrete, actionable; 1 detailed but less immediate; 3 vague process notes"
+openai/gpt-oss-120b,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,3,"2 most concrete, actionable; 1 detailed but less immediate; 3 vague process notes"
+openai/gpt-oss-120b,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,"2 most concrete, actionable; 1 detailed but less immediate; 3 vague process notes"
+openai/gpt-oss-120b,26,B,f25cadbc-4a6d-4199-989d-488518a72193,2,"Note1 most grounded, specific, actionable; Note2 clear but less critical; Note3 speculative, pending decisions"
+openai/gpt-oss-120b,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,"Note1 most grounded, specific, actionable; Note2 clear but less critical; Note3 speculative, pending decisions"
+openai/gpt-oss-120b,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,3,"Note1 most grounded, specific, actionable; Note2 clear but less critical; Note3 speculative, pending decisions"
+openai/gpt-oss-120b,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,2,"Note1 most grounded, specific, actionable; Note3 solid but narrower; Note2 less certain, less actionable."
+openai/gpt-oss-120b,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,1,"Note1 most grounded, specific, actionable; Note3 solid but narrower; Note2 less certain, less actionable."
+openai/gpt-oss-120b,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,3,"Note1 most grounded, specific, actionable; Note3 solid but narrower; Note2 less certain, less actionable."
+openai/gpt-oss-120b,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,Note1 most concrete anchors and actionable details; Note3 detailed but less grounded; Note2 least specific.
+openai/gpt-oss-120b,28,C,c3e15471-c285-449a-886f-3be942aa38f8,2,Note1 most concrete anchors and actionable details; Note3 detailed but less grounded; Note2 least specific.
+openai/gpt-oss-120b,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,1,Note1 most concrete anchors and actionable details; Note3 detailed but less grounded; Note2 least specific.
+openai/gpt-oss-120b,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,Note1 most concrete; Note2 specific UI; Note3 vague decisions
+openai/gpt-oss-120b,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,Note1 most concrete; Note2 specific UI; Note3 vague decisions
+openai/gpt-oss-120b,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,Note1 most concrete; Note2 specific UI; Note3 vague decisions
+qwen/qwen-2.5-72b,0,B,382ad983-60e2-4d37-8f69-2a6ccbc9e4a2,1,"Note 1: Most grounded, specific, and useful. Note 3: Clear, detailed, and useful. Note 2: Less clear, more complex."
+qwen/qwen-2.5-72b,0,C,856fbd1a-eeec-4496-a278-107c15a27fd9,3,"Note 1: Most grounded, specific, and useful. Note 3: Clear, detailed, and useful. Note 2: Less clear, more complex."
+qwen/qwen-2.5-72b,0,C-prime,d1482772-2c94-4ead-af53-015c1a46bee7,2,"Note 1: Most grounded, specific, and useful. Note 3: Clear, detailed, and useful. Note 2: Less clear, more complex."
+qwen/qwen-2.5-72b,1,B,06f85a2f-0160-4b2b-ae4e-34fd16077536,2,"Note 2 is most grounded and specific, Note 1 is clear but less grounded, Note 3 is detailed but overconfident."
+qwen/qwen-2.5-72b,1,C,617bc219-961b-4cc6-b293-ebecdf17ad74,3,"Note 2 is most grounded and specific, Note 1 is clear but less grounded, Note 3 is detailed but overconfident."
+qwen/qwen-2.5-72b,1,C-prime,91c434b6-6e5e-4ac3-83d8-029c919d038a,1,"Note 2 is most grounded and specific, Note 1 is clear but less grounded, Note 3 is detailed but overconfident."
+qwen/qwen-2.5-72b,2,B,99f158da-cb72-4922-9064-01615cb286e2,1,"Note 2 most grounded, specific, and useful; Note 1 second; Note 3 least clear."
+qwen/qwen-2.5-72b,2,C,f26eb15f-08ef-4f9e-ae30-4d5963330b6f,2,"Note 2 most grounded, specific, and useful; Note 1 second; Note 3 least clear."
+qwen/qwen-2.5-72b,2,C-prime,3ac43d93-2eb0-4ea3-af21-a28c33d48e15,3,"Note 2 most grounded, specific, and useful; Note 1 second; Note 3 least clear."
+qwen/qwen-2.5-72b,3,B,74cfa8bd-0ff6-43e0-9224-15269edbaf93,3,"Note 2: Most grounded, specific, calibrated, useful. Note 1: Grounded, specific, useful but less calibrated. Note 3: Least grounded, specific, useful."
+qwen/qwen-2.5-72b,3,C,9bee3895-ecb1-4926-8360-7d0a2562390a,2,"Note 2: Most grounded, specific, calibrated, useful. Note 1: Grounded, specific, useful but less calibrated. Note 3: Least grounded, specific, useful."
+qwen/qwen-2.5-72b,3,C-prime,5656d891-6ef6-433e-9217-86d154a26700,1,"Note 2: Most grounded, specific, calibrated, useful. Note 1: Grounded, specific, useful but less calibrated. Note 3: Least grounded, specific, useful."
+qwen/qwen-2.5-72b,4,B,025f4b84-f844-42f2-81e2-0e63619ee67f,3,"Note 1: Most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,4,C,4d03389c-d3c7-407c-b32d-24905b454e81,2,"Note 1: Most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,4,C-prime,234ccbf5-f419-47ec-be3c-f1c84e63672d,1,"Note 1: Most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,5,B,1edd58e3-c2b0-4b1e-b48b-cc95c2162ec7,3,"Note 1: Specific, grounded, useful. Note 2: Detailed, reflective, actionable. Note 3: Descriptive, but less actionable."
+qwen/qwen-2.5-72b,5,C,c75cebee-1d79-4f81-a73d-970bac5e1e59,2,"Note 1: Specific, grounded, useful. Note 2: Detailed, reflective, actionable. Note 3: Descriptive, but less actionable."
+qwen/qwen-2.5-72b,5,C-prime,aaabe4c2-d972-45db-bd8d-67c2dfaa0935,1,"Note 1: Specific, grounded, useful. Note 2: Detailed, reflective, actionable. Note 3: Descriptive, but less actionable."
+qwen/qwen-2.5-72b,6,B,31d300cc-7491-40d6-bec8-be85a80e33c1,2,"Note 2: Most grounded, specific, calibrated, and useful for future sessions."
+qwen/qwen-2.5-72b,6,C,d8311dbd-148b-4bb4-bc39-2d27ca1043e9,1,"Note 2: Most grounded, specific, calibrated, and useful for future sessions."
+qwen/qwen-2.5-72b,6,C-prime,40d304ba-46b3-42e3-8f93-252f64770eed,3,"Note 2: Most grounded, specific, calibrated, and useful for future sessions."
+qwen/qwen-2.5-72b,7,B,d2db73f6-44a4-4b88-9dcb-f2697d3bdb56,3,"Note 3 most grounded, specific, and useful; Note 2 detailed with trade-offs; Note 1 lacks depth."
+qwen/qwen-2.5-72b,7,C,a35112d2-1f43-41a5-a2d9-d9fe35af14c6,1,"Note 3 most grounded, specific, and useful; Note 2 detailed with trade-offs; Note 1 lacks depth."
+qwen/qwen-2.5-72b,7,C-prime,a97b93ef-92ca-45e2-a49c-5b5cb4cb7816,2,"Note 3 most grounded, specific, and useful; Note 2 detailed with trade-offs; Note 1 lacks depth."
+qwen/qwen-2.5-72b,8,B,f2bc48b4-6e5e-43a8-bbed-26ba74ef2ca3,3,"Note 1: Detailed, grounded, useful. Note 3: Specific, actionable, useful. Note 2: Less actionable, less grounded."
+qwen/qwen-2.5-72b,8,C,b3dcc94c-8726-4eb5-989f-653d7d74460c,1,"Note 1: Detailed, grounded, useful. Note 3: Specific, actionable, useful. Note 2: Less actionable, less grounded."
+qwen/qwen-2.5-72b,8,C-prime,98e24a93-2cfa-4ea2-8224-eed6eac2510f,2,"Note 1: Detailed, grounded, useful. Note 3: Specific, actionable, useful. Note 2: Less actionable, less grounded."
+qwen/qwen-2.5-72b,9,B,2a158f29-11f0-4071-a8e6-6349e91713cf,3,"Note 1: Highly specific, grounded, and useful. Note 2: Detailed, grounded, but less critical. Note 3: Vague, less actionable."
+qwen/qwen-2.5-72b,9,C,d8a65818-a673-403b-b2ba-ad485dae956c,1,"Note 1: Highly specific, grounded, and useful. Note 2: Detailed, grounded, but less critical. Note 3: Vague, less actionable."
+qwen/qwen-2.5-72b,9,C-prime,b9edc371-af2c-408c-a657-9c2dc7a341a5,2,"Note 1: Highly specific, grounded, and useful. Note 2: Detailed, grounded, but less critical. Note 3: Vague, less actionable."
+qwen/qwen-2.5-72b,10,B,036c935e-e5fb-496d-9709-0d34c35e36c8,3,"Note 1: Most grounded, specific, and useful. Note 3: Specific file:line references. Note 2: Least detailed."
+qwen/qwen-2.5-72b,10,C,224567f0-ad66-4a9c-9fdc-b4d11a353a9f,2,"Note 1: Most grounded, specific, and useful. Note 3: Specific file:line references. Note 2: Least detailed."
+qwen/qwen-2.5-72b,10,C-prime,781db269-6ef3-45ce-a0c2-b67d2fb6a86d,1,"Note 1: Most grounded, specific, and useful. Note 3: Specific file:line references. Note 2: Least detailed."
+qwen/qwen-2.5-72b,11,B,0577b802-6688-4203-93df-d6a4c9f9acc6,3,"Note 1: Highly specific, grounded, and useful. Note 2: Specific, but less grounded. Note 3: General, less useful."
+qwen/qwen-2.5-72b,11,C,03826f9e-bd59-4540-a2e5-cb9e10ac0dbc,2,"Note 1: Highly specific, grounded, and useful. Note 2: Specific, but less grounded. Note 3: General, less useful."
+qwen/qwen-2.5-72b,11,C-prime,f3e967e5-6722-467f-8367-53c31fba69a8,1,"Note 1: Highly specific, grounded, and useful. Note 2: Specific, but less grounded. Note 3: General, less useful."
+qwen/qwen-2.5-72b,12,B,8644fba4-43d5-43ec-8241-c4acce4926b0,2,"Note 2 is most grounded and useful, Note 1 is specific but less useful, Note 3 is detailed but less actionable."
+qwen/qwen-2.5-72b,12,C,723434e6-9cb6-475b-899c-34c8a27c769f,1,"Note 2 is most grounded and useful, Note 1 is specific but less useful, Note 3 is detailed but less actionable."
+qwen/qwen-2.5-72b,12,C-prime,2f46ab2a-3964-4c49-837b-4c82b2b9cfef,3,"Note 2 is most grounded and useful, Note 1 is specific but less useful, Note 3 is detailed but less actionable."
+qwen/qwen-2.5-72b,13,B,a85a7aed-d6ff-4ba3-85b4-b54cda556026,1,"Note 1: Most grounded, specific, and useful. Note 2: Clear, with deployment details. Note 3: Useful, but less grounded."
+qwen/qwen-2.5-72b,13,C,7e8b9819-9b1d-460a-8b07-92b76318eaea,3,"Note 1: Most grounded, specific, and useful. Note 2: Clear, with deployment details. Note 3: Useful, but less grounded."
+qwen/qwen-2.5-72b,13,C-prime,3883f788-12bb-43b2-b4b2-faff1b75ad5e,2,"Note 1: Most grounded, specific, and useful. Note 2: Clear, with deployment details. Note 3: Useful, but less grounded."
+qwen/qwen-2.5-72b,14,B,76eb1896-5b58-40bd-863d-82da20f246e8,3,"Note 1: High specificity, groundedness, and useful lessons. Note 3: Detailed fix and config. Note 2: Less grounded, more general."
+qwen/qwen-2.5-72b,14,C,24cdb92c-06eb-4774-9b2a-754272375d57,1,"Note 1: High specificity, groundedness, and useful lessons. Note 3: Detailed fix and config. Note 2: Less grounded, more general."
+qwen/qwen-2.5-72b,14,C-prime,40a4099c-f64f-4cf6-893e-4154c8957f98,2,"Note 1: High specificity, groundedness, and useful lessons. Note 3: Detailed fix and config. Note 2: Less grounded, more general."
+qwen/qwen-2.5-72b,15,B,362bcc42-641d-4f22-96cb-53f8484380aa,3,"Note 2: Most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,15,C,d683c010-89dd-4b20-9086-48a3916578b4,2,"Note 2: Most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,15,C-prime,cf4facb3-b803-44a9-981e-a3128e4c64de,1,"Note 2: Most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,16,B,709daba9-9666-424a-a5de-a096679e7f03,1,"Note 2 most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,16,C,500cca5d-683d-4a27-8a40-456d07688921,3,"Note 2 most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,16,C-prime,7314843d-8e40-4a76-b729-05c4dddeaf84,2,"Note 2 most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,17,B,513356ed-4cdf-49a7-99ce-9d7e74503af0,2,"Note 1: Specific, grounded, useful. Note 3: Detailed, but less actionable. Note 2: Contextual, but less specific."
+qwen/qwen-2.5-72b,17,C,538116b3-949a-428f-949e-64f1fd3332cd,3,"Note 1: Specific, grounded, useful. Note 3: Detailed, but less actionable. Note 2: Contextual, but less specific."
+qwen/qwen-2.5-72b,17,C-prime,8dd1fc33-4a42-449c-9797-380f1bb07899,1,"Note 1: Specific, grounded, useful. Note 3: Detailed, but less actionable. Note 2: Contextual, but less specific."
+qwen/qwen-2.5-72b,18,B,3c5519d5-4dd1-4356-bb9a-2151e8ca030e,1,"Note 1: Most grounded, specific, and useful. Note 2: Detailed, but less grounded. Note 3: Specific, but less useful for future sessions."
+qwen/qwen-2.5-72b,18,C,5ffd6b59-8531-4d95-8495-35e72d25d3ad,2,"Note 1: Most grounded, specific, and useful. Note 2: Detailed, but less grounded. Note 3: Specific, but less useful for future sessions."
+qwen/qwen-2.5-72b,18,C-prime,ad1a61d3-6074-4dd1-8229-711cfbcf35df,3,"Note 1: Most grounded, specific, and useful. Note 2: Detailed, but less grounded. Note 3: Specific, but less useful for future sessions."
+qwen/qwen-2.5-72b,19,B,9ea34c67-a882-48a3-bfdb-a972a9b3ddfe,1,"Note 1: Most grounded, specific, and useful. Note 3: Clear, specific, but less impactful. Note 2: Least clear, overconfident."
+qwen/qwen-2.5-72b,19,C,7b000068-550e-4169-981e-23b105e5143b,2,"Note 1: Most grounded, specific, and useful. Note 3: Clear, specific, but less impactful. Note 2: Least clear, overconfident."
+qwen/qwen-2.5-72b,19,C-prime,a6c5643c-a27e-42ae-92f1-3537e683fdd6,3,"Note 1: Most grounded, specific, and useful. Note 3: Clear, specific, but less impactful. Note 2: Least clear, overconfident."
+qwen/qwen-2.5-72b,20,B,00d0ceaf-2cf8-4e9f-ade5-5d8f66f3c860,2,"Note 3: Most grounded, specific, calibrated, and useful."
+qwen/qwen-2.5-72b,20,C,6b596a68-4320-4914-aa09-982ec0d183e2,3,"Note 3: Most grounded, specific, calibrated, and useful."
+qwen/qwen-2.5-72b,20,C-prime,41f1e812-2863-4e5d-9bf5-b225bf9a6c70,1,"Note 3: Most grounded, specific, calibrated, and useful."
+qwen/qwen-2.5-72b,21,B,10f7bf36-9462-4384-9946-d33de8c0eaf8,2,Note 1 is most grounded and useful; Note 3 is specific and useful; Note 2 is less grounded.
+qwen/qwen-2.5-72b,21,C,4ea5e496-eb9e-4bfa-a094-1d6797c67077,1,Note 1 is most grounded and useful; Note 3 is specific and useful; Note 2 is less grounded.
+qwen/qwen-2.5-72b,21,C-prime,4baa52ed-8e13-4132-90c4-69accf68709c,3,Note 1 is most grounded and useful; Note 3 is specific and useful; Note 2 is less grounded.
+qwen/qwen-2.5-72b,22,B,930fdb41-a68a-4601-94d3-334ba2cde8aa,1,"Note 2: Comprehensive, specific, grounded. Note 1: Detailed, but less comprehensive. Note 3: Less specific, more context-dependent."
+qwen/qwen-2.5-72b,22,C,41f3e0bb-a2c3-4ce9-8ce2-a76ef1393e51,3,"Note 2: Comprehensive, specific, grounded. Note 1: Detailed, but less comprehensive. Note 3: Less specific, more context-dependent."
+qwen/qwen-2.5-72b,22,C-prime,3d3eb82d-ce42-4e88-833e-a57c03ad521f,2,"Note 2: Comprehensive, specific, grounded. Note 1: Detailed, but less comprehensive. Note 3: Less specific, more context-dependent."
+qwen/qwen-2.5-72b,23,B,22b3844c-81b5-4a4a-806d-ab81c940ff89,3,"Note 1: Most grounded, specific, and useful. Note 2: Detailed, useful, but less grounded. Note 3: Specific, but least useful for future sessions."
+qwen/qwen-2.5-72b,23,C,e9b20afb-e49c-40d9-874e-5f16841d922f,2,"Note 1: Most grounded, specific, and useful. Note 2: Detailed, useful, but less grounded. Note 3: Specific, but least useful for future sessions."
+qwen/qwen-2.5-72b,23,C-prime,3f21b0b8-19ee-41a0-9f40-338735c2b4a3,1,"Note 1: Most grounded, specific, and useful. Note 2: Detailed, useful, but less grounded. Note 3: Specific, but least useful for future sessions."
+qwen/qwen-2.5-72b,24,B,81068e05-2523-458d-921b-521e8ed05c34,1,Note 1 is most grounded and specific; Note 3 is useful and detailed; Note 2 is less clear.
+qwen/qwen-2.5-72b,24,C,d991a835-59e4-4363-90b6-1cd024902d80,3,Note 1 is most grounded and specific; Note 3 is useful and detailed; Note 2 is less clear.
+qwen/qwen-2.5-72b,24,C-prime,1fc5862e-515f-444b-8fb5-986763c72306,2,Note 1 is most grounded and specific; Note 3 is useful and detailed; Note 2 is less clear.
+qwen/qwen-2.5-72b,25,B,433d0d5a-a0a1-4f29-a185-66dd861a61cd,2,"Note 2 most specific, Note 1 grounded, Note 3 least useful"
+qwen/qwen-2.5-72b,25,C,871027a1-74b0-47b3-b52b-70fb7e1939ce,3,"Note 2 most specific, Note 1 grounded, Note 3 least useful"
+qwen/qwen-2.5-72b,25,C-prime,efb763f8-ea09-40a8-ad14-bf4b1b39a809,1,"Note 2 most specific, Note 1 grounded, Note 3 least useful"
+qwen/qwen-2.5-72b,26,B,f25cadbc-4a6d-4199-989d-488518a72193,2,"Note 1: Specific, grounded, useful. Note 2: Detailed, but less actionable. Note 3: Uncertain, complex."
+qwen/qwen-2.5-72b,26,C,bd0ef69d-9937-4290-8bbf-b41fccb8738c,1,"Note 1: Specific, grounded, useful. Note 2: Detailed, but less actionable. Note 3: Uncertain, complex."
+qwen/qwen-2.5-72b,26,C-prime,77693ffd-c8fa-48e4-8e09-b268dbe4245b,3,"Note 1: Specific, grounded, useful. Note 2: Detailed, but less actionable. Note 3: Uncertain, complex."
+qwen/qwen-2.5-72b,27,B,0f4a97ac-81fe-44e6-a325-65c4b81e8a30,3,"Note 2 most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,27,C,7e03e6f4-384d-474b-8992-cff01d00db63,2,"Note 2 most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,27,C-prime,642a0766-346d-407a-844f-56ae0bdd8433,1,"Note 2 most grounded, specific, and useful for future sessions."
+qwen/qwen-2.5-72b,28,B,5e361353-3948-47ef-b6ba-1505c542232f,3,"Note 1: Highly detailed, grounded, and useful. Note 3: Specific, well-calibrated, and useful. Note 2: Less detailed, but still useful."
+qwen/qwen-2.5-72b,28,C,c3e15471-c285-449a-886f-3be942aa38f8,2,"Note 1: Highly detailed, grounded, and useful. Note 3: Specific, well-calibrated, and useful. Note 2: Less detailed, but still useful."
+qwen/qwen-2.5-72b,28,C-prime,d18e94fc-9c9c-47db-a0e7-21b8c6a40c3a,1,"Note 1: Highly detailed, grounded, and useful. Note 3: Specific, well-calibrated, and useful. Note 2: Less detailed, but still useful."
+qwen/qwen-2.5-72b,29,B,9ab7b4b3-39b9-44d2-b489-5292ab566a26,3,"Note 1: Highly specific, grounded, and useful. Note 2: Clear, grounded, and actionable. Note 3: General, lacks specificity."
+qwen/qwen-2.5-72b,29,C,ef3df67b-fdc8-4e0b-bfcb-76c52e1f1984,2,"Note 1: Highly specific, grounded, and useful. Note 2: Clear, grounded, and actionable. Note 3: General, lacks specificity."
+qwen/qwen-2.5-72b,29,C-prime,7c61d673-f5f6-4fb1-9270-2967ce9d666a,1,"Note 1: Highly specific, grounded, and useful. Note 2: Clear, grounded, and actionable. Note 3: General, lacks specificity."

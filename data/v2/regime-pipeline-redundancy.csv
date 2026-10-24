@@ -1,21 +1,21 @@
 title,occurrences
-Task Status Update via Hook Integration,50
-System Performance Bottlenecks Identified,18
-Task Status Update Completed,17
-System Performance Bottleneck Diagnostic Framework,15
-Linux Performance Bottleneck Diagnostic Framework,13
-Bash Port Availability Check Implementation,12
-Performance Bottleneck Diagnosis Framework,10
-Performance Bottleneck Diagnostic Framework,10
-TaskUpdate Tool Successfully Transitioned Task Status,10
-Task Status Update via TaskUpdate Tool,9
-Portuguese character encoding fix in error message,9
-Bash Port Availability Check Function,8
-Comprehensive Test Suite for AnimalLembretes Component,8
-Sudo Password Stored in Plain Text Environment File,8
-Re-engagement Email Sequence Best Practices Research,7
-Database Credentials Exposed in Command Execution,7
-Hardcoded Database Credentials Exposed in Command,7
-Database credentials exposed in command execution,7
-Version Bump in package-lock.json,7
-Credential Exposure in Command Execution,6
+Task Status Update via Hook Integration,275
+Task Status Update Completed,273
+System Performance Bottlenecks Identified,187
+Docker build in progress for honcho-stack-honcho-api,134
+System Performance Bottleneck Analysis Framework,122
+System Performance Bottleneck Diagnosis Framework,120
+Linux Performance Bottleneck Diagnostic Framework,107
+Task Status Update via TaskUpdate Tool,95
+Linux Performance Bottleneck Diagnosis Framework,91
+Bash Port Availability Check Function,73
+Legacy Compatibility Detection Script Execution,73
+System Performance Bottleneck Diagnostic Framework,72
+Bash Port Availability Check Implementation,70
+Performance Bottleneck Diagnosis Framework,69
+Docker build in progress for honcho-stack-honcho-api image,66
+System Performance Bottleneck Analysis,61
+Bash Function for Port Availability Checking,56
+Task Status Update via Hook Tool,44
+Linux Performance Bottleneck Analysis Framework,40
+Legacy Compatibility Detection Gate Passed,35
