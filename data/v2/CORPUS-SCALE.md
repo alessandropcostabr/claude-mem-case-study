@@ -23,7 +23,7 @@
 
 **Total: ~354.641 obs** (última gerada 24/out 12:10). Crescimento ~18K (mai) → ~70K (jun) → **354K (out)**.
 
-**⚠️ Achado a investigar:** a geração **não é monotônica** — pico em ago (122K), depois **queda forte** set/out (~37K/~34K projetado). Grande demais para ser a contaminação de benchmark (~1K/mês). Causa não investigada (atividade de fleet? mudança de regime? threshold?). Registrado como fato, não explicado.
+**Geração não-monotônica** — pico em ago (122K), **queda** set/out (~37K/~34K projetado). **Causa (confirmada):** menor uso/consumo da frota no período (menos sessões → menos observations), não defeito de pipeline. O volume do corpus acompanha a atividade real de trabalho, não um processo autônomo.
 
 ## 2. Distribuição por modelo gerador
 
@@ -44,7 +44,7 @@
 - **Fila de embeddings (pgvector):** 0–8 pendentes a 354K obs → drenada; não há backlog.
 - **Jobs de geração:** sem fantasmas/presos (GEN-QUEUE ✅).
 - **Captura viva:** 32–61 sessões/dia (`server_sessions`).
-- **Falha de geração:** **~32–39/dia** sobre ~500–1.400 obs/dia (**~3–7%**) — obs que o `summarize` (Stop) tentou gerar e falharam. Threat to validity quantificado; causa não investigada.
+- **Falha de geração (perda terminal): 0,37% em 7d** (53 falhas / ~6.000 jobs em `observation_generation_jobs`). Três classes, **nenhuma re-tentada** (`next_attempt_at` NULL apesar de `max_attempts=3`): (a) **`auth_invalid` (Anthropic 401) — crônico, ~2–3/dia há ≥14d**, em `observation_generate_session_summary` → ~2–3 resumos de sessão perdidos/dia; **único acionável** (renovação do token de auth do worker no .253); (b) `parse_error` (parser rejeita o XML do pipeline B per-event) — em burst, correlacionado a picos de atividade, transitório; (c) `unrecoverable` (400), raro. Threat to validity real mas pequeno.
 - **Achado de arquitetura:** o desenho **captura incremental** (PostToolUse em streaming + `Stop`→summarize **por turno** + worker assíncrono persistindo no PG) aguentou 6 meses / 354K obs. Como não há flush único no encerramento, uma sessão morta/pausada no meio não perde o acumulado — resolve **por desenho** o problema histórico v12.4.4 ("SessionEnd não drena no /clear → obs perdidas").
 
 ## 4. Contaminação de benchmark (threat to validity) — CONGELADA
