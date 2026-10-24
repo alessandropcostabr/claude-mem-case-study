@@ -1,0 +1,14 @@
+metric,regime,value,unit
+observations,self-author,2948,records
+observations,pipeline,188010,records
+embedding_coverage_pct,pipeline,98.2,percent
+embedding_coverage_pct,self-author,99.9,percent
+session_link_pct,pipeline,85.7,percent
+session_link_pct,self-author,0.0,percent
+agent_events_total,all,235176,records
+observations_per_event,all,0.81,ratio
+events_truncated_16kb,all,20826,records
+bytes_discarded_by_truncation,all,859002596,bytes
+surviving_fraction_of_truncated_pct,all,51.3,percent
+pending_jobs_cost_real,agent_event,38.6,million_tokens
+pending_jobs_cost_raw_overestimate,agent_event,78.6,million_tokens
