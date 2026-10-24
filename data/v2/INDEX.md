@@ -1,7 +1,7 @@
 # v2 Case Study — INDEX (mapa de entrada da pesquisa)
 
 Pesquisa comparativa dos regimes de **geração de memória** do claude-mem: **B** (pipeline 1×LLM externo),
-**C** (Stop self-author), **C′/C-prime** (rider incremental) e **C-prime-arc** (rider arco). Gerado 2026-07-09.
+**C** (Stop self-author), **C′/C-prime** (rider incremental) e **C-prime-arc** (rider arco). Gerado 2026-07-09 · atualizado 2026-10-24 (R6, memory-utility out/24, corpus-scale, auditoria de integridade do pipeline).
 
 ## Os regimes — o que significam e como registram
 | Regime | Como registra | Volume (PG, 07-09) |
@@ -34,6 +34,8 @@ Pesquisa comparativa dos regimes de **geração de memória** do claude-mem: **B
 - VERSION-EVOLUTION.md — evolução por versão CC
 - SESSION-20260701-integrity-attribution.md — auditoria integridade/atribuição
 - NEXT-ROUND-judge-panel.md — planejamento de painel
+- CORPUS-SCALE.md — escala & integridade do corpus em produção (~354K obs, 6 meses; 2026-10-24)
+- PIPELINE-INTEGRITY-AUDIT-20260814.md — auditoria do pipeline B: perda de 19,1% dos jobs (token OAuth), completude de dados, PRs upstream #3583/#3584
 
 ### Judge quality (B vs C vs C′)
 - Dados: eval-rank-20260613.csv (R2), eval-rank-r2r3-20260621.csv, eval-rank-r4-20260621.csv, eval-rank-r5-20260709.csv, eval-judge-{llama33,nemotron}-20260612.csv, regime-metrics-20260621.csv
@@ -41,7 +43,7 @@ Pesquisa comparativa dos regimes de **geração de memória** do claude-mem: **B
 - Harness: judge-rank.mjs (OpenRouter), judge-rank-nim.mjs (NVIDIA), judge-rank-r5.mjs, judge-rank-cli.mjs, judge-or.mjs, aggregate-round3.mjs, run-r5{,b,c}.sh
 
 ### Volumetria / atribuição de regime
-- regime-daily-volumetry.csv, regime-type-distribution.csv, regime-comparison-metrics.csv, regime-pipeline-redundancy.csv, regime-attribution-{20260702,20260709}.csv, regime-c-volumetry-20260609.csv, observations-{daily,monthly,by-segment}.csv
+- regime-daily-volumetry.csv, regime-type-distribution.csv, regime-comparison-metrics.csv, regime-pipeline-redundancy.csv, regime-attribution-{20260702,20260709,20260724}.csv, regime-c-volumetry-20260609.csv, observations-{daily,monthly,by-segment}.csv, efficiency-metrics-20260814.csv
 - Gerador: ../scripts/export-regime-comparison.mjs
 
 ### Rider A/B (C′ incremental vs arco)
