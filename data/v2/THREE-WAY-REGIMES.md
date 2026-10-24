@@ -753,3 +753,30 @@ injection (not a full session panel); does not capture the ORGANIC value (the go
 — that needs the empty-injection natural experiment or a human-rating layer (follow-ups). Still: this is the first
 CAUSAL, non-proxy measurement of LATE memory utility, and it both (a) confirms memory helps and (b) reproduces the
 regime ordering from the judge study in real outcomes.
+
+## MEMORY-UTILITY — replicação 3 meses depois — 2026-10-24
+
+Re-rodei o mesmo harness (`run-mem-eval.mjs`, 6 tasks × 5 condições × 3 modelos × 3 reps) para testar se o número de jul/09 se sustenta com um roster de modelos novo (`opus-4-8` / `opus-4-6` / `haiku-4-5`). Abortou no cap de tokens (3,0M) antes dos 270 runs completos, mas com **todas as condições/tasks/modelos cobertos** (n=45–48 por condição) — amostra suficiente.
+
+### Resultado — pass-rate por condição (out 2026-10-24)
+| Condição | out/24 | jul/09 | Δ |
+|---|---|---|---|
+| **mem-C** (grounded) | **100% (45/45)** | 96% | +4pp |
+| mem-B (pipeline-flat) | 89% (42/47) | 91% | −2pp |
+| mem-Carc (arc) | 80% (36/45) | 83% | −3pp |
+| control (sem memória) | **38% (18/48)** | 67% | **−29pp** |
+| distractor (memória irrelevante) | 35% (17/48) | 39% | −4pp |
+
+Por família de modelo (o `llm_model` colapsa opus-4-6+opus-4-8 em "opus-4"): **mem-C = 100% nas duas famílias** (opus-4 36/36, haiku-4 9/9); control baixo nas duas (opus-4 42%, haiku-4 25%). O padrão não é artefato de um modelo.
+
+### O que reproduz (e fica MAIS forte)
+1. **Ordem dos regimes idêntica:** mem-C > mem-B > mem-Carc > control/distractor. O achado central de jul se mantém.
+2. **Utilidade causal da memória grounded, ainda mais forte:** mem-C 100% vs control 38% → **+62pp, Fisher p=3,5×10⁻¹²** (jul foi +29pp, p=1e-4). mem-C praticamente no teto independentemente do modelo.
+3. **Regime importa:** C (100%) acima de Carc (80%) de novo — a camada-arco troca ancoragem por altitude, como em jul.
+
+### O que NÃO reproduz — e por quê (nuance honesta)
+4. **O achado "memória irrelevante é ATIVAMENTE nociva" de jul NÃO se replica.** Em jul, distractor (39%) ficava −28pp abaixo do control (67%), p=0,004. Agora distractor (35%) ≈ control (38%), **Fisher p=1,00 (n.s.)** — indistinguíveis. O efeito "ruído pior que silêncio" sumiu neste roster.
+5. **A causa é o control que DESPENCOU (67%→38%), não a memória.** mem-C ficou em ~100% nas duas rodadas; o que mudou foi o baseline sem-memória, que caiu. Como os modelos mudaram e as tasks/grading são as mesmas, a leitura é: **o pass-rate absoluto de control/distractor é sensível ao modelo e NÃO é comparável ponto-a-ponto entre rodadas** — esses modelos simplesmente erram mais as gotchas sem a memória. Isso **reforça** o headline (memória grounded leva a ~teto em qualquer roster) e ao mesmo tempo **enfraquece** a tese secundária de dano do distractor, que dependia de distractor << control.
+
+### Limites (desta rodada)
+Abortou no cap (233/270 runs — n desbalanceado leve: 45–48/condição). `split_part` junta opus-4-6/4-8 na visão por família. Mesmo regex-grading e mesmas tasks curadas de jul (comparabilidade mantida, viés de seleção idem). Conclusão: o **número causal da memória é robusto a 3 meses e troca de modelos (+62pp, p≈1e-12)**; a secundária sobre distractor é **condicional ao roster** e não deve ser citada como achado estável.
